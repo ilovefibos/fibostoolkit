@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 // core components
-import logo from 'assets/img/genereosWhite.png';
+import logo from 'assets/img/ilovefibosWhite.png';
 
 import VoteUs from 'components/Features/VoteUs';
 

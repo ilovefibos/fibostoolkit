@@ -1,6 +1,6 @@
 import React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
-import GenereosIcon from 'assets/img/genereosWhite.png';
+import GenereosIcon from 'assets/img/ilovefibosWhite.png';
 
 const style = {
   logoMini: {
