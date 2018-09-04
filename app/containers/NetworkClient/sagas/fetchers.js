@@ -241,6 +241,25 @@ function* getCurrency(reader, token, name) {
     return [];
   }
 }
+const balanceTable = name => {
+  return {
+    json: true,
+    scope: name,
+    code: 'eosio.token',
+    table: 'accounts',
+  };
+};
+
+function* getCurrencyFromTable(reader, name) {
+  const currencyResult = yield reader.getTableRows(balanceTable(name));
+  const currencies = currencyResult.rows.map(c => {
+    return {
+      account: c.balance.contract,
+      balance: c.balance.quantity,
+    };
+  });
+  return currencies;
+}
 
 function* getAccountDetail(reader, name) {
   console.log("reader.getAccount")
@@ -254,7 +273,8 @@ function* getAccountDetail(reader, name) {
     // );
     //
     // const currencies = yield join(...tokenData);
-    const balances = []; //currencies.reduce((a, b) => a.concat(b), []);
+    // const balances = currencies.reduce((a, b) => a.concat(b), []);
+    const balances = yield getCurrencyFromTable(reader, name);
     // yield spawn(fetchLatency);
     return {
       ...account,

@@ -22,18 +22,40 @@ function* getCurrency(token, name) {
   }
 }
 
+const balanceTable = name => {
+  return {
+    json: true,
+    scope: name,
+    code: 'eosio.token',
+    table: 'accounts',
+  };
+};
+
+function* getCurrencyFromTable(reader, name) {
+  const currencyResult = yield reader.getTableRows(balanceTable(name));
+  const currencies = currencyResult.rows.map(c => {
+    return {
+      account: c.balance.contract,
+      balance: c.balance.quantity,
+    };
+  });
+  return currencies;
+}
+
 function* getAccountDetail(name) {
   try {
     const networkReader = yield select(makeSelectReader());
-    const eosTokens = yield select(selectTokens());
+    // const eosTokens = yield select(selectTokens());
     const account = yield networkReader.getAccount(name);
-    const tokens = yield all(
-      eosTokens.map(token => {
-        return fork(getCurrency, token.account, name);
-      })
-    );
-    const currencies = yield join(...tokens);
-    const balances = currencies.reduce((a, b) => a.concat(b), []);
+    // const tokens = yield all(
+    //   eosTokens.map(token => {
+    //     return fork(getCurrency, token.account, name);
+    //   })
+    // );
+    // const currencies = yield join(...tokens);
+    // const balances = currencies.reduce((a, b) => a.concat(b), []);
+    const balances = yield getCurrencyFromTable(networkReader, name);
+    console.log(balances);
     return {
       ...account,
       balances,
