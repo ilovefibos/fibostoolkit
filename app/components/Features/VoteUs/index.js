@@ -13,7 +13,7 @@ import { pushTransaction as sendTransaction } from 'containers/NetworkClient/act
 
 const makeTransaction = (networkIdentity, accountData) => {
   if (!accountData) {
-    return { error: 'No scatter identity attached' };
+    return { error: 'No ironman identity attached' };
   }
   const producers = accountData.voter_info ? accountData.voter_info.producers : [];
   if (producers.includes('ilovefibosbp')) {

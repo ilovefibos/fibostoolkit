@@ -18,7 +18,7 @@ const HorusPay = props => {
 
   const makeTransaction = (proxy) => {
     if (!writerEnabled) {
-      return { error: 'No scatter identity attached' };
+      return { error: 'No ironman identity attached' };
     }
 
     const transaction = [

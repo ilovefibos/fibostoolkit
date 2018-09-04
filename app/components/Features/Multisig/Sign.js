@@ -88,11 +88,11 @@ const MultisigSign = props => {
       </ToolSection>
       <ToolSection lg={4}>
         <ToolBody color="info" header="Tutorial">
-          <h5>Scatter Desktop is required. Not the Chrome Extension.</h5>
+          <h5>Ironman Desktop is required. Not the Chrome Extension.</h5>
           <p>Load the Transaction JSON you were provided.</p>
-          <p>Ensure Scatter is connected with the correct account to sign this transaction.</p>
+          <p>Ensure Ironman is connected with the correct account to sign this transaction.</p>
           <p>Click Sign Transaction</p>
-          <p>Scatter will appear asking you to sign an arbitrary Buffer. This will appear like random numbers. This is acceptable, and matches the JSON you loaded.</p>
+          <p>Ironman will appear asking you to sign an arbitrary Buffer. This will appear like random numbers. This is acceptable, and matches the JSON you loaded.</p>
           <p>A dialogue will appear with your Signature, and you will also automatically download a JSON file with this signature.</p>
           <p>Provide this signature or signature file to the person sending the transaction.</p>
         </ToolBody>

@@ -27,7 +27,7 @@ import GenereosIcon from 'components/Icons/Genereos';
 // core components
 import HeaderLinks from 'components/Header/HeaderLinks';
 
-import avatar from 'assets/img/scatter.png';
+import avatar from 'assets/img/ironman.png';
 
 import SidebarWrapper from './SidebarWrapper';
 import sidebarStyle from './sidebarStyle';

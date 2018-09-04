@@ -56,7 +56,7 @@ export class Notification extends React.Component {
           confirmBtnText="Hide"
           // onCancel={() => closeAll()}
           confirmBtnCssClass={`${this.props.classes.button} ${this.props.classes.info}`}>
-          <h5>Scatter should appear shortly to confirm this action.</h5>
+          <h5>Ironman should appear shortly to confirm this action.</h5>
           <h6>Your transaction will be sent to the network afterwards</h6>
         </SweetAlert>
       );
@@ -136,10 +136,10 @@ export class Notification extends React.Component {
           confirmBtnText="Close"
           // onCancel={() => closeAll()}
           confirmBtnCssClass={`${this.props.classes.button} ${this.props.classes.danger}`}>
-          <h5>You must install and connect Scatter</h5>
+          <h5>You must install and connect Ironman</h5>
           <h5>
-            <a href={`https://get-scatter.com/`} target="new">
-              Get Scatter
+            <a href={`https://foironman.com/`} target="new">
+              Get Ironman
             </a>
           </h5>
         </SweetAlert>

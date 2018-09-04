@@ -6,7 +6,7 @@ const NetworkIdentity = props => {
   const { signer, identity } = props;
   if (signer && !identity) return 'Please attach Identity';
   if (signer && identity) return `${identity.name}@${identity.authority}`;
-  return 'Please install Scatter';
+  return 'Please install Ironman';
 };
 
 const mapStateToProps = createStructuredSelector({

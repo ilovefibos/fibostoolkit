@@ -15,7 +15,7 @@ export function* pushTransaction(action) {
       const transaction = yield select(makeSelectTransaction());
       const networkWriter = yield select(makeSelectWriter());
       if (!networkWriter || !transaction || !networkIdentity) {
-        throw { message: 'Writing is not enabled - check your Scatter connection' };
+        throw { message: 'Writing is not enabled - check your Ironman connection' };
       }
       if (transaction.error) {
         throw { message: transaction.error };
@@ -30,7 +30,7 @@ export function* pushTransaction(action) {
           authorization: [{ actor:networkIdentity.name, permission:networkIdentity.authority }],
         };
       });
-      console.log(`Attempting to send tx to scatter: ${JSON.stringify(actions, null, 2)}`);
+      console.log(`Attempting to send tx to ironman: ${JSON.stringify(actions, null, 2)}`);
       const res = yield networkWriter.transaction({ actions });
       yield put(successNotification({TransactionId: res.transaction_id}));
 
