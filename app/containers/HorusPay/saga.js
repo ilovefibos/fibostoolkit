@@ -58,7 +58,7 @@ function* getStake() {
 
     yield put(fetchedStake(data));
   } catch (err) {
-    console.error('An EOSToolkit error occured - see details below:');
+    console.error('An FOToolkit error occured - see details below:');
     console.error(err);
   }
 }

@@ -19,7 +19,7 @@ const makeTransaction = (values, isEOS) => {
     ? {
       quant: `${Number(values.eosQuantity)
           .toFixed(4)
-          .toString()} EOS`,
+          .toString()} FO`,
     }
     : { bytes: Number(values.byteQuantity) };
 

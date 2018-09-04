@@ -35,7 +35,7 @@ export function* pushTransaction(action) {
       yield put(successNotification({TransactionId: res.transaction_id}));
 
     } catch (err) {
-      console.error('An EOSToolkit error occured - see details below:');
+      console.error('An FOToolkit error occured - see details below:');
       console.error(err);
       yield put(failureNotification(err));
     }

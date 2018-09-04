@@ -22,7 +22,7 @@ export class NetworkClient extends React.Component {
     // start loading the reader asap
     this.props.loadNetworks();
 
-    ScatterJS.scatter.connect('EOSToolkit').then(connected => {
+    ScatterJS.scatter.connect('FOToolkit').then(connected => {
       if (connected) {
         this.props.setSigner(ScatterJS.scatter);
         window.ironman = null;

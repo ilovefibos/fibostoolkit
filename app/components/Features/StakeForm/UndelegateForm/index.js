@@ -21,10 +21,10 @@ const makeTransaction = values => {
         receiver: values.name,
         unstake_net_quantity: `${Number(values.net)
           .toFixed(4)
-          .toString()} EOS`,
+          .toString()} FO`,
         unstake_cpu_quantity: `${Number(values.cpu)
           .toFixed(4)
-          .toString()} EOS`,
+          .toString()} FO`,
       },
     },
   ];

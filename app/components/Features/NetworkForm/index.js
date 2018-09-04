@@ -40,7 +40,7 @@ const NetworkForm = props => {
           <CardBody>
             <h6>
               Get your testnet or endpoint added to this list by submitting a pull request to{' '}
-              <a href="https://github.com/eostoolkit/eos-networks" target="new">
+              <a href="https://github.com/lowwor/fibos-networks" target="new">
                 GitHub
               </a>
             </h6>

@@ -37,7 +37,7 @@ export function* stageTransaction(action) {
     yield put(successNotification(res.transaction.transaction));
 
   } catch (err) {
-    console.error('An EOSToolkit error occured - see details below:');
+    console.error('An FOToolkit error occured - see details below:');
     console.error(err);
     yield put(failureNotification(err));
   }
@@ -78,7 +78,7 @@ export function* signTransaction(action) {
     yield put(successNotification(signature));
 
   } catch (err) {
-    console.error('An EOSToolkit error occured - see details below:');
+    console.error('An FOToolkit error occured - see details below:');
     console.error(err);
     yield put(failureNotification(err));
   }
@@ -102,7 +102,7 @@ export function* pushTransaction(action) {
     yield put(successNotification({TransactionId: res.transaction_id}));
 
   } catch (err) {
-    console.error('An EOSToolkit error occured - see details below:');
+    console.error('An FOToolkit error occured - see details below:');
     console.error(err);
     yield put(failureNotification(err));
   }

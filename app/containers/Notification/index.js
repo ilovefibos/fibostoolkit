@@ -82,7 +82,7 @@ export class Notification extends React.Component {
                 {message ? `${JSON.stringify(message, null, 2)}` : ''}
               </pre>
             )}
-          <p>Thank you for using EOSToolkit.io</p>
+          <p>Thank you for using FOToolkit.io</p>
           <h6>Your votes support continued development of these tools</h6>
           <h5>
             <VoteUs />

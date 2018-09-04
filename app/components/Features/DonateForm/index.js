@@ -29,11 +29,11 @@ const makeTransaction = (values, networkIdentity) => {
       name: 'transfer',
       data: {
         from: networkIdentity ? networkIdentity.name : '',
-        to: 'myeostoolkit',
+        to: 'fibostoolkit',
         memo: values.memo,
         quantity: `${Number(values.quantity)
           .toFixed(4)
-          .toString()} EOS`,
+          .toString()} FO`,
       },
     },
   ];

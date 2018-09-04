@@ -30,7 +30,7 @@ const makeSelectAccountLoading = () => createSelector(selectClientState, substat
  */
 
 const makeSelectReaderEnabled = () =>
-  createSelector(selectClientState, substate => {
+  createSelector(selectClienttokensState, substate => {
     if (!substate) return false;
     const loading = substate.get('readerLoading');
     const reader = substate.get('networkReader');

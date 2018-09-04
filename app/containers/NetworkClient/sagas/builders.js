@@ -17,7 +17,7 @@ export function* buildReader(activeNetwork) {
       broadcast: false,
       sign: false,
       chainId: activeNetwork.network.chainId,
-      keyPrefix: activeNetwork.network.prefix || 'EOS',
+      keyPrefix: activeNetwork.network.prefix || 'FO',
       httpEndpoint: `${activeNetwork.endpoint.protocol}://${activeNetwork.endpoint.url}:${activeNetwork.endpoint.port}`,
     };
 
@@ -26,7 +26,7 @@ export function* buildReader(activeNetwork) {
 
     yield put(enableReader(networkReader, tokens));
   } catch (err) {
-    console.error('An EOSToolkit error occured - see details below:');
+    console.error('An FOToolkit error occured - see details below:');
     console.error(err);
   }
 }
@@ -47,14 +47,14 @@ export function* buildWriter(signer, activeNetwork) {
       host: activeNetwork.endpoint.url,
       port: activeNetwork.endpoint.port,
       chainId: activeNetwork.network.chainId,
-      keyPrefix: activeNetwork.network.prefix || 'EOS'
+      keyPrefix: activeNetwork.network.prefix || 'FO'
     };
 
     const networkOptions = {
       broadcast: true,
       sign: true,
       chainId: activeNetwork.network.chainId,
-      keyPrefix: activeNetwork.network.prefix || 'EOS'
+      keyPrefix: activeNetwork.network.prefix || 'FO'
     };
     const protocol = activeNetwork.endpoint.protocol;
     const networkWriter = signer.fibos(signerClientConfig, Fibos, networkOptions, protocol);
@@ -66,7 +66,7 @@ export function* buildWriter(signer, activeNetwork) {
       yield put(disableWriter());
     }
   } catch (err) {
-    console.error('An EOSToolkit error occured - see details below:');
+    console.error('An FOToolkit error occured - see details below:');
     console.error(err);
   }
 }

@@ -50,7 +50,7 @@ export function* fetchNetworks() {
 
     yield put(loadedNetworks(networks, activeNetwork));
   } catch (err) {
-    console.error('An EOSToolkit error occured - see details below:');
+    console.error('An FOToolkit error occured - see details below:');
     console.error(err);
   }
 }
@@ -105,7 +105,7 @@ export function* fetchLatency() {
     }
 
   } catch (err) {
-    console.error('An EOSToolkit error occured - see details below:');
+    console.error('An FOToolkit error occured - see details below:');
     console.error(err);
   }
 }
@@ -156,7 +156,7 @@ export function* fetchTokens(reader) {
     const tokens = yield join(...info);
     return tokens;
   } catch (err) {
-    console.error('An EOSToolkit error occured - see details below:');
+    console.error('An FOToolkit error occured - see details below:');
     console.error(err);
     return null;
   }
@@ -200,7 +200,7 @@ export function* fetchIdentity(signer, activeNetwork) {
     }
     return null;
   } catch (err) {
-    console.error('An EOSToolkit error occured - see details below:');
+    console.error('An FOToolkit error occured - see details below:');
     console.error(err);
     return null;
   }
@@ -298,7 +298,7 @@ export function* fetchAccount() {
       yield put(loadedAccount(null));
     }
   } catch (err) {
-    console.error('An EOSToolkit error occured - see details below:');
+    console.error('An FOToolkit error occured - see details below:');
     console.error(err);
   }
 }
