@@ -21,8 +21,8 @@ const FeaturesPage = () => {
         <ToolBody
           color="info"
           icon={Info}
-          header="Welcome to EOSToolkit"
-          subheader=" - Easy access to the EOS Network">
+          header="Welcome to FOToolkit"
+          subheader=" - Easy access to the FO Network">
           <HomeDoc />
         </ToolBody>
       </ToolSection>

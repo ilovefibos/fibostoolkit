@@ -20,7 +20,7 @@ const FormData = [
   },
   {
     id: 'bid',
-    label: 'Bid (in EOS)',
+    label: 'Bid (in FO)',
     placeholder: 'Must be 10% greater than last bid',
   },
 ];

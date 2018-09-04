@@ -72,24 +72,24 @@ const dashRoutes = [
     icon: Favorite,
     component: Donate,
   },
-  {
-    path: '/governance',
-    name: 'Governance',
-    icon: AccountBalance,
-    component: GovernancePage,
-  },
-  {
-    path: '/horuspay',
-    name: 'HorusPay',
-    icon: HorusIcon,
-    component: HorusPay,
-  },
-  {
-    path: '/airgrab',
-    name: 'Airgrab Tokens',
-    icon: CloudDownload,
-    component: Airgrab,
-  },
+  // {
+  //   path: '/governance',
+  //   name: 'Governance',
+  //   icon: AccountBalance,
+  //   component: GovernancePage,
+  // },
+  // {
+  //   path: '/horuspay',
+  //   name: 'HorusPay',
+  //   icon: HorusIcon,
+  //   component: HorusPay,
+  // },
+  // {
+  //   path: '/airgrab',
+  //   name: 'Airgrab Tokens',
+  //   icon: CloudDownload,
+  //   component: Airgrab,
+  // },
   {
     path: '/search',
     name: 'Find Accounts',
@@ -166,12 +166,12 @@ const dashRoutes = [
         mini: 'VP',
         component: VotingTable,
       },
-      {
-        path: '/vote/proxies',
-        name: 'Proxy Information',
-        mini: 'PI',
-        component: ProxyTable,
-      },
+      // {
+      //   path: '/vote/proxies',
+      //   name: 'Proxy Information',
+      //   mini: 'PI',
+      //   component: ProxyTable,
+      // },
       {
         path: '/vote/setproxy',
         name: 'Set Proxy',
@@ -199,30 +199,30 @@ const dashRoutes = [
     state: 'openCommunity',
     icon: Forum,
     views: [
-      {
-        path: '/community/forum/status',
-        name: 'Forum Status',
-        mini: 'FS',
-        component: ForumStatus,
-      },
-      {
-        path: '/community/forum/post',
-        name: 'Forum Post',
-        mini: 'FP',
-        component: ForumPost,
-      },
-      {
-        path: '/community/forum/proposal',
-        name: 'Forum Proposal',
-        mini: 'Pr',
-        component: ForumProposal,
-      },
-      {
-        path: '/community/forum/vote',
-        name: 'Forum Vote',
-        mini: 'FV',
-        component: ForumVote,
-      },
+      // {
+      //   path: '/community/forum/status',
+      //   name: 'Forum Status',
+      //   mini: 'FS',
+      //   component: ForumStatus,
+      // },
+      // {
+      //   path: '/community/forum/post',
+      //   name: 'Forum Post',
+      //   mini: 'FP',
+      //   component: ForumPost,
+      // },
+      // {
+      //   path: '/community/forum/proposal',
+      //   name: 'Forum Proposal',
+      //   mini: 'Pr',
+      //   component: ForumProposal,
+      // },
+      // {
+      //   path: '/community/forum/vote',
+      //   name: 'Forum Vote',
+      //   mini: 'FV',
+      //   component: ForumVote,
+      // },
       {
         path: '/community/bidname',
         name: 'Premium Names',

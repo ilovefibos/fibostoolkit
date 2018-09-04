@@ -31,37 +31,37 @@ function Footer({ ...props }) {
         <div className={classes.left}>
           <List className={classes.list}>
             <ListItem className={classes.inlineBlock}>
-              <a href="https://github.com/generEOS" className={block}>
+              <a href="https://github.com/FIBOSIO" className={block}>
                 {'GitHub'}
               </a>
             </ListItem>
+            {/*<ListItem className={classes.inlineBlock}>*/}
+              {/*<a href="https://steemit.com/@genereos" target="new" className={block}>*/}
+                {/*{'Steemit'}*/}
+              {/*</a>*/}
+            {/*</ListItem>*/}
+            {/*<ListItem className={classes.inlineBlock}>*/}
+              {/*<a href="https://www.facebook.com/generEOS" target="new" className={block}>*/}
+                {/*{'Facebook'}*/}
+              {/*</a>*/}
+            {/*</ListItem>*/}
+            {/*<ListItem className={classes.inlineBlock}>*/}
+              {/*<a href="https://www.reddit.com/r/GenerEOS/" target="new" className={block}>*/}
+                {/*{'Reddit'}*/}
+              {/*</a>*/}
+            {/*</ListItem>*/}
             <ListItem className={classes.inlineBlock}>
-              <a href="https://steemit.com/@genereos" target="new" className={block}>
-                {'Steemit'}
-              </a>
-            </ListItem>
-            <ListItem className={classes.inlineBlock}>
-              <a href="https://www.facebook.com/generEOS" target="new" className={block}>
-                {'Facebook'}
-              </a>
-            </ListItem>
-            <ListItem className={classes.inlineBlock}>
-              <a href="https://www.reddit.com/r/GenerEOS/" target="new" className={block}>
-                {'Reddit'}
-              </a>
-            </ListItem>
-            <ListItem className={classes.inlineBlock}>
-              <a href="https://twitter.com/genereossydney" target="new" className={block}>
+              <a href="https://twitter.com/fibos_io" target="new" className={block}>
                 {'Twitter'}
               </a>
             </ListItem>
+            {/*<ListItem className={classes.inlineBlock}>*/}
+              {/*<a href="https://www.youtube.com/channel/UCFHa6AJmcZBjXGILF2EZnHQ" target="new" className={block}>*/}
+                {/*{'YouTube'}*/}
+              {/*</a>*/}
+            {/*</ListItem>*/}
             <ListItem className={classes.inlineBlock}>
-              <a href="https://www.youtube.com/channel/UCFHa6AJmcZBjXGILF2EZnHQ" target="new" className={block}>
-                {'YouTube'}
-              </a>
-            </ListItem>
-            <ListItem className={classes.inlineBlock}>
-              <a href="https://t.me/generEOS" target="new" className={block}>
+              <a href="https://t.me/FIBOSIO" target="new" className={block}>
                 {'Telegram'}
               </a>
             </ListItem>
@@ -69,10 +69,10 @@ function Footer({ ...props }) {
         </div>
         <p className={classes.right}>
           &copy; {1900 + new Date().getYear()}{' '}
-          <a href="https://www.genereos.io" target="new" className={anchor}>
-            {'GenerEOS'}
+          <a href="https://www.ilovefibos.com" target="new" className={anchor}>
+            {'ilovefibosbp'}
           </a>
-          {', made with love for the EOS Community'}
+          {', made with love for the FO Community'}
         </p>
       </div>
     </footer>

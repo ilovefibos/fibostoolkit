@@ -74,7 +74,7 @@ const RefundForm = props => {
       <ToolSection lg={4}>
         <ToolBody color="info" header="Information">
           <h5>Refund Stake</h5>
-          <p>This is a fallback function if your refund request does not complete automatically when unstaking EOS.</p>
+          <p>This is a fallback function if your refund request does not complete automatically when unstaking FO.</p>
           <p>This function requires that 72 hours have passed from the last unstake attempt made.</p>
         </ToolBody>
       </ToolSection>

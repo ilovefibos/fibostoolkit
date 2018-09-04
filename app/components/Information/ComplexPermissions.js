@@ -11,7 +11,7 @@ const ComplexPermissions = () => {
         <strong>This action has serious consequences - You can make your account IRRECOVERABLE</strong>
       </h5>
       <p>
-        EOS accounts can have complex permission structures which include a parent/child relationship.
+        FO accounts can have complex permission structures which include a parent/child relationship.
         Every account starts with the basic structure <i>owner</i>, which is the parent permission for all future permissions, and it{"'"}s child <i>active</i>.
       </p>
       <p>

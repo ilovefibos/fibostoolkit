@@ -20,7 +20,7 @@ const ResignProxyForm = props => {
     <Tool>
       <ToolSection lg={8}>
         <ResignForm {...props} />
-        <UnregForm {...props} />
+        {/*<UnregForm {...props} />*/}
       </ToolSection>
       <ToolSection lg={4}>
         <ToolBody color="info" header="Information">
