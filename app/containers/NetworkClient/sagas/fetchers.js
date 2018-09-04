@@ -303,7 +303,6 @@ function* getCurrencyFromTable(reader, name) {
 }
 
 function* getAccountDetail(reader, name) {
-  console.log('reader.getAccount');
   try {
     const account = yield reader.getAccount(name);
     // const tokens = yield select(makeSelectTokens());

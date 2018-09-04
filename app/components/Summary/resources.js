@@ -19,10 +19,10 @@ function ResourcesTable({ ...props }) {
               <TableRow className={`${classes.tableRowHover}`}>
 
                 <TableCell className={classes.tableCell}>
-                  <h6>EOS</h6>
+                  <h6>FO</h6>
                 </TableCell>
                 <TableCell className={classes.tableCell}>
-                  {account.balances.find(b=>b.account==='eosio.token') ? account.balances.find(b=>b.account==='eosio.token').balance : 'None'}
+                  {account.balances.find(b=> (b.account==='eosio' && b.balance.indexOf('FO') !== -1)) ? account.balances.find(b=> (b.account==='eosio' && b.balance.indexOf('FO') !== -1)).balance : 'None'}
                 </TableCell>
                 <TableCell className={classes.tableCell}>
                   <h6>RAM</h6>
