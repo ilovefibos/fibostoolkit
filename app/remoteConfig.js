@@ -41,6 +41,6 @@ const airgrabs = [
 ];
 
 const tokensUrl = 'https://raw.githubusercontent.com/eoscafe/eos-airdrops/master/tokens.json';
-const networksUrl = 'https://raw.githubusercontent.com/eostoolkit/eos-networks/master/networks.json';
+const networksUrl = 'https://raw.githubusercontent.com/lowwor/eos-networks/master/networks.json?nocache';
 
 export { tokensUrl, networksUrl, airgrabs };

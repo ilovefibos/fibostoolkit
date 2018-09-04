@@ -1,4 +1,4 @@
-import Eos from 'eosjs';
+import Fibos from 'fibos.js';
 import { put, call } from 'redux-saga/effects';
 import { fetchTokens, fetchIdentity } from './fetchers';
 import { enableReader, enableWriter, disableWriter } from '../actions';
@@ -21,8 +21,8 @@ export function* buildReader(activeNetwork) {
       httpEndpoint: `${activeNetwork.endpoint.protocol}://${activeNetwork.endpoint.url}:${activeNetwork.endpoint.port}`,
     };
 
-    const networkReader = yield Eos(networkOptions);
-    const tokens = yield call(fetchTokens, networkReader);
+    const networkReader = yield Fibos(networkOptions);
+    const tokens = []; // yield call(fetchTokens, networkReader);
 
     yield put(enableReader(networkReader, tokens));
   } catch (err) {
@@ -57,7 +57,7 @@ export function* buildWriter(signer, activeNetwork) {
       keyPrefix: activeNetwork.network.prefix || 'EOS'
     };
     const protocol = activeNetwork.endpoint.protocol;
-    const networkWriter = signer.eos(signerClientConfig, Eos, networkOptions, protocol);
+    const networkWriter = signer.fibos(signerClientConfig, Fibos, networkOptions, protocol);
     const identity = yield call(fetchIdentity, signer, activeNetwork);
 
     if (identity) {

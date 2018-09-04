@@ -37,8 +37,10 @@ export function* fetchNetworks() {
     });
 
     // get default
-    const network = networks.find(n => n.network === 'eos' && n.type === 'mainnet');
-    const endpoint = network.endpoints.find(e => e.name === 'Greymass');
+    // const network = networks.find(n => n.network === 'eos' && n.type === 'mainnet');
+    // const endpoint = network.endpoints.find(e => e.name === 'Greymass');
+    const network = networks.find(n => n.network === 'fibos' && n.type === 'mainnet');
+    const endpoint = network.endpoints.find(e => e.name === 'FIBOS SE');
 
     // build activeNetwork
     const activeNetwork = {
@@ -180,7 +182,7 @@ export function* fetchIdentity(signer, activeNetwork) {
     };
 
     // suggest the network to the user
-    yield signer.suggestNetwork(networkConfig);
+    // yield signer.suggestNetwork(networkConfig);
 
     // get identities specific to the activeNetwork
     const id = yield signer.getIdentity({
@@ -191,7 +193,6 @@ export function* fetchIdentity(signer, activeNetwork) {
         },
       ],
     });
-
     const match = id && id.accounts.find(x => x.blockchain === activeNetwork.network.network);
 
     if (match) {
@@ -242,31 +243,34 @@ function* getCurrency(reader, token, name) {
 }
 
 function* getAccountDetail(reader, name) {
+  console.log("reader.getAccount")
   try {
     const account = yield reader.getAccount(name);
-    const tokens = yield select(makeSelectTokens());
-    const tokenData = yield all(
-      tokens.map(token => {
-        return fork(getCurrency, reader, token.account, name);
-      })
-    );
-
-    const currencies = yield join(...tokenData);
-    const balances = currencies.reduce((a, b) => a.concat(b), []);
-    yield spawn(fetchLatency);
+    // const tokens = yield select(makeSelectTokens());
+    // const tokenData = yield all(
+    //   tokens.map(token => {
+    //     return fork(getCurrency, reader, token.account, name);
+    //   })
+    // );
+    //
+    // const currencies = yield join(...tokenData);
+    const balances = []; //currencies.reduce((a, b) => a.concat(b), []);
+    // yield spawn(fetchLatency);
     return {
       ...account,
       balances,
     };
   } catch (c) {
+    console.log("getAccount error")
+    console.log(c)
     return null;
   }
 }
 
 export function* fetchAccount() {
+  try {
   const reader = yield select(makeSelectReader());
   const identity = yield select(makeSelectIdentity());
-  try {
     if (identity && identity.name) {
       const account = yield call(getAccountDetail, reader, identity.name);
       yield put(loadedAccount(account));

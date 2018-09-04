@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import injectSaga from 'utils/injectSaga';
-import ScatterJS from 'scatter-js/dist/scatter.esm.js';
+import ScatterJS from './lib/scatterjs';
 import { setSigner, loadNetworks, loadAccount } from './actions';
 import saga from './sagas/watchers';
 
@@ -23,9 +23,9 @@ export class NetworkClient extends React.Component {
     this.props.loadNetworks();
 
     ScatterJS.scatter.connect('EOSToolkit').then(connected => {
-      if(connected){
-          this.props.setSigner(ScatterJS.scatter);
-          window.scatter = null;
+      if (connected) {
+        this.props.setSigner(ScatterJS.scatter);
+        window.ironman = null;
       }
     });
 
