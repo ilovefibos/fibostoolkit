@@ -136,24 +136,41 @@ function* fetchTokenInfo(reader, account, symbol) {
   }
 }
 
+function* getTokenInfoFromTable(reader) {
+  const currencyResult = yield reader.getTableRows({
+    json: true,
+    scope: "eosio",
+    code: 'eosio.token',
+    table: 'stats',
+  });
+  const currencies = currencyResult.rows.map(c => {
+    return {
+      account: "eosio.token",
+      symbol: c.max_supply.split(' ')[1],
+      precision: c.max_supply.split(' ')[0].split('.')[1].length,
+    };
+  });
+  return currencies;
+}
+
 export function* fetchTokens(reader) {
   try {
-    const data = yield fetch(tokensUrl);
-    const list = yield data.json();
+    // const data = yield fetch(tokensUrl);
+    // const list = yield data.json();
 
-    const tokenList = [
-      {
-        symbol: "EOS",
-        account: "eosio.token"
-      },
-      ...list
-    ]
-    const info = yield all(
-      tokenList.map(token => {
-        return fork(fetchTokenInfo, reader, token.account, token.symbol);
-      })
-    );
-    const tokens = yield join(...info);
+    // const tokenList = [
+    //   {
+    //     symbol: "EOS",
+    //     account: "eosio.token"
+    //   },
+    //   ...list
+    // ]
+    // const info = yield all(
+    //   tokenList.map(token => {
+    //     return fork(fetchTokenInfo, reader, token.account, token.symbol);
+    //   })
+    // );
+    const tokens = yield getTokenInfoFromTable(reader);
     return tokens;
   } catch (err) {
     console.error('An FOToolkit error occured - see details below:');

@@ -22,7 +22,7 @@ export function* buildReader(activeNetwork) {
     };
 
     const networkReader = yield Fibos(networkOptions);
-    const tokens = []; // yield call(fetchTokens, networkReader);
+    const tokens = yield call(fetchTokens, networkReader);
 
     yield put(enableReader(networkReader, tokens));
   } catch (err) {

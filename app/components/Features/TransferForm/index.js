@@ -38,16 +38,20 @@ const makeTransaction = (values, eosTokens) => {
   ];
   return transaction;
 };
-
-const validationSchema = Yup.object().shape({
-  owner: Yup.string().required('Sender name is required'),
-  name: Yup.string().required('Account name is required'),
-  symbol: Yup.string().required('Symbol is required'),
-  memo: Yup.string(),
-  quantity: Yup.number()
-    .required('Quantity is required')
-    .positive('You must send a positive quantity'),
-});
+const validationSchema = props => {
+  const { eosTokens } = props;
+  return Yup.object().shape({
+    owner: Yup.string().required('Sender name is required'),
+    name: Yup.string().required('Account name is required'),
+    symbol: Yup.string()
+      .required('Symbol is required')
+      .oneOf(eosTokens.map(token => token.symbol)),
+    memo: Yup.string(),
+    quantity: Yup.number()
+      .required('Quantity is required')
+      .positive('You must send a positive quantity'),
+  });
+};
 
 const TransferForm = props => {
   return (
@@ -80,7 +84,7 @@ const enhance = compose(
       const { pushTransaction, eosTokens } = props;
       const transaction = makeTransaction(values, eosTokens);
       setSubmitting(false);
-      pushTransaction(transaction,props.history);
+      pushTransaction(transaction, props.history);
     },
     mapPropsToValues: props => ({
       owner: props.networkIdentity ? props.networkIdentity.name : '',
