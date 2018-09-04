@@ -29,7 +29,7 @@ const makeTransaction = (values, networkIdentity) => {
       name: 'transfer',
       data: {
         from: networkIdentity ? networkIdentity.name : '',
-        to: 'fibostoolkit',
+        to: 'ilovefibosbp',
         memo: values.memo,
         quantity: `${Number(values.quantity)
           .toFixed(4)
