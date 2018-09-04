@@ -27,7 +27,7 @@ const FormData = [
 
 const extraButton = () => {
   return (
-    <a href="https://eospark.com/MainNet/bidaccount" target="new">
+    <a href="http://explorer.fibos.rocks/contracts/eosio/bidname" target="new">
       <Button color="info">Get Bid Prices</Button>
     </a>
   );

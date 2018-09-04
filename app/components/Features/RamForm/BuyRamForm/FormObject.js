@@ -26,7 +26,7 @@ const FormData = [
 
 const eosInput = {
   id: 'eosQuantity',
-  label: `Ram purchase (in ${units.EOS})`,
+  label: `Ram purchase (in ${units.FO})`,
   placeholder: 'How much RAM to puchase',
 };
 
@@ -57,7 +57,7 @@ const FormObject = props => {
         <span className={classes.radioLabel}>Purchase unit:</span>
         <FormControlLabel
           control={<Radio checked={isEOS} color="primary" onChange={handleEOSUnitChange} />}
-          label="EOS"
+          label="FO"
         />
         <FormControlLabel
           control={<Radio checked={!isEOS} color="primary" onChange={handleByteUnitChange} />}

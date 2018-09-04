@@ -74,7 +74,7 @@ export class Notification extends React.Component {
           confirmBtnText="Thanks"
           confirmBtnCssClass={`${this.props.classes.button} ${this.props.classes.success}`}>
             {txid ? (
-              <a href={`https://bloks.io/transaction/${txid}`} target="new">
+              <a href={`http://explorer.fibos.rocks/transactions/${txid}`} target="new">
                 <h6>{txid}</h6>
               </a>
             ) : (
@@ -82,7 +82,7 @@ export class Notification extends React.Component {
                 {message ? `${JSON.stringify(message, null, 2)}` : ''}
               </pre>
             )}
-          <p>Thank you for using FOToolkit.io</p>
+          <p>Thank you for using FOToolkit.com</p>
           <h6>Your votes support continued development of these tools</h6>
           <h5>
             <VoteUs />

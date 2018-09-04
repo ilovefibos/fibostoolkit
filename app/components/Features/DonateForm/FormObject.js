@@ -6,8 +6,8 @@ import ToolInput from 'components/Tool/ToolInput';
 const FormData = [
   {
     id: 'quantity',
-    label: 'Quantity (in EOS)',
-    placeholder: 'How much EOS to donate',
+    label: 'Quantity (in FO)',
+    placeholder: 'How much FO to donate',
   },
   {
     id: 'memo',

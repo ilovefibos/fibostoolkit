@@ -17,13 +17,13 @@ const FormData = [
   },
   {
     id: 'cpu',
-    label: 'CPU Stake (in EOS)',
-    placeholder: 'How much EOS to stake',
+    label: 'CPU Stake (in FO)',
+    placeholder: 'How much FO to stake',
   },
   {
     id: 'net',
-    label: 'Net Stake (in EOS)',
-    placeholder: 'How much EOS to stake',
+    label: 'Net Stake (in FO)',
+    placeholder: 'How much FO to stake',
   },
 ];
 
