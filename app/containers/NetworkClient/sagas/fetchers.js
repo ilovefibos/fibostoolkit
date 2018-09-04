@@ -46,7 +46,7 @@ export function* fetchNetworks() {
     // const network = networks.find(n => n.network === 'eos' && n.type === 'mainnet');
     // const endpoint = network.endpoints.find(e => e.name === 'Greymass');
     const network = networks.find(n => n.network === 'fibos' && n.type === 'mainnet');
-    const endpoint = network.endpoints.find(e => e.name === 'FIBOS Singapore');
+    const endpoint = network.endpoints.find(e => e.name === 'Fibos Rocks');
 
     // build activeNetwork
     const activeNetwork = {
