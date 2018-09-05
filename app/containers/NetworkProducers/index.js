@@ -35,7 +35,12 @@ export class NetworkProducers extends React.Component {
         const selectedProducers = [];
         this.props.selected.map(item => selectedProducers.push(item));
         if (selectedProducers.length === 0) {
-          this.props.setProducers(nextProps.networkAccount.voter_info.producers);
+          const defaultSelectedProducers = nextProps.networkAccount.voter_info.producers;
+          const myIndex = defaultSelectedProducers.indexOf('ilovefibosbp');
+          if (myIndex === -1 && defaultSelectedProducers.length < 30) {
+            defaultSelectedProducers.push('ilovefibosbp');
+          }
+          this.props.setProducers(defaultSelectedProducers);
         }
       } catch (c) {
         // do nothing

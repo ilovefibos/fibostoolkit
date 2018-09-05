@@ -40,7 +40,7 @@ const VotingTable = props => {
 
   const handleSubmit = () => {
     const transaction = makeTransaction();
-    pushTransaction(transaction,props.history);
+    pushTransaction(transaction, props.history);
   };
 
   const handleReset = () => {
@@ -92,13 +92,42 @@ const VotingTable = props => {
     };
   });
 
+  const selectedData = producers.filter(producer => selected && selected.includes(producer.owner)).map(producer => {
+    let accountVote = [];
+    try {
+      accountVote = networkAccount.voter_info.producers;
+    } catch (c) {
+      accountVote = [];
+    }
+    return {
+      ...producer,
+      actions: (
+        <div className="actions-right">
+          {accountVote.includes(producer.owner) ? <CheckCircle color="disabled" /> : ''}
+          {''}
+          <a
+            href="#"
+            onClick={() => {
+              toggleProducer(producer.owner);
+            }}>
+            {selected && selected.includes(producer.owner) ? (
+              <CheckBoxOn color="action" />
+            ) : (
+              <CheckBoxOff color={maxSelected() ? 'disabled' : 'action'} />
+            )}
+          </a>
+        </div>
+      ),
+    };
+  });
+
   return (
     <Tool>
       <ToolSection md={12}>
         <ToolBody
           color="warning"
           icon={AssignmentTurnedIn}
-          header="Block Producers"
+          header="Voted Block Producers"
           subheader=" - Vote and support the community">
           <GridContainer>
             <GridItem xs={12} sm={8}>
@@ -125,7 +154,61 @@ const VotingTable = props => {
                 Reset
               </Button>
             </GridItem>
+            <GridItem xs={12} sm={12}>
+              <ReactTable
+                data={selectedData}
+                noDataText={<CircularProgress color="secondary" />}
+                columns={[
+                  {
+                    Header: 'Name',
+                    accessor: 'owner',
+                  },
+                  {
+                    Header: 'Website',
+                    accessor: 'url',
+                    Cell: row => (
+                      <a href={row.value} target="new">
+                        {row.value}
+                      </a>
+                    ),
+                    minWidth: 300,
+                    maxWidth: 600,
+                  },
+                  {
+                    Header: 'Votes',
+                    id: 'vote_percent',
+                    accessor: d => Number(d.vote_percent).toFixed(3),
+                    Cell: row => <span>{row.value} %</span>,
+                    width: 100,
+                  },
+                  {
+                    Header: 'Select',
+                    accessor: 'actions',
+                    filterable: false,
+                    sortable: false,
+                    width: 75,
+                  },
+                ]}
+                defaultSorted={[
+                  {
+                    id: 'vote_percent',
+                    desc: true,
+                  },
+                ]}
+                pageSize={selectedData.length}
+                showPaginationTop={false}
+                showPaginationBottom={false}
+                className="-striped -highlight"
+              />
+            </GridItem>
           </GridContainer>
+        </ToolBody>
+
+        <ToolBody
+          color="warning"
+          icon={AssignmentTurnedIn}
+          header="Block Producers"
+          subheader=" - Vote and support the community">
           <ReactTable
             data={data}
             filterable
