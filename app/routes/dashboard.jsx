@@ -7,6 +7,7 @@ import RamForm from 'components/Features/RamForm';
 import StakeForm from 'components/Features/StakeForm';
 import Refund from 'components/Features/RefundForm';
 import Transfer from 'components/Features/TransferForm';
+import Exchange from 'components/Features/ExchangeForm';
 import SimplePermissions from 'components/Features/SimplePermissionsForm';
 import ComplexPermissions from 'components/Features/ComplexPermissionsForm';
 import LinkAuth from 'components/Features/LinkAuthForm';
@@ -48,6 +49,7 @@ import {
   AssignmentInd,
   AssignmentTurnedIn,
   Payment,
+  SwapHoriz,
   DeveloperBoard,
   Forum,
   Favorite,
@@ -56,6 +58,7 @@ import {
   VpnKey,
 } from '@material-ui/icons';
 import HorusIcon from 'components/Icons/Horus';
+import ExchangeForm from "../components/Features/ExchangeForm";
 
 
 const dashRoutes = [
@@ -107,6 +110,12 @@ const dashRoutes = [
     name: 'Transfer Tokens',
     icon: Payment,
     component: Transfer,
+  },
+  {
+    path: '/exchange',
+    name: 'Exchange FO or EOS',
+    icon: SwapHoriz,
+    component: Exchange,
   },
   {
     collapse: true,
