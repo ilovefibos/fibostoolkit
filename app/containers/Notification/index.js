@@ -138,7 +138,7 @@ export class Notification extends React.Component {
           confirmBtnCssClass={`${this.props.classes.button} ${this.props.classes.danger}`}>
           <h5>You must install and connect Ironman</h5>
           <h5>
-            <a href={`https://foironman.com/`} target="new">
+            <a href={`http://foironman.com/`} target="new">
               Get Ironman
             </a>
           </h5>
