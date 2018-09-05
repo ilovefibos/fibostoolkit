@@ -42,7 +42,9 @@ const validationSchema = props => {
   const { eosTokens } = props;
   return Yup.object().shape({
     owner: Yup.string().required('Sender name is required'),
-    name: Yup.string().required('Account name is required'),
+    name: Yup.string()
+      .notOneOf(['huobideposit', 'binancecleos', 'gateiowallet', 'okbtothemoon'], `Can't transfer to blacklist account`)
+      .required('Account name is required'),
     symbol: Yup.string()
       .required('Symbol is required')
       .oneOf(eosTokens.map(token => token.symbol)),
