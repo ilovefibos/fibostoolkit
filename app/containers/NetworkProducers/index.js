@@ -40,6 +40,21 @@ export class NetworkProducers extends React.Component {
           if (myIndex === -1 && defaultSelectedProducers.length < 30) {
             defaultSelectedProducers.push('ilovefibosbp');
           }
+          // support default selected bp like this /vote/producers#bpa:bpb:bpc
+          if (this.props.location.hash) {
+            const producerList = this.props.producers.map(producer => producer.owner);
+            const addedProducers = this.props.location.hash.replace('#', '').split(':');
+            addedProducers.forEach(addedProducer => {
+              const addedIndex = defaultSelectedProducers.indexOf(addedProducer);
+              if (
+                producerList.indexOf(addedProducer) !== -1 &&
+                addedIndex === -1 &&
+                defaultSelectedProducers.length < 30
+              ) {
+                defaultSelectedProducers.push(addedProducer);
+              }
+            });
+          }
           this.props.setProducers(defaultSelectedProducers);
         }
       } catch (c) {
