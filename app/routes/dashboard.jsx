@@ -7,6 +7,7 @@ import RamForm from 'components/Features/RamForm';
 import StakeForm from 'components/Features/StakeForm';
 import Refund from 'components/Features/RefundForm';
 import Transfer from 'components/Features/TransferForm';
+import Withdrawl from 'components/Features/WithdrawlForm';
 import Exchange from 'components/Features/ExchangeForm';
 import SimplePermissions from 'components/Features/SimplePermissionsForm';
 import ComplexPermissions from 'components/Features/ComplexPermissionsForm';
@@ -53,6 +54,7 @@ import {
   DeveloperBoard,
   Forum,
   Favorite,
+  Send,
   CloudDownload,
   Settings,
   VpnKey,
@@ -116,6 +118,12 @@ const dashRoutes = [
     name: 'Exchange FO or EOS',
     icon: SwapHoriz,
     component: Exchange,
+  },
+  {
+    path: '/withdrawl',
+    name: 'Withdrawl EOS',
+    icon: Send,
+    component: Withdrawl,
   },
   {
     collapse: true,
