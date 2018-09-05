@@ -41,6 +41,7 @@ const airgrabs = [
 ];
 
 const tokensUrl = 'https://raw.githubusercontent.com/eoscafe/eos-airdrops/master/tokens.json';
+const fibosSmartTokensUrl = 'https://raw.githubusercontent.com/lowwor/fibos-smart-tokens/master/tokens.json?nocache';
 const networksUrl = 'https://raw.githubusercontent.com/lowwor/fibos-networks/master/networks.json?nocache';
 
-export { tokensUrl, networksUrl, airgrabs };
+export { tokensUrl, fibosSmartTokensUrl, networksUrl, airgrabs };

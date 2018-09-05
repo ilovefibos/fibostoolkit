@@ -2,7 +2,7 @@
 import Ping from 'utils/ping';
 import { orderBy } from 'lodash';
 import { put, all, join, fork, select, call, spawn } from 'redux-saga/effects';
-import { tokensUrl, networksUrl } from 'remoteConfig';
+import { tokensUrl, networksUrl, fibosSmartTokensUrl } from 'remoteConfig';
 
 import { loadedNetworks, updateNetworks, loadedAccount, setNetwork } from '../actions';
 import {
@@ -142,16 +142,16 @@ function* fetchTokenInfo(reader, account, symbol) {
   }
 }
 
-function* getTokenInfoFromTable(reader) {
+function* getTokenInfoByAccountFromTable(reader, tokenAccount) {
   const currencyResult = yield reader.getTableRows({
     json: true,
-    scope: 'eosio',
+    scope: tokenAccount,
     code: 'eosio.token',
     table: 'stats',
   });
   const currencies = currencyResult.rows.map(c => {
     return {
-      account: 'eosio.token',
+      account: tokenAccount,
       symbol: c.max_supply.split(' ')[1],
       precision: c.max_supply.split(' ')[0].split('.')[1].length,
     };
@@ -161,23 +161,20 @@ function* getTokenInfoFromTable(reader) {
 
 export function* fetchTokens(reader) {
   try {
-    // const data = yield fetch(tokensUrl);
-    // const list = yield data.json();
+    const data = yield fetch(fibosSmartTokensUrl);
+    const list = yield data.json();
+    const accountList = list.map(token => token.account).filter((elem, pos, arr) => arr.indexOf(elem) === pos);
+    const tokenList = list.map(token => token.symbol).filter((elem, pos, arr) => arr.indexOf(elem) === pos);
 
-    // const tokenList = [
-    //   {
-    //     symbol: "EOS",
-    //     account: "eosio.token"
-    //   },
-    //   ...list
-    // ]
-    // const info = yield all(
-    //   tokenList.map(token => {
-    //     return fork(fetchTokenInfo, reader, token.account, token.symbol);
-    //   })
-    // );
-    const tokens = yield getTokenInfoFromTable(reader);
-    return tokens;
+    const info = yield all(
+      accountList.map(account => {
+        return fork(getTokenInfoByAccountFromTable, reader, account);
+      })
+    );
+    const tokens = yield join(...info);
+    const result = tokens.filter(elem => tokenList.indexOf(elem) === -1);
+    // const tokens = yield getTokenInfoByAccountFromTable(reader, account);
+    return result;
   } catch (err) {
     console.error('An FOToolkit error occured - see details below:');
     console.error(err);
