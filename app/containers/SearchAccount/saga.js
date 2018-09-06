@@ -1,4 +1,4 @@
-import { makeSelectTokens as selectTokens, makeSelectReader } from 'containers/NetworkClient/selectors';
+import { makeSelectReader } from 'containers/NetworkClient/selectors';
 import { takeLatest, call, put, select, all, fork, join } from 'redux-saga/effects';
 import { makeSelectSearchName, makeSelectSearchPubkey } from './selectors';
 import { LOOKUP_ACCOUNT, LOOKUP_PUBKEY } from './constants';

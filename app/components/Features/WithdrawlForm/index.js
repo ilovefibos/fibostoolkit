@@ -7,7 +7,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { makeSelectTokens as selectTokens } from 'containers/NetworkClient/selectors';
 import { compose } from 'recompose';
 import { withFormik } from 'formik';
 import * as Yup from 'yup';
@@ -64,9 +63,7 @@ const WithdrawlForm = props => {
   );
 };
 
-const mapStateToProps = createStructuredSelector({
-  eosTokens: selectTokens(),
-});
+const mapStateToProps = createStructuredSelector({});
 
 const enhance = compose(
   connect(

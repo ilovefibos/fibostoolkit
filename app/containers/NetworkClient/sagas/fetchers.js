@@ -2,13 +2,12 @@
 import Ping from 'utils/ping';
 import { orderBy } from 'lodash';
 import { put, all, join, fork, select, call, spawn } from 'redux-saga/effects';
-import { tokensUrl, networksUrl, fibosSmartTokensUrl } from 'remoteConfig';
+import { networksUrl, fibosSmartTokensUrl } from 'remoteConfig';
 
 import { loadedNetworks, updateNetworks, loadedAccount, setNetwork } from '../actions';
 import {
   makeSelectIdentity,
   makeSelectReader,
-  makeSelectTokens,
   makeSelectNetworks,
   makeSelectActiveNetwork,
 } from '../selectors';
