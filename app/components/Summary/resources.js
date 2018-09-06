@@ -25,6 +25,12 @@ function ResourcesTable({ ...props }) {
                   {account.balances.find(b=> (b.account==='eosio' && b.balance.indexOf('FO') !== -1)) ? account.balances.find(b=> (b.account==='eosio' && b.balance.indexOf('FO') !== -1)).balance : 'None'}
                 </TableCell>
                 <TableCell className={classes.tableCell}>
+                  <h6>EOS</h6>
+                </TableCell>
+                <TableCell className={classes.tableCell}>
+                  {account.balances.find(b=> (b.account==='eosio' && b.balance.indexOf('EOS') !== -1)) ? account.balances.find(b=> (b.account==='eosio' && b.balance.indexOf('EOS') !== -1)).balance : 'None'}
+                </TableCell>
+                <TableCell className={classes.tableCell}>
                   <h6>RAM</h6>
                 </TableCell>
                 <TableCell className={classes.tableCell}>
@@ -61,10 +67,10 @@ function ResourcesTable({ ...props }) {
               </TableRow>
               <TableRow className={`${classes.tableStripedRow} ${classes.tableRowHover}`}>
                 <TableCell className={classes.tableCell}>
-                  <h6>Tokens</h6>
+                  <h6>Smart Tokens</h6>
                 </TableCell>
-                <TableCell className={classes.tableCell} colSpan={9}>
-                  <h6>{account.balances.map(bal => bal.balance).join(', ')}</h6>
+                <TableCell className={classes.tableCell} colSpan={12}>
+                  <h6>{account.balances.filter(b=> (b.account!=='eosio')).map(bal => `${bal.balance}@${bal.account}`).join(', ')}</h6>
                 </TableCell>
               </TableRow>
             </TableBody>
