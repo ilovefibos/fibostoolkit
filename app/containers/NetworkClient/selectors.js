@@ -14,6 +14,8 @@ const makeSelectAccount = () => createSelector(selectClientState, substate => su
 const makeSelectActiveNetwork = () => createSelector(selectClientState, substate => substate.get('networkSelected'));
 const makeSelectNetworks = () => createSelector(selectClientState, substate => substate.get('networks'));
 const makeSelectTokens = () => createSelector(selectClientState, substate => substate.get('tokens'));
+const makeSelectEosioTokens = () =>
+  createSelector(selectClientState, substate => substate.get('tokens').filter(elm => elm.account === 'eosio'));
 const makeSelectTransaction = () => createSelector(selectClientState, substate => substate.get('transaction'));
 const makeSelectOffline = () => createSelector(selectClientState, substate => substate.get('offlineMode'));
 const makeSelectSwitchTime = () => createSelector(selectClientState, substate => substate.get('networkSwitchTime'));
@@ -69,6 +71,7 @@ export {
   makeSelectActiveNetwork,
   makeSelectNetworks,
   makeSelectTokens,
+  makeSelectEosioTokens,
   makeSelectReaderLoading,
   makeSelectWriterLoading,
   makeSelectAccountLoading,

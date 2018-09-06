@@ -7,7 +7,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { makeSelectTokens as selectTokens } from 'containers/NetworkClient/selectors';
+import { makeSelectEosioTokens as selectTokens } from 'containers/NetworkClient/selectors';
 import { compose } from 'recompose';
 import { withFormik } from 'formik';
 import * as Yup from 'yup';
@@ -20,11 +20,11 @@ import ToolBody from 'components/Tool/ToolBody';
 
 import FormObject from './FormObject';
 
-const makeTransaction = (values, eosTokens) => {
-  const token = eosTokens.find(tk => tk.symbol === values.symbol);
+const makeTransaction = (values, eosioTokens) => {
+  const token = eosioTokens.find(tk => tk.symbol === values.symbol);
   const transaction = [
     {
-      account: token.account,
+      account: 'eosio.token',
       name: 'transfer',
       data: {
         from: values.owner,
@@ -39,7 +39,7 @@ const makeTransaction = (values, eosTokens) => {
   return transaction;
 };
 const validationSchema = props => {
-  const { eosTokens } = props;
+  const { eosioTokens } = props;
   return Yup.object().shape({
     owner: Yup.string().required('Sender name is required'),
     name: Yup.string()
@@ -47,7 +47,7 @@ const validationSchema = props => {
       .required('Account name is required'),
     symbol: Yup.string()
       .required('Symbol is required')
-      .oneOf(eosTokens.map(token => token.symbol)),
+      .oneOf(eosioTokens.map(token => token.symbol)),
     memo: Yup.string(),
     quantity: Yup.number()
       .required('Quantity is required')
@@ -73,7 +73,7 @@ const TransferForm = props => {
 };
 
 const mapStateToProps = createStructuredSelector({
-  eosTokens: selectTokens(),
+  eosioTokens: selectTokens(),
 });
 
 const enhance = compose(
@@ -83,8 +83,8 @@ const enhance = compose(
   ),
   withFormik({
     handleSubmit: (values, { props, setSubmitting }) => {
-      const { pushTransaction, eosTokens } = props;
-      const transaction = makeTransaction(values, eosTokens);
+      const { pushTransaction, eosioTokens } = props;
+      const transaction = makeTransaction(values, eosioTokens);
       setSubmitting(false);
       pushTransaction(transaction, props.history);
     },
