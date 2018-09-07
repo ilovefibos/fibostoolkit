@@ -31,7 +31,7 @@ const balanceTable = name => {
   };
 };
 
-function* getCurrencyFromTable(reader, name) {
+function* getAcountTokenBalanceFromTable(reader, name) {
   const currencyResult = yield reader.getTableRows(balanceTable(name));
   const currencies = currencyResult.rows.map(c => {
     return {
@@ -54,7 +54,7 @@ function* getAccountDetail(name) {
     // );
     // const currencies = yield join(...tokens);
     // const balances = currencies.reduce((a, b) => a.concat(b), []);
-    const balances = yield getCurrencyFromTable(networkReader, name);
+    const balances = yield getAcountTokenBalanceFromTable(networkReader, name);
     console.log(balances);
     return {
       ...account,

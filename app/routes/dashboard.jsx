@@ -13,6 +13,12 @@ import SimplePermissions from 'components/Features/SimplePermissionsForm';
 import ComplexPermissions from 'components/Features/ComplexPermissionsForm';
 import LinkAuth from 'components/Features/LinkAuthForm';
 import ClaimRewards from 'components/Features/ClaimRewardsForm';
+import SmartTokenIssue from 'components/Features/SmartTokenIssueForm';
+import SmartTokenTransfer from 'components/Features/SmartTokenTransferForm';
+import SmartTokenExchange from 'components/Features/SmartTokenExchangeForm';
+import SmartTokenDestroy from 'components/Features/SmartTokenDestroyForm';
+import TokenCreate from 'components/Features/TokenCreateForm';
+
 import BidName from 'components/Features/BidNameForm';
 import Airgrab from 'components/Features/AirgrabForm';
 import Donate from 'components/Features/DonateForm';
@@ -57,6 +63,7 @@ import {
   Send,
   CloudDownload,
   Settings,
+  BusinessCenter,
   VpnKey,
 } from '@material-ui/icons';
 import HorusIcon from 'components/Icons/Horus';
@@ -167,6 +174,45 @@ const dashRoutes = [
         name: 'Refund Stake',
         mini: 'RS',
         component: Refund,
+      },
+    ],
+  },
+  {
+    collapse: true,
+    path: '/smarttoken',
+    name: 'Manage Smart Token',
+    state: 'openSmartToken',
+    icon: BusinessCenter,
+    views: [
+      {
+        path: '/smarttoken/create',
+        name: 'Create Smart Token',
+        mini: 'CST',
+        component: TokenCreate,
+      },
+      {
+        path: '/smarttoken/issue',
+        name: 'Issue Smart Token',
+        mini: 'IST',
+        component: SmartTokenIssue,
+      },
+      {
+        path: '/smarttoken/exchange',
+        name: 'Exchange Smart Token',
+        mini: 'EST',
+        component: SmartTokenExchange,
+      },
+      {
+        path: '/smarttoken/transfer',
+        name: 'Transfer Smart Token',
+        mini: 'TST',
+        component: SmartTokenTransfer,
+      },
+      {
+        path: '/smarttoken/destroy',
+        name: 'Destroy Smart Token',
+        mini: 'DST',
+        component: SmartTokenDestroy,
       },
     ],
   },

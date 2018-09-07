@@ -1,0 +1,65 @@
+import React from 'react';
+
+import ToolForm from 'components/Tool/ToolForm';
+import ToolInput from 'components/Tool/ToolInput';
+
+const FormData = [
+  {
+    id: 'issuer',
+    label: 'Issuer',
+    placeholder: 'Issuer account name of the smart Token ',
+  },
+  {
+    id: 'symbol',
+    label: 'Smart Token Symbol',
+    placeholder: 'Symbol of the Smart Token ',
+  },
+  {
+    id: 'maximum_supply',
+    label: 'Maximum Supply',
+    placeholder: 'Maximum Supply of the Smart Token',
+  },
+  {
+    id: 'connector_weight',
+    label: 'Connector Weight',
+    placeholder: 'Connector Weight of the Smart Token',
+  },
+  {
+    id: 'maximum_exchange',
+    label: 'Maximum Exchange',
+    placeholder: 'Maximum Exchange of the Smart Token',
+  },
+  {
+    id: 'reserve_supply',
+    label: 'Reserve Supply',
+    placeholder: 'Reserve Supply of the Smart Token',
+  },
+  {
+    id: 'exchange_symbol',
+    label: 'Exchange Symbol',
+    placeholder: 'Symbol of the token to exchange your Smart Token',
+  },
+  {
+    id: 'reserve_connector_balance',
+    label: 'Reserve Connector Balance',
+    placeholder: 'Reserve Connector Balance of the Smart Token',
+  },
+];
+
+const FormObject = props => {
+  const { handleSubmit } = props;
+  const formProps = {
+    handleSubmit,
+    submitColor: 'rose',
+    submitText: 'Create',
+  };
+  return (
+    <ToolForm {...formProps}>
+      {FormData.map(form => {
+        return <ToolInput key={form.id} {...form} {...props} />;
+      })}
+    </ToolForm>
+  );
+};
+
+export default FormObject;
