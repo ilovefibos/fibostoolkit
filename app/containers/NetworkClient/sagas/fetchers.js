@@ -141,7 +141,7 @@ function* fetchTokenInfo(reader, account, symbol) {
   }
 }
 
-function* getTokenInfoByAccountFromTable(reader, tokenAccount) {
+function* getTokenInfoByIssuerFromTable(reader, tokenAccount) {
   const currencyResult = yield reader.getTableRows({
     json: true,
     scope: tokenAccount,
@@ -167,7 +167,7 @@ export function* fetchTokens(reader) {
 
     const info = yield all(
       accountList.map(account => {
-        return fork(getTokenInfoByAccountFromTable, reader, account);
+        return fork(getTokenInfoByIssuerFromTable, reader, account);
       })
     );
     const tokens = yield join(...info);
@@ -269,7 +269,7 @@ const balanceTable = name => {
   };
 };
 
-function* getCurrencyFromTable(reader, name) {
+function* getAccountTokenBalanceFromTable(reader, name) {
   try {
     const currencyResult = yield reader.getTableRows(balanceTable(name));
     const currencies = currencyResult.rows.map(c => {
@@ -310,8 +310,9 @@ function* getAccountDetail(reader, name) {
     //
     // const currencies = yield join(...tokenData);
     // const balances = currencies.reduce((a, b) => a.concat(b), []);
-    const balances = yield getCurrencyFromTable(reader, name);
-    yield spawn(fetchLatency);
+    const balances = yield getAccountTokenBalanceFromTable(reader, name);
+    // disable endpoint auto switch
+    // yield spawn(fetchLatency);
     return {
       ...account,
       balances,
