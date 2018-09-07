@@ -116,7 +116,7 @@ const dashRoutes = [
   },
   {
     path: '/transfer',
-    name: 'Transfer Tokens',
+    name: 'Transfer FO or EOS',
     icon: Payment,
     component: Transfer,
   },
