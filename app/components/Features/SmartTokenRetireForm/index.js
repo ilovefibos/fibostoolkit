@@ -23,9 +23,9 @@ const makeTransaction = values => {
   const transaction = [
     {
       account: 'eosio.token',
-      name: 'exissue',
+      name: 'exretire',
       data: {
-        to: values.name,
+        from: values.name,
         memo: values.memo,
         quantity: `${Number(values.quantity)
           .toFixed(4)
@@ -37,9 +37,7 @@ const makeTransaction = values => {
 };
 const validationSchema = props => {
   return Yup.object().shape({
-    name: Yup.string()
-      .notOneOf(['huobideposit', 'binancecleos', 'gateiowallet', 'okbtothemoon'], `Can't transfer to blacklist account`)
-      .required('Account name is required'),
+    name: Yup.string().required('Account name is required'),
     symbol: Yup.string().required('Symbol is required'),
     issuer: Yup.string().required('Issuer name is required'),
     memo: Yup.string(),
@@ -49,11 +47,11 @@ const validationSchema = props => {
   });
 };
 
-const SmartTokenIssueForm = props => {
+const SmartTokenRetireForm = props => {
   return (
     <Tool>
       <ToolSection lg={8}>
-        <ToolBody color="warning" icon={Payment} header="Issue">
+        <ToolBody color="warning" icon={Payment} header="Retire">
           <FormObject {...props} />
         </ToolBody>
       </ToolSection>
@@ -92,4 +90,4 @@ const enhance = compose(
   })
 );
 
-export default enhance(SmartTokenIssueForm);
+export default enhance(SmartTokenRetireForm);

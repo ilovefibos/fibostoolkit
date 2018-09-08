@@ -14,6 +14,8 @@ import ComplexPermissions from 'components/Features/ComplexPermissionsForm';
 import LinkAuth from 'components/Features/LinkAuthForm';
 import ClaimRewards from 'components/Features/ClaimRewardsForm';
 import SmartTokenIssue from 'components/Features/SmartTokenIssueForm';
+import SmartTokenRetire from 'components/Features/SmartTokenRetireForm';
+import SmartTokenClose from 'components/Features/SmartTokenCloseForm';
 import SmartTokenTransfer from 'components/Features/SmartTokenTransferForm';
 import SmartTokenExchange from 'components/Features/SmartTokenExchangeForm';
 import SmartTokenDestroy from 'components/Features/SmartTokenDestroyForm';
@@ -197,10 +199,22 @@ const dashRoutes = [
         component: SmartTokenIssue,
       },
       {
+        path: '/smarttoken/retire',
+        name: 'Retire Smart Token',
+        mini: 'RST',
+        component: SmartTokenRetire,
+      },
+      {
         path: '/smarttoken/exchange',
         name: 'Exchange Smart Token',
         mini: 'EST',
         component: SmartTokenExchange,
+      },
+      {
+        path: '/smarttoken/close',
+        name: 'Close Smart Token',
+        mini: 'CST',
+        component: SmartTokenClose,
       },
       {
         path: '/smarttoken/transfer',

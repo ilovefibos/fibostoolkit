@@ -23,11 +23,10 @@ const makeTransaction = values => {
   const transaction = [
     {
       account: 'eosio.token',
-      name: 'exissue',
+      name: 'exclose',
       data: {
-        to: values.name,
-        memo: values.memo,
-        quantity: `${Number(values.quantity)
+        owner: values.owner,
+        symbol: `${Number('0')
           .toFixed(4)
           .toString()} ${values.symbol}@${values.issuer}`,
       },
@@ -37,23 +36,17 @@ const makeTransaction = values => {
 };
 const validationSchema = props => {
   return Yup.object().shape({
-    name: Yup.string()
-      .notOneOf(['huobideposit', 'binancecleos', 'gateiowallet', 'okbtothemoon'], `Can't transfer to blacklist account`)
-      .required('Account name is required'),
+    owner: Yup.string().required('Owner account name is required'),
     symbol: Yup.string().required('Symbol is required'),
     issuer: Yup.string().required('Issuer name is required'),
-    memo: Yup.string(),
-    quantity: Yup.number()
-      .required('Quantity is required')
-      .positive('You must send a positive quantity'),
   });
 };
 
-const SmartTokenIssueForm = props => {
+const SmartTokenCloseForm = props => {
   return (
     <Tool>
       <ToolSection lg={8}>
-        <ToolBody color="warning" icon={Payment} header="Issue">
+        <ToolBody color="warning" icon={Payment} header="Close">
           <FormObject {...props} />
         </ToolBody>
       </ToolSection>
@@ -82,14 +75,12 @@ const enhance = compose(
       pushTransaction(transaction, props.history);
     },
     mapPropsToValues: props => ({
-      name: props.networkIdentity ? props.networkIdentity.name : '',
+      owner: props.networkIdentity ? props.networkIdentity.name : '',
       symbol: '',
       issuer: '',
-      quantity: '0',
-      memo: '',
     }),
     validationSchema,
   })
 );
 
-export default enhance(SmartTokenIssueForm);
+export default enhance(SmartTokenCloseForm);
