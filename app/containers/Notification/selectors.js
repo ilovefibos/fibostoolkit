@@ -15,6 +15,7 @@ const makeSelectNotificationFailure = () => createSelector(selectNotification, s
 
 const makeSelectNotificationLoading = () => createSelector(selectNotification, substate => substate.get('loading'));
 
+const makeSelectNotificationInfo = () => createSelector(selectNotification, substate => substate.get('info'));
 /**
  * Default selector used by Notification
  */
@@ -26,6 +27,7 @@ export {
   selectNotification,
   makeSelectNotificationMessage,
   makeSelectNotificationSuccess,
+  makeSelectNotificationInfo,
   makeSelectNotificationFailure,
   makeSelectNotificationLoading,
 };

@@ -36,16 +36,23 @@ function* getProducers() {
     const networkReader = yield select(makeSelectReader());
     const global = yield networkReader.getTableRows(globalTable());
     const total_vote = global.rows[0].total_producer_vote_weight;
+    const producerJsons = yield networkReader.getTableRows({
+      json: true,
+      scope: 'producerjson',
+      code: 'producerjson',
+      table: 'producerjson',
+    });
 
     while (data.more) {
       data = yield networkReader.getTableRows(producerTable(key));
-      if(data.more) {
+      if (data.more) {
         key = data.rows.pop().owner;
       }
       data.rows.map(row => {
         producers.push({
           ...row,
           vote_percent: (row.total_votes / total_vote) * 100,
+          producerJson: producerJsons.rows.find(elm => elm.owner === row.owner),
         });
       });
     }

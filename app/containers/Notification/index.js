@@ -17,10 +17,11 @@ import { makeSelectWriterEnabled } from 'containers/NetworkClient/selectors';
 
 import {
   makeSelectNotificationFailure,
+  makeSelectNotificationInfo,
   makeSelectNotificationLoading,
   makeSelectNotificationMessage,
-  makeSelectNotificationSuccess,
-} from './selectors';
+  makeSelectNotificationSuccess
+} from "./selectors";
 import { closeNotification } from './actions';
 import reducer from './reducer';
 import saga from './saga';
@@ -44,7 +45,7 @@ export class Notification extends React.Component {
       return value;
     }
 
-    const { loading, failure, success, message, closeAll, writeEnabled } = this.props;
+    const { loading, failure, info, success, message, closeAll, writeEnabled } = this.props;
     if (loading) {
       return (
         <SweetAlert
@@ -73,15 +74,15 @@ export class Notification extends React.Component {
           onCancel={() => closeAll()}
           confirmBtnText="Thanks"
           confirmBtnCssClass={`${this.props.classes.button} ${this.props.classes.success}`}>
-            {txid ? (
-              <a href={`http://explorer.fibos.rocks/transactions/${txid}`} target="new">
-                <h6>{txid}</h6>
-              </a>
-            ) : (
-              <pre className={this.props.classes.preXYScrollable}>
-                {message ? `${JSON.stringify(message, null, 2)}` : ''}
-              </pre>
-            )}
+          {txid ? (
+            <a href={`http://explorer.fibos.rocks/transactions/${txid}`} target="new">
+              <h6>{txid}</h6>
+            </a>
+          ) : (
+            <pre className={this.props.classes.preXYScrollable}>
+              {message ? `${JSON.stringify(message, null, 2)}` : ''}
+            </pre>
+          )}
           <p>Thank you for using FOToolkit.com</p>
           <h6>Your votes support continued development of these tools</h6>
           <h5>
@@ -90,9 +91,28 @@ export class Notification extends React.Component {
         </SweetAlert>
       );
     }
+    if (info) {
+      return (
+        <SweetAlert
+          info
+          style={{ display: 'block', marginTop: '-200px' }}
+          title="Info"
+          onConfirm={() => closeAll()}
+          onCancel={() => closeAll()}
+          confirmBtnText="Hide"
+          confirmBtnCssClass={`${this.props.classes.button} ${this.props.classes.info}`}>
+          <pre className={this.props.classes.preXYScrollable}>
+            {message ? `${JSON.stringify(message, null, 2)}` : ''}
+          </pre>
+        </SweetAlert>
+      );
+    }
     if (failure && writeEnabled) {
       const error = typeof message === 'string' ? JSON.parse(message) : message;
-      if(JSON.stringify(error).includes('you have already signed up') || JSON.stringify(error).includes('User already has a balance')) {
+      if (
+        JSON.stringify(error).includes('you have already signed up') ||
+        JSON.stringify(error).includes('User already has a balance')
+      ) {
         return (
           <SweetAlert
             success
@@ -106,7 +126,7 @@ export class Notification extends React.Component {
             <h5>You have already claimed this Airgrab!</h5>
             <h6>You are all set to receive new drops!</h6>
           </SweetAlert>
-        )
+        );
       }
 
       return (
@@ -157,6 +177,7 @@ const mapStateToProps = createStructuredSelector({
   success: makeSelectNotificationSuccess(),
   failure: makeSelectNotificationFailure(),
   loading: makeSelectNotificationLoading(),
+  info: makeSelectNotificationInfo(),
   message: makeSelectNotificationMessage(),
   writeEnabled: makeSelectWriterEnabled(),
 });

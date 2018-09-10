@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { compose } from 'redux';
 import VotingTable from 'components/Features/VotingTable';
+import { infoNotification } from 'containers/Notification/actions';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
@@ -84,6 +85,7 @@ function mapDispatchToProps(dispatch) {
   return {
     refreshProducers: () => dispatch(fetchProducers()),
     setProducers: selection => dispatch(selectProducers(selection)),
+    infoNotification: info => dispatch(infoNotification(info)),
   };
 }
 

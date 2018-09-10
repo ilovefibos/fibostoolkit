@@ -11,9 +11,10 @@ import CheckCircle from '@material-ui/icons/CheckCircle';
 import CheckBoxOff from '@material-ui/icons/CheckBoxOutlineBlank';
 import AssignmentTurnedIn from '@material-ui/icons/AssignmentTurnedIn';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Chip from '@material-ui/core/Chip';
 
 const VotingTable = props => {
-  const { producers, setProducers, selected, ...clientProps } = props;
+  const { producers, setProducers, infoNotification, selected, ...clientProps } = props;
   const { networkAccount, networkIdentity, writerEnabled, pushTransaction } = clientProps;
 
   const selectedProducers = [];
@@ -175,6 +176,25 @@ const VotingTable = props => {
                     maxWidth: 600,
                   },
                   {
+                    Header: 'Info',
+                    accessor: 'producerJson',
+                    Cell: row => {
+                      return row.value ? (
+                        <Chip
+                          label="Detail"
+                          onClick={() => {
+                            infoNotification(row.value);
+                          }}
+                        />
+                      ) : (
+                        ''
+                      );
+                    },
+                    filterable: false,
+                    minWidth: 300,
+                    maxWidth: 600,
+                  },
+                  {
                     Header: 'Votes',
                     id: 'vote_percent',
                     accessor: d => Number(d.vote_percent).toFixed(3),
@@ -226,6 +246,25 @@ const VotingTable = props => {
                     {row.value}
                   </a>
                 ),
+                minWidth: 300,
+                maxWidth: 600,
+              },
+              {
+                Header: 'Info',
+                accessor: 'producerJson',
+                Cell: row => {
+                  return row.value ? (
+                    <Chip
+                      label="Detail"
+                      onClick={() => {
+                        infoNotification(row.value);
+                      }}
+                    />
+                  ) : (
+                    ''
+                  );
+                },
+                filterable: false,
                 minWidth: 300,
                 maxWidth: 600,
               },

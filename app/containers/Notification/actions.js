@@ -9,12 +9,20 @@ import {
   NOTIFICATION_SUCCESS,
   NOTIFICATION_FAILURE,
   NOTIFICATION_LOADING,
+  NOTIFICATION_INFO,
   NOTIFICATION_CLOSE,
 } from './constants';
 
 export function successNotification(message) {
   return {
     type: NOTIFICATION_SUCCESS,
+    message,
+  };
+}
+
+export function infoNotification(message) {
+  return {
+    type: NOTIFICATION_INFO,
     message,
   };
 }

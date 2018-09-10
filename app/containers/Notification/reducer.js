@@ -5,12 +5,13 @@
  */
 
 import { fromJS } from 'immutable';
-import { NOTIFICATION_SUCCESS, NOTIFICATION_FAILURE, NOTIFICATION_LOADING, NOTIFICATION_CLOSE } from './constants';
+import { NOTIFICATION_SUCCESS, NOTIFICATION_FAILURE, NOTIFICATION_LOADING, NOTIFICATION_CLOSE , NOTIFICATION_INFO} from './constants';
 
 const initialState = fromJS({
   success: false,
   failure: false,
   loading: false,
+  info: false,
   message: '',
 });
 
@@ -21,6 +22,7 @@ function notificationReducer(state = initialState, action) {
       return state
         .set('message', action.message)
         .set('loading', false)
+        .set('info', false)
         .set('success', true)
         .set('failure', false);
     case NOTIFICATION_FAILURE:
@@ -28,18 +30,29 @@ function notificationReducer(state = initialState, action) {
       return state
         .set('message', action.message)
         .set('loading', false)
+        .set('info', false)
         .set('success', false)
         .set('failure', true);
+    case NOTIFICATION_INFO:
+      // console.log('Failure reducer');
+      return state
+        .set('message', action.message)
+        .set('loading', false)
+        .set('info', true)
+        .set('success', false)
+        .set('failure', false);
     case NOTIFICATION_LOADING:
       // console.log('Loading reducer');
       return state
         .set('loading', true)
+        .set('info', false)
         .set('success', false)
         .set('failure', false);
     case NOTIFICATION_CLOSE:
       // console.log('Closing reducer');
       return state
         .set('loading', false)
+        .set('info', false)
         .set('success', false)
         .set('failure', false);
     default:
