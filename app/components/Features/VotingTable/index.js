@@ -18,7 +18,11 @@ const VotingTable = props => {
   const { networkAccount, networkIdentity, writerEnabled, pushTransaction } = clientProps;
 
   const selectedProducers = [];
-  selected.map(item => selectedProducers.push(item));
+  selected.forEach(item => {
+    if (producers.find(it => it.owner === item)) {
+      selectedProducers.push(item);
+    }
+  });
 
   const makeTransaction = () => {
     if (!writerEnabled) {

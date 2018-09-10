@@ -23,6 +23,23 @@ export class NetworkProducers extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
 
   componentDidMount() {
+    const selectedProducers = ['ilovefibosbp'];
+
+    // support default selected bp like this /vote/producers#bpa:bpb:bpc
+    if (this.props.location.hash) {
+      let hashProducers = [];
+      if (this.props.location.hash.indexOf(':') === -1) {
+        hashProducers.push(this.props.location.hash.replace('#', ''));
+      } else {
+        hashProducers = this.props.location.hash.replace('#', '').split(':');
+      }
+      hashProducers.forEach(hashProducer => {
+        if (selectedProducers.indexOf(hashProducer) === -1 && selectedProducers.length < 30) {
+          selectedProducers.push(hashProducer);
+        }
+      });
+    }
+    this.props.setProducers(selectedProducers);
     this.interval = setInterval(() => this.props.refreshProducers(), 5000);
   }
 
@@ -31,36 +48,67 @@ export class NetworkProducers extends React.Component {
       // start loading the reader asap
       this.props.refreshProducers();
     }
-    if (this.props.networkAccount !== nextProps.networkAccount) {
+    // account detach, reset to default producer
+    if (this.props.networkAccount !== null && nextProps.networkAccount === null) {
       try {
-        const selectedProducers = [];
-        this.props.selected.map(item => selectedProducers.push(item));
-        if (selectedProducers.length === 0) {
-          const defaultSelectedProducers = nextProps.networkAccount.voter_info.producers;
-          const myIndex = defaultSelectedProducers.indexOf('ilovefibosbp');
-          if (myIndex === -1 && defaultSelectedProducers.length < 30) {
-            defaultSelectedProducers.push('ilovefibosbp');
+        const selectedProducers = ['ilovefibosbp'];
+        // support default selected bp like this /vote/producers#bpa:bpb:bpc
+        if (this.props.location.hash) {
+          let hashProducers = [];
+          if (this.props.location.hash.indexOf(':') === -1) {
+            hashProducers.push(this.props.location.hash.replace('#', ''));
+          } else {
+            hashProducers = this.props.location.hash.replace('#', '').split(':');
           }
-          // support default selected bp like this /vote/producers#bpa:bpb:bpc
-          if (this.props.location.hash) {
-            const producerList = this.props.producers.map(producer => producer.owner);
-            const addedProducers = this.props.location.hash.replace('#', '').split(':');
-            addedProducers.forEach(addedProducer => {
-              const addedIndex = defaultSelectedProducers.indexOf(addedProducer);
-              if (
-                producerList.indexOf(addedProducer) !== -1 &&
-                addedIndex === -1 &&
-                defaultSelectedProducers.length < 30
-              ) {
-                defaultSelectedProducers.push(addedProducer);
-              }
-            });
-          }
-          this.props.setProducers(defaultSelectedProducers);
+          hashProducers.forEach(hashProducer => {
+            if (selectedProducers.indexOf(hashProducer) === -1 && selectedProducers.length < 30) {
+              selectedProducers.push(hashProducer);
+            }
+          });
         }
+        this.props.setProducers(selectedProducers);
       } catch (c) {
         // do nothing
+        console.log(c);
       }
+    }
+
+    // account attach, add account voted producer
+    if (this.props.networkAccount === null && nextProps.networkAccount !== null) {
+      const selectedProducers = [];
+      // push already selected producers
+      this.props.selected.forEach(item => {
+        if (selectedProducers.indexOf(item) === -1 && selectedProducers.length < 30) {
+          selectedProducers.push(item);
+        }
+      });
+
+      // push account selected producers
+      if (nextProps.networkAccount.voter_info) {
+        const accountSelectedProducers = nextProps.networkAccount.voter_info.producers;
+        accountSelectedProducers.forEach(item => {
+          if (selectedProducers.indexOf(item) === -1 && selectedProducers.length < 30) {
+            selectedProducers.push(item);
+          }
+        });
+      }
+      this.props.setProducers(selectedProducers);
+    }
+
+    // remove not exists producers
+    if (this.props.producers.size === 0 && nextProps.producers.size !== 0) {
+      const selectedProducers = [];
+      this.props.selected.forEach(item => {
+        if (selectedProducers.indexOf(item) === -1 && selectedProducers.length < 30) {
+          selectedProducers.push(item);
+        }
+      });
+      // remove not exists producers
+      selectedProducers.forEach(item => {
+        if (this.props.producers.indexOf(item) === -1) {
+          selectedProducers.splice(selectedProducers.indexOf(item));
+        }
+      });
     }
   }
 
