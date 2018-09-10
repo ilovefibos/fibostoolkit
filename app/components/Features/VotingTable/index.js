@@ -14,7 +14,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Chip from '@material-ui/core/Chip';
 
 const VotingTable = props => {
-  const { producers, setProducers, infoNotification, selected, ...clientProps } = props;
+  const { producers, loading, setProducers, infoNotification, selected, ...clientProps } = props;
   const { networkAccount, networkIdentity, writerEnabled, pushTransaction } = clientProps;
 
   const selectedProducers = [];
@@ -50,6 +50,15 @@ const VotingTable = props => {
 
   const handleReset = () => {
     setProducers([]);
+  };
+
+  const handleInviteLink = () => {
+    let inviteLink = 'https://fotoolkit.com/vote/producers#';
+    selectedProducers.forEach(item => {
+      inviteLink += `${item}:`;
+    });
+    console.log(inviteLink);
+    infoNotification(inviteLink);
   };
 
   const maxSelected = () => {
@@ -135,13 +144,13 @@ const VotingTable = props => {
           header="Voted Block Producers"
           subheader=" - Vote and support the community">
           <GridContainer>
-            <GridItem xs={12} sm={8}>
+            <GridItem xs={12} sm={6}>
               <div>
                 <strong>Selected producers ({selected.length || '0'}/30): </strong>{' '}
                 {selected.length > 0 ? selected.join(', ') : 'None'}
               </div>
             </GridItem>
-            <GridItem xs={12} sm={4}>
+            <GridItem xs={12} sm={6}>
               <Button
                 onClick={() => {
                   handleSubmit();
@@ -158,11 +167,19 @@ const VotingTable = props => {
                 style={{ float: 'right' }}>
                 Reset
               </Button>
+              <Button
+                onClick={() => {
+                  handleInviteLink();
+                }}
+                color={'info'}
+                style={{ float: 'right' }}>
+                Invite Link
+              </Button>
             </GridItem>
             <GridItem xs={12} sm={12}>
               <ReactTable
                 data={selectedData}
-                noDataText={<CircularProgress color="secondary" />}
+                noDataText={loading ? <CircularProgress color="secondary" /> : 'No voted producer.'}
                 columns={[
                   {
                     Header: 'Name',
