@@ -23,8 +23,17 @@ export class NetworkProducers extends React.Component {
   // eslint-disable-line react/prefer-stateless-function
 
   componentDidMount() {
-    const selectedProducers = ['ilovefibosbp'];
+    const selectedProducers = [];
+    // push already selected producers
+    this.props.selected.forEach(item => {
+      if (selectedProducers.indexOf(item) === -1 && selectedProducers.length < 30) {
+        selectedProducers.push(item);
+      }
+    });
 
+    if (selectedProducers.indexOf('ilovefibosbp') === -1 && selectedProducers.length < 30) {
+      selectedProducers.push('ilovefibosbp');
+    }
     // support default selected bp like this /vote/producers#bpa:bpb:bpc
     if (this.props.location.hash) {
       let hashProducers = [];
