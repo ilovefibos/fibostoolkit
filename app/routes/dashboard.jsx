@@ -13,6 +13,7 @@ import SimplePermissions from 'components/Features/SimplePermissionsForm';
 import ComplexPermissions from 'components/Features/ComplexPermissionsForm';
 import LinkAuth from 'components/Features/LinkAuthForm';
 import ClaimRewards from 'components/Features/ClaimRewardsForm';
+import ProducerJson from 'components/Features/ProducerJsonForm';
 import SmartTokenIssue from 'components/Features/SmartTokenIssueForm';
 import SmartTokenRetire from 'components/Features/SmartTokenRetireForm';
 import SmartTokenClose from 'components/Features/SmartTokenCloseForm';
@@ -347,6 +348,12 @@ const dashRoutes = [
         name: 'Claim Rewards',
         mini: 'CR',
         component: ClaimRewards,
+      },
+      {
+        path: '/block-producer/set-producer-json',
+        name: 'Set Producer Json',
+        mini: 'SPJ',
+        component: ProducerJson,
       },
     ],
   },
