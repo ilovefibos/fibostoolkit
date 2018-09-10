@@ -41,6 +41,7 @@ function* getProducers() {
       scope: 'producerjson',
       code: 'producerjson',
       table: 'producerjson',
+      limit: 1000
     });
 
     while (data.more) {
