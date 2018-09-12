@@ -4,6 +4,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 // const OfflinePlugin = require('offline-plugin'); Offline service workers caused issues
+const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = require('./webpack.base.babel')({
   // In production, we skip all hot-reloading stuff
@@ -45,7 +46,13 @@ module.exports = require('./webpack.base.babel')({
       },
       inject: true,
     }),
-
+    new CompressionPlugin({
+      asset: '[path].gz[query]',
+      algorithm: 'gzip',
+      test: /\.js$/,
+      threshold: 10240,
+      minRatio: 0.8,
+    }),
     // Put it in the end to capture all the HtmlWebpackPlugin's
     // assets manipulations and do leak its manipulations to HtmlWebpackPlugin
     // new OfflinePlugin({

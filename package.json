@@ -48,6 +48,8 @@
   "lint-staged": {
     "*.js": "lint:eslint"
   },
+  "babel": {
+  },
   "pre-commit": "lint:staged, test",
   "dllPlugin": {
     "path": "node_modules/react-boilerplate-dlls",
@@ -176,6 +178,7 @@
     "url-loader": "0.5.8",
     "webpack": "3.5.5",
     "webpack-dev-middleware": "1.11.0",
-    "webpack-hot-middleware": "2.18.0"
+    "webpack-hot-middleware": "2.18.0",
+    "compression-webpack-plugin":"1.1.12"
   }
 }
