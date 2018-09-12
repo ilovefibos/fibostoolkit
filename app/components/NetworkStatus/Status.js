@@ -12,6 +12,9 @@ import {
 import CheckCircle from '@material-ui/icons/CheckCircle';
 import HighlightOff from '@material-ui/icons/HighlightOff';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import { compose } from 'redux';
+import { injectIntl } from 'react-intl';
+import messages from "./messages";
 
 const status = (enabled, loading) => {
   if (enabled) return <CheckCircle />;
@@ -22,14 +25,14 @@ const status = (enabled, loading) => {
 const NetworkStatus = props => {
   return (
     <div>
-      <span title="If READ is not ticked, it means the selected mainnet endpoint could not be accessed. Either your internet is restricted or the selected endpoint is down. Try selecting a different endpoint via 'Change network' menu above.">
-        Read: {status(props.readerEnabled, props.readerLoading)}{' '}
+      <span title={props.intl.formatMessage(messages.readMessage)}>
+        {props.intl.formatMessage(messages.read)}: {status(props.readerEnabled, props.readerLoading)}{' '}
       </span>
-      <span title="If WRITE access is not ticked, make sure ironman is configured with a valid network and that network is also linked to your scatter identity.">
-        Write: {status(props.writerEnabled, props.writerLoading)}{' '}
+      <span title={props.intl.formatMessage(messages.writerMessage)}>
+        {props.intl.formatMessage(messages.write)}: {status(props.writerEnabled, props.writerLoading)}{' '}
       </span>
-      <span title="If ACCOUNT is not ticked make sure to use the 'Select account' menu above and select a ironman identity and account to perform actions under.">
-        Account: {status(props.accountEnabled, props.accountLoading)}
+      <span title={props.intl.formatMessage(messages.accountMessage)}>
+        {props.intl.formatMessage(messages.account)}: {status(props.accountEnabled, props.accountLoading)}
       </span>
     </div>
   );
@@ -43,8 +46,10 @@ const mapStateToProps = createStructuredSelector({
   writerEnabled: makeSelectWriterEnabled(),
   accountEnabled: makeSelectAccountEnabled(),
 });
-
-export default connect(
-  mapStateToProps,
-  null
+export default compose(
+  connect(
+    mapStateToProps,
+    null
+  ),
+  injectIntl
 )(NetworkStatus);

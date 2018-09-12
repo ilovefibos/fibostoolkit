@@ -10,14 +10,17 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { makeSelectIdentity, makeSelectAccount } from 'containers/NetworkClient/selectors';
 import { pushTransaction as sendTransaction } from 'containers/NetworkClient/actions';
+import { compose } from 'redux';
+import { injectIntl } from 'react-intl';
+import messages from './messages';
 
-const makeTransaction = (networkIdentity, accountData) => {
+const makeTransaction = (networkIdentity, accountData, intl) => {
   if (!accountData) {
-    return { error: 'No ironman identity attached' };
+    return { error: intl.formatMessage(messages.noIronman) };
   }
   const producers = accountData.voter_info ? accountData.voter_info.producers : [];
   if (producers.includes('ilovefibosbp')) {
-    return { success: 'You already voted for us! Thank you!' };
+    return { success: intl.formatMessage(messages.alreadVoteUs) };
   }
   if (producers.length > 29) {
     producers.pop();
@@ -39,14 +42,14 @@ const makeTransaction = (networkIdentity, accountData) => {
 };
 
 const VoteUs = props => {
-  const { pushTransaction, networkIdentity, networkAccount, className } = props;
+  const { pushTransaction, networkIdentity, networkAccount, className, intl } = props;
   const handleSubmit = () => {
-    const transaction = makeTransaction(networkIdentity, networkAccount);
-    pushTransaction(transaction,props.history);
+    const transaction = makeTransaction(networkIdentity, networkAccount, intl);
+    pushTransaction(transaction, props.history);
   };
   return (
     <a href="#" onClick={handleSubmit} className={className}>
-      Vote for ilovefibosbp
+      {props.intl.formatMessage(messages.voteForUs)}
     </a>
   );
 };
@@ -58,11 +61,14 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    pushTransaction: (transaction,history) => dispatch(sendTransaction(transaction,history)),
+    pushTransaction: (transaction, history) => dispatch(sendTransaction(transaction, history)),
   };
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
+export default compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),
+  injectIntl
 )(VoteUs);

@@ -5,6 +5,9 @@ import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 import cx from 'classnames';
+import { intlShape, injectIntl, defineMessages } from 'react-intl';
+import messages from './messages';
+import dashBoardMessages from '../../routes/messages';
 
 // @material-ui/core components
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -15,11 +18,13 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import Hidden from '@material-ui/core/Hidden';
 import Collapse from '@material-ui/core/Collapse';
-import { AddBox, ExitToApp, SettingsApplications, Autorenew } from '@material-ui/icons';
+import { AddBox, ExitToApp, SettingsApplications, Autorenew, Language } from '@material-ui/icons';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { makeSelectOffline, makeSelectIdentity } from 'containers/NetworkClient/selectors';
+import { makeSelectLocale } from 'containers/LanguageProvider/selectors';
 import { setIdentity, disableWriter, toggleOffline } from 'containers/NetworkClient/actions';
+import { changeLocale } from 'containers/LanguageProvider/actions';
 import NetworkIdentity from 'components/NetworkStatus/Identity';
 import NetworkStatus from 'components/NetworkStatus/Status';
 import VoteUs from 'components/Features/VoteUs';
@@ -99,10 +104,14 @@ class Sidebar extends React.Component {
           <ListItem className={classes.item} onClick={this.props.identity ? this.props.onLogout : this.props.onLogin}>
             <NavLink to="#" className={`${classes.itemLink}`}>
               <ListItemIcon className={classes.itemIconMini}>
-                {this.props.identity ? (<ExitToApp />) : (<AddBox />)}
+                {this.props.identity ? <ExitToApp /> : <AddBox />}
               </ListItemIcon>
               <ListItemText
-                primary={this.props.identity ? "Detach Account" : "Attach Account"} // TODO: Make this international
+                primary={
+                  this.props.identity
+                    ? this.props.intl.formatMessage(messages.detachAccount)
+                    : this.props.intl.formatMessage(messages.attachAccount)
+                } // TODO: Make this international
                 disableTypography
                 className={collapseItemText}
               />
@@ -114,7 +123,7 @@ class Sidebar extends React.Component {
                 <SettingsApplications />
               </ListItemIcon>
               <ListItemText
-                primary="Change Network" // TODO: Make this international
+                primary={this.props.intl.formatMessage(messages.changeNetwork)} // TODO: Make this international
                 disableTypography
                 className={collapseItemText}
               />
@@ -126,13 +135,33 @@ class Sidebar extends React.Component {
                 <Autorenew />
               </ListItemIcon>
               <ListItemText
-                primary={this.props.offlineMode ? "Multisig Mode" : "Singlesig Mode"} // TODO: Make this international
+                primary={
+                  this.props.offlineMode
+                    ? this.props.intl.formatMessage(messages.multisigMode)
+                    : this.props.intl.formatMessage(messages.singlesigMode)
+                } // TODO: Make this international
                 disableTypography
                 className={collapseItemText}
               />
             </NavLink>
           </ListItem>
-
+          <ListItem
+            className={classes.item}
+            onClick={() => {
+              const locale = this.props.locale;
+              this.props.changeLocale(locale === 'en' ? 'zh' : 'en');
+            }}>
+            <NavLink to="#" className={`${classes.itemLink}`}>
+              <ListItemIcon className={classes.itemIconMini}>
+                <Language />
+              </ListItemIcon>
+              <ListItemText
+                primary={this.props.intl.formatMessage(messages.language)} // TODO: Make this international
+                disableTypography
+                className={collapseItemText}
+              />
+            </NavLink>
+          </ListItem>
         </List>
       </div>
     );
@@ -144,17 +173,21 @@ class Sidebar extends React.Component {
       </List>
     );
     const vote = (
-      <List className={classes.list} style={{marginBottom: '-20px'}}>
+      <List className={classes.list} style={{ marginBottom: '-20px' }}>
         <ListItem className={classes.item}>
           <div className={classes.itemLink}>
             <ListItemIcon className={classes.itemIcon}>
               <GenereosIcon />
             </ListItemIcon>
-            <ListItemText primary={<VoteUs className={classes.itemText}/>} disableTypography className={classes.itemText} />
+            <ListItemText
+              primary={<VoteUs className={classes.itemText} />}
+              disableTypography
+              className={classes.itemText}
+            />
           </div>
         </ListItem>
       </List>
-    )
+    );
     const links = (
       <List className={classes.list}>
         {routes.map(prop => {
@@ -166,7 +199,8 @@ class Sidebar extends React.Component {
           }
           if (prop.collapse) {
             const navLinkClasses = `${classes.itemLink} ${cx({
-              [` ${classes.collapseActive}`]: (this.activeRoute(prop.path) && this.props.location.pathname !== '/account/create'),
+              [` ${classes.collapseActive}`]:
+                this.activeRoute(prop.path) && this.props.location.pathname !== '/account/create',
             })}`;
             const listItemTextClass = `${classes.itemText} ${cx({
               [classes.itemTextMini]: this.props.miniActive && this.state.miniActive,
@@ -191,7 +225,7 @@ class Sidebar extends React.Component {
                     <prop.icon />
                   </ListItemIcon>
                   <ListItemText
-                    primary={prop.name}
+                    primary={this.props.intl.formatMessage(dashBoardMessages[prop.messageId])}
                     secondary={<b className={`${caretLink} ${this.state[prop.state] ? classes.caretActive : ''}`} />}
                     disableTypography
                     className={listItemTextClass}
@@ -211,9 +245,16 @@ class Sidebar extends React.Component {
                       })}`;
                       return (
                         <ListItem key={`list-item-collapse-${viewProp.path}`} className={classes.collapseItem}>
-                          <NavLink to={viewProp.path} className={navLinkCollapseClasses} onClick={this.props.handleDrawerToggle}>
+                          <NavLink
+                            to={viewProp.path}
+                            className={navLinkCollapseClasses}
+                            onClick={this.props.handleDrawerToggle}>
                             <span className={collapseItemMini}>{viewProp.mini}</span>
-                            <ListItemText primary={viewProp.name} disableTypography className={collapseItemTextClass} />
+                            <ListItemText
+                              primary={this.props.intl.formatMessage(dashBoardMessages[viewProp.messageId])}
+                              disableTypography
+                              className={collapseItemTextClass}
+                            />
                           </NavLink>
                         </ListItem>
                       );
@@ -240,7 +281,11 @@ class Sidebar extends React.Component {
                 <ListItemIcon className={itemIcon}>
                   <prop.icon />
                 </ListItemIcon>
-                <ListItemText primary={prop.name} disableTypography className={itemTextLink} />
+                <ListItemText
+                  primary={this.props.intl.formatMessage(dashBoardMessages[prop.messageId])}
+                  disableTypography
+                  className={itemTextLink}
+                />
               </NavLink>
             </ListItem>
           );
@@ -292,13 +337,7 @@ class Sidebar extends React.Component {
               keepMounted: true, // Better open performance on mobile.
             }}>
             {brand}
-            <SidebarWrapper
-              className={sidebarWrapper}
-              user={user}
-              status={status}
-              links={links}
-              headerLinks={vote}
-            />
+            <SidebarWrapper className={sidebarWrapper} user={user} status={status} links={links} headerLinks={vote} />
             {image !== undefined ? (
               <div className={classes.background} style={{ backgroundImage: `url(${image})` }} />
             ) : null}
@@ -315,7 +354,7 @@ class Sidebar extends React.Component {
               paper: `${drawerPaper} ${classes[`${bgColor}Background`]}`,
             }}>
             {brand}
-            <SidebarWrapper className={sidebarWrapper} user={user} links={links} status={status}/>
+            <SidebarWrapper className={sidebarWrapper} user={user} links={links} status={status} />
             {image !== undefined ? (
               <div className={classes.background} style={{ backgroundImage: `url(${image})` }} />
             ) : null}
@@ -339,18 +378,21 @@ Sidebar.propTypes = {
   logoText: PropTypes.string,
   image: PropTypes.string,
   routes: PropTypes.arrayOf(PropTypes.object),
+  intl: intlShape.isRequired,
 };
 
 const mapStateToProps = createStructuredSelector({
   offlineMode: makeSelectOffline(),
   identity: makeSelectIdentity(),
+  locale: makeSelectLocale(),
 });
 
 function mapDispatchToProps(dispatch) {
   return {
     onLogin: () => dispatch(setIdentity()),
     onLogout: () => dispatch(disableWriter()),
-    toggleOffline: () => dispatch(toggleOffline())
+    toggleOffline: () => dispatch(toggleOffline()),
+    changeLocale: locale => dispatch(changeLocale(locale)),
   };
 }
 
@@ -359,5 +401,6 @@ export default compose(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )
+  ),
+  injectIntl
 )(Sidebar);
