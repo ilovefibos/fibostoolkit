@@ -22,7 +22,10 @@ const ExchangeForm = props => {
       </ToolSection>
       <ToolSection lg={4}>
         <ToolBody color="info" header="Information">
-          <p>Tutorial coming soon</p>
+          <div>
+            <h5>Exchange Rate</h5>
+            <h3>1 EOS = {props.rate.rate} FO</h3>
+          </div>
         </ToolBody>
       </ToolSection>
     </Tool>

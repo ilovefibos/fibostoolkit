@@ -8,7 +8,7 @@ import StakeForm from 'components/Features/StakeForm';
 import Refund from 'components/Features/RefundForm';
 import Transfer from 'components/Features/TransferForm';
 import Withdrawl from 'components/Features/WithdrawlForm';
-import Exchange from 'components/Features/ExchangeForm';
+import Exchange from 'containers/Exchange';
 import SimplePermissions from 'components/Features/SimplePermissionsForm';
 import ComplexPermissions from 'components/Features/ComplexPermissionsForm';
 import LinkAuth from 'components/Features/LinkAuthForm';
