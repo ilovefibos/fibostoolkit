@@ -11,7 +11,12 @@ import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import { IntlProvider } from 'react-intl';
 
+import injectSaga from 'utils/injectSaga';
+import injectReducer from 'utils/injectReducer';
 import { makeSelectLocale } from './selectors';
+import { compose } from 'redux';
+import reducer from './reducer';
+import saga from './saga';
 
 export class LanguageProvider extends React.PureComponent {
   // eslint-disable-line react/prefer-stateless-function
@@ -37,7 +42,16 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(
+const withConnect = connect(
   mapStateToProps,
   mapDispatchToProps
+);
+
+const withReducer = injectReducer({ key: 'LanguageProvider', reducer });
+const withSaga = injectSaga({ key: 'LanguageProvider', saga });
+
+export default compose(
+  withReducer,
+  withSaga,
+  withConnect
 )(LanguageProvider);
