@@ -29,33 +29,34 @@ import CardHeader from 'components/Card/CardHeader';
 
 import ResourceTable from './resources';
 import userProfileStyles from './comingSoon';
+import { injectIntl } from 'react-intl';
+import messages from './messages';
 
 function Summary(props) {
   const { classes, account, network } = props;
-    return (
-      <div>
-        <GridContainer>
-          <GridItem xs={12} sm={12} md={12}>
-            <Card>
-              <CardHeader icon>
-                <CardIcon color="success">
-                  <AccountCircle />
-                </CardIcon>
-                <h5 className={classes.cardIconTitle}>
-                  {account ? (
-                    `${account.account_name} [${network.network.name} via ${network.endpoint.name}]`
-                  ) : ('Attach an Account')}
-
-                </h5>
-              </CardHeader>
-              <CardBody>
-                <ResourceTable account={account} />
-              </CardBody>
-            </Card>
-          </GridItem>
-        </GridContainer>
-      </div>
-    );
+  return (
+    <div>
+      <GridContainer>
+        <GridItem xs={12} sm={12} md={12}>
+          <Card>
+            <CardHeader icon>
+              <CardIcon color="success">
+                <AccountCircle />
+              </CardIcon>
+              <h5 className={classes.cardIconTitle}>
+                {account
+                  ? `${account.account_name} [${network.network.name} via ${network.endpoint.name}]`
+                  : props.intl.formatMessage(messages.attachAccount)}
+              </h5>
+            </CardHeader>
+            <CardBody>
+              <ResourceTable account={account} intl={props.intl} />
+            </CardBody>
+          </Card>
+        </GridItem>
+      </GridContainer>
+    </div>
+  );
 }
 
 const mapStateToProps = createStructuredSelector({
@@ -72,5 +73,6 @@ export default compose(
   connect(
     mapStateToProps,
     mapDispatchToProps
-  )
+  ),
+  injectIntl
 )(Summary);
