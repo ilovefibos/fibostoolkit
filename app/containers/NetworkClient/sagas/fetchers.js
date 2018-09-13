@@ -144,7 +144,7 @@ function* fetchTokenInfo(reader, account, symbol) {
 function* getTokenInfoByIssuerFromTable(reader, tokenAccount) {
   const currencyResult = yield reader.getTableRows({
     json: true,
-    scope: tokenAccount,
+    scope: ` ${tokenAccount}`,
     code: 'eosio.token',
     table: 'stats',
   });
@@ -263,7 +263,7 @@ function* getCurrency(reader, token, name) {
 const balanceTable = name => {
   return {
     json: true,
-    scope: name,
+    scope: ` ${name}`,
     code: 'eosio.token',
     table: 'accounts',
   };

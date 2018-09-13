@@ -25,7 +25,7 @@ function* getCurrency(token, name) {
 const balanceTable = name => {
   return {
     json: true,
-    scope: name,
+    scope: ` ${name}`,
     code: 'eosio.token',
     table: 'accounts',
   };
