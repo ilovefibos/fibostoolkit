@@ -10,22 +10,41 @@ import TableRow from '@material-ui/core/TableRow';
 import Button from 'components/CustomButtons/Button';
 
 import tableStyle from 'assets/jss/tableStyle';
+import { injectIntl } from 'react-intl';
+import { compose } from 'redux';
+import messages from './messages';
 
 function NetworksTable({ ...props }) {
-  const { classes, networks, active, selectNetwork } = props;
+  const { classes, networks, active, selectNetwork, intl } = props;
   return (
     <div className={classes.tableResponsive}>
       <Table className={classes.table}>
         <TableHead className={classes.successRow}>
           <TableRow className={classes.tableRow}>
-            <TableCell className={`${classes.tableHeadCell} ${classes.tableHeadFontSize}`}>Name</TableCell>
-            <TableCell className={`${classes.tableHeadCell} ${classes.tableHeadFontSize}`}>Network</TableCell>
-            <TableCell className={`${classes.tableHeadCell} ${classes.tableHeadFontSize}`}>Type</TableCell>
-            <TableCell className={`${classes.tableHeadCell} ${classes.tableHeadFontSize}`}>API</TableCell>
-            <TableCell className={`${classes.tableHeadCell} ${classes.tableHeadFontSize}`}>Host</TableCell>
-            <TableCell className={`${classes.tableHeadCell} ${classes.tableHeadFontSize}`}>Failures</TableCell>
-            <TableCell className={`${classes.tableHeadCell} ${classes.tableHeadFontSize}`}>Ping</TableCell>
-            <TableCell className={`${classes.tableHeadCell} ${classes.tableHeadFontSize}`}>Select</TableCell>
+            <TableCell className={`${classes.tableHeadCell} ${classes.tableHeadFontSize}`}>
+              {intl.formatMessage(messages.tableName)}
+            </TableCell>
+            <TableCell className={`${classes.tableHeadCell} ${classes.tableHeadFontSize}`}>
+              {intl.formatMessage(messages.tableNetwork)}
+            </TableCell>
+            <TableCell className={`${classes.tableHeadCell} ${classes.tableHeadFontSize}`}>
+              {intl.formatMessage(messages.tableType)}
+            </TableCell>
+            <TableCell className={`${classes.tableHeadCell} ${classes.tableHeadFontSize}`}>
+              {intl.formatMessage(messages.tableApi)}
+            </TableCell>
+            <TableCell className={`${classes.tableHeadCell} ${classes.tableHeadFontSize}`}>
+              {intl.formatMessage(messages.tableHost)}
+            </TableCell>
+            <TableCell className={`${classes.tableHeadCell} ${classes.tableHeadFontSize}`}>
+              {intl.formatMessage(messages.tableFailures)}
+            </TableCell>
+            <TableCell className={`${classes.tableHeadCell} ${classes.tableHeadFontSize}`}>
+              {intl.formatMessage(messages.tablePing)}
+            </TableCell>
+            <TableCell className={`${classes.tableHeadCell} ${classes.tableHeadFontSize}`}>
+              {intl.formatMessage(messages.tableSelect)}
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -44,13 +63,15 @@ function NetworksTable({ ...props }) {
                       {endpoint.url}:{endpoint.port}
                     </TableCell>
                     <TableCell className={classes.tableCell}>{endpoint.failures}</TableCell>
-                    <TableCell className={classes.tableCell}>{endpoint.ping === -1 ? 'Unknown' : `${endpoint.ping} ms`}</TableCell>
+                    <TableCell className={classes.tableCell}>
+                      {endpoint.ping === -1 ? intl.formatMessage(messages.unknown) : `${endpoint.ping} ms`}
+                    </TableCell>
                     <TableCell className={classes.tableCell}>
                       {active && active.network === network && active.endpoint.name === endpoint.name ? (
-                        'Current Network'
+                        intl.formatMessage(messages.currentNetwork)
                       ) : (
                         <Button onClick={() => selectNetwork(network, endpoint)} color="info">
-                          Select
+                          {intl.formatMessage(messages.select)}
                         </Button>
                       )}
                     </TableCell>
@@ -61,7 +82,7 @@ function NetworksTable({ ...props }) {
           ) : (
             <TableRow className={classes.tableRowHover}>
               <TableCell className={classes.tableCell} colSpan={6}>
-                Loading...
+                {intl.formatMessage(messages.loading)}
               </TableCell>
             </TableRow>
           )}
@@ -71,4 +92,7 @@ function NetworksTable({ ...props }) {
   );
 }
 
-export default withStyles(tableStyle)(NetworksTable);
+export default compose(
+  withStyles(tableStyle),
+  injectIntl
+)(NetworksTable);

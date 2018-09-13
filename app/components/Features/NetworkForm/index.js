@@ -12,6 +12,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 
 // @material-ui/icons
 import Settings from '@material-ui/icons/Settings';
+import { FormattedMessage, injectIntl } from 'react-intl';
 
 // core components
 import GridContainer from 'components/Grid/GridContainer';
@@ -23,10 +24,18 @@ import CardBody from 'components/Card/CardBody';
 
 import regularFormsStyle from 'assets/jss/regularFormsStyle';
 import NetworkTable from './networks';
+import { Notification } from '../../../containers/Notification';
+import { compose } from 'redux';
+import messages from './messages';
 
 const NetworkForm = props => {
   const { classes, networks, active, selectNetwork } = props;
   const tableProps = { networks, active, selectNetwork };
+  const github = (
+    <a href="https://github.com/lowwor/fibos-networks" target="new">
+      GitHub
+    </a>
+  );
   return (
     <GridContainer>
       <GridItem xs={12} sm={12} lg={12}>
@@ -35,14 +44,15 @@ const NetworkForm = props => {
             <CardIcon color="warning">
               <Settings />
             </CardIcon>
-            <h4 className={classes.cardIconTitle}>Select a network</h4>
+            <h4 className={classes.cardIconTitle}>{props.intl.formatMessage(messages.selectNetwork)}</h4>
           </CardHeader>
           <CardBody>
             <h6>
-              Get your testnet or endpoint added to this list by submitting a pull request to{' '}
-              <a href="https://github.com/lowwor/fibos-networks" target="new">
-                GitHub
-              </a>
+              <FormattedMessage
+                id={messages.githubNetworks.id}
+                values={{ github }}
+                defaultMessage={messages.githubNetworks.defaultMessage}
+              />
             </h6>
             <NetworkTable {...tableProps} />
           </CardBody>
@@ -52,4 +62,7 @@ const NetworkForm = props => {
   );
 };
 
-export default withStyles(regularFormsStyle)(NetworkForm);
+export default compose(
+  withStyles(regularFormsStyle),
+  injectIntl
+)(NetworkForm);
