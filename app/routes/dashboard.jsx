@@ -3,7 +3,7 @@ import CreateAccount from 'components/Features/CreateAccountForm';
 import CreateProxy from 'components/Features/CreateProxyForm';
 import ResignProxy from 'components/Features/ResignProxyForm';
 import SetProxy from 'components/Features/SetProxyForm';
-import RamForm from 'components/Features/RamForm';
+import Ram from 'containers/Ram';
 import StakeForm from 'components/Features/StakeForm';
 import Refund from 'components/Features/RefundForm';
 import Transfer from 'components/Features/TransferForm';
@@ -162,7 +162,7 @@ const dashRoutes = [
         name: 'Manage RAM',
         messageId: 'manageRam',
         mini: 'MR',
-        component: RamForm,
+        component: Ram,
       },
       {
         path: '/account/permissions',

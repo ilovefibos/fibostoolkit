@@ -22,7 +22,8 @@ const RamForm = props => {
       </ToolSection>
       <ToolSection lg={4}>
         <ToolBody color="info" header="Information">
-          <p>Tutorial coming soon</p>
+          <h5>RAM Exchange Rate</h5>
+          <h3>{props.ramRate.ramRate} FO / KB</h3>
         </ToolBody>
       </ToolSection>
     </Tool>
