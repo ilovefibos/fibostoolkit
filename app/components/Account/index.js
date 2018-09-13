@@ -25,6 +25,7 @@ import regularFormsStyle from 'assets/jss/regularFormsStyle';
 
 import ResourceTable from 'components/AccountTables/resources';
 import BalancesTable from 'components/AccountTables/balances';
+import ContractWalletBalancesTable from 'components/AccountTables/contractWalletBalances';
 const Account = props => {
   const { classes, account, showJson, toggleVisibility } = props;
   if (!account) {
@@ -57,6 +58,9 @@ const Account = props => {
           <GridContainer>
             <GridItem xs={12} md={12} lg={6}>
               <BalancesTable account={account} />
+            </GridItem>
+            <GridItem xs={12} md={12} lg={6}>
+              <ContractWalletBalancesTable account={account} />
             </GridItem>
             <GridItem xs={12} md={12} lg={6}>
               <ResourceTable account={account} />

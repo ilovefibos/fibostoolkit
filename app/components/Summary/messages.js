@@ -23,6 +23,10 @@ export default defineMessages({
     id: 'app.components.Summary.smartTokens',
     defaultMessage: 'Smart Tokens',
   },
+  contractWallet: {
+    id: 'app.components.Summary.contractWallet',
+    defaultMessage: 'Contract Wallet',
+  },
   refunding: {
     id: 'app.components.Summary.refunding',
     defaultMessage: 'REFUNDING',

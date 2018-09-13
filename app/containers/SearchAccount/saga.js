@@ -3,6 +3,8 @@ import { takeLatest, call, put, select, all, fork, join } from 'redux-saga/effec
 import { makeSelectSearchName, makeSelectSearchPubkey } from './selectors';
 import { LOOKUP_ACCOUNT, LOOKUP_PUBKEY } from './constants';
 import { lookupLoading, lookupLoaded } from './actions';
+import { makeSelectActiveNetwork, makeSelectNetworks } from '../NetworkClient/selectors'
+import { updateNetworks } from '../NetworkClient/actions'
 
 function* getCurrency(token, name) {
   const networkReader = yield select(makeSelectReader());
@@ -31,6 +33,27 @@ const balanceTable = name => {
   };
 };
 
+function* getContractWalletBalance(reader, name) {
+  try {
+    const currencyResult = yield reader.getTableRows({
+      json: true,
+      code: 'eosio.token',
+      scope: ` ${name}`,
+      table: 'ctxaccounts',
+    });
+    const currencies = currencyResult.rows.map(c => {
+      return {
+        account: c.balance.contract,
+        balance: c.balance.quantity,
+      };
+    });
+    return currencies;
+  } catch (c) {
+    console.error('An FOToolkit error occured - see details below:');
+    console.error(c);
+    return [];
+  }
+}
 function* getAcountTokenBalanceFromTable(reader, name) {
   const currencyResult = yield reader.getTableRows(balanceTable(name));
   const currencies = currencyResult.rows.map(c => {
@@ -55,10 +78,12 @@ function* getAccountDetail(name) {
     // const currencies = yield join(...tokens);
     // const balances = currencies.reduce((a, b) => a.concat(b), []);
     const balances = yield getAcountTokenBalanceFromTable(networkReader, name);
-    console.log(balances);
+    const contractWalletBalances = yield getContractWalletBalance(networkReader, name);
+
     return {
       ...account,
       balances,
+      contractWalletBalances,
     };
   } catch (err) {
     console.error('An FOToolkit error occured - see details below:');

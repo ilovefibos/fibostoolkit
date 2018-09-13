@@ -38,6 +38,7 @@
   "app.components.Sidebar.multisigMode": "Multisig Mode",
   "app.components.Sidebar.singlesigMode": "Singlesig Mode",
   "app.components.Summary.attachAccount": "Attach an Account",
+  "app.components.Summary.contractWallet": "Contract Wallet",
   "app.components.Summary.cpu": "CPU",
   "app.components.Summary.loadAccount": "Load an account to view your resource utilitization and balances.",
   "app.components.Summary.net": "NET",

@@ -84,6 +84,18 @@ function ResourcesTable({ ...props }) {
                 </h6>
               </TableCell>
             </TableRow>
+            <TableRow className={`${classes.tableStripedRow} ${classes.tableRowHover}`}>
+              <TableCell className={classes.tableCell}>
+                <h6>{intl.formatMessage(messages.contractWallet)}</h6>
+              </TableCell>
+              <TableCell className={classes.tableCell} colSpan={12}>
+                <h6>
+                  {account.contractWalletBalances
+                    .map(bal => `${bal.balance}@${bal.account}`)
+                    .join(', ')}
+                </h6>
+              </TableCell>
+            </TableRow>
           </TableBody>
         ) : (
           <TableBody>

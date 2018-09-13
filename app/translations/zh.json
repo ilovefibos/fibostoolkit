@@ -38,6 +38,7 @@
   "app.components.Sidebar.multisigMode": "多签模式",
   "app.components.Sidebar.singlesigMode": "单签模式",
   "app.components.Summary.attachAccount": "添加账号！",
+  "app.components.Summary.contractWallet": "合约子钱包",
   "app.components.Summary.cpu": "计算资源",
   "app.components.Summary.loadAccount": "加载帐号以查看你的资源状况和余额",
   "app.components.Summary.net": "网络资源",

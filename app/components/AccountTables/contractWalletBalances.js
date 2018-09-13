@@ -10,7 +10,7 @@ import TableRow from '@material-ui/core/TableRow';
 
 import tableStyle from 'assets/jss/tableStyle';
 
-function BalancesTable({ ...props }) {
+function ContractWalletBalancesTable({ ...props }) {
   const { classes, account } = props;
   return (
     <div className={classes.tableResponsive}>
@@ -18,13 +18,13 @@ function BalancesTable({ ...props }) {
         <TableHead className={classes.successRow}>
           <TableRow className={classes.tableRow}>
             <TableCell className={`${classes.tableHeadCell} ${classes.tableHeadFontSize}`} colSpan={2}>
-              Token Balances
+              Contract Wallet Balances
             </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
-          {account.balances.length > 0 ? (
-            account.balances.map(row => {
+          {account.contractWalletBalances.length > 0 ? (
+            account.contractWalletBalances.map(row => {
               return (
                 <TableRow className={classes.tableRowHover} key={row.balance}>
                   <TableCell className={classes.tableCell}>
@@ -46,4 +46,4 @@ function BalancesTable({ ...props }) {
   );
 }
 
-export default withStyles(tableStyle)(BalancesTable);
+export default withStyles(tableStyle)(ContractWalletBalancesTable);

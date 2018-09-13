@@ -5,12 +5,7 @@ import { put, all, join, fork, select, call, spawn } from 'redux-saga/effects';
 import { networksUrl, fibosSmartTokensUrl } from 'remoteConfig';
 
 import { loadedNetworks, updateNetworks, loadedAccount, setNetwork } from '../actions';
-import {
-  makeSelectIdentity,
-  makeSelectReader,
-  makeSelectNetworks,
-  makeSelectActiveNetwork,
-} from '../selectors';
+import { makeSelectIdentity, makeSelectReader, makeSelectNetworks, makeSelectActiveNetwork } from '../selectors';
 
 /*
 *
@@ -298,6 +293,40 @@ function* getAccountTokenBalanceFromTable(reader, name) {
   }
 }
 
+function* getContractWalletBalance(reader, name) {
+  try {
+    const currencyResult = yield reader.getTableRows({
+      json: true,
+      code: 'eosio.token',
+      scope: ` ${name}`,
+      table: 'ctxaccounts',
+    });
+    const currencies = currencyResult.rows.map(c => {
+      return {
+        account: c.balance.contract,
+        balance: c.balance.quantity,
+      };
+    });
+    return currencies;
+  } catch (c) {
+    const networks = yield select(makeSelectNetworks());
+    const active = yield select(makeSelectActiveNetwork());
+
+    const activeIndex = networks.findIndex(network => {
+      return network.chainId === active.network.chainId;
+    });
+
+    const endpointIndex = networks[activeIndex].endpoints.findIndex(endpoint => {
+      return endpoint.name === active.endpoint.name;
+    });
+
+    networks[activeIndex].endpoints[endpointIndex].failures += 1;
+
+    yield put(updateNetworks(networks));
+    return [];
+  }
+}
+
 function* getAccountDetail(reader, name) {
   try {
     const account = yield reader.getAccount(name);
@@ -311,10 +340,13 @@ function* getAccountDetail(reader, name) {
     // const currencies = yield join(...tokenData);
     // const balances = currencies.reduce((a, b) => a.concat(b), []);
     const balances = yield getAccountTokenBalanceFromTable(reader, name);
-    yield spawn(fetchLatency);
+    const contractWalletBalances = yield getContractWalletBalance(reader, name);
+    // disable again
+    // yield spawn(fetchLatency);
     return {
       ...account,
       balances,
+      contractWalletBalances,
     };
   } catch (c) {
     console.log('getAccount error');
