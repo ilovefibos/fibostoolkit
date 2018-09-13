@@ -21,6 +21,9 @@ import SmartTokenTransfer from 'components/Features/SmartTokenTransferForm';
 import SmartTokenExchange from 'components/Features/SmartTokenExchangeForm';
 import SmartTokenDestroy from 'components/Features/SmartTokenDestroyForm';
 import TokenCreate from 'components/Features/TokenCreateForm';
+import ContractWalletTransfer from 'components/Features/ContractWalletTransferForm';
+import ContractWalletRecharge from 'components/Features/ContractWalletRechargeForm';
+import ContractWalletExtract from 'components/Features/ContractWalletExtractForm';
 
 import BidName from 'components/Features/BidNameForm';
 import Airgrab from 'components/Features/AirgrabForm';
@@ -66,6 +69,7 @@ import {
   Send,
   CloudDownload,
   Settings,
+  AccountBalanceWallet,
   BusinessCenter,
   VpnKey,
 } from '@material-ui/icons';
@@ -250,6 +254,37 @@ const dashRoutes = [
         messageId: 'closeSmartToken',
         mini: 'CST',
         component: SmartTokenClose,
+      },
+    ],
+  },
+  {
+    collapse: true,
+    path: '/contractwallet',
+    name: 'Manage Contract Wallet',
+    messageId: 'manageContractWallet',
+    state: 'openContractWallet',
+    icon: AccountBalanceWallet,
+    views: [
+      {
+        path: '/contractwallet/recharge',
+        name: 'Contract Wallet Recharge',
+        messageId: 'contractWalletRecharge',
+        mini: 'RCA',
+        component: ContractWalletRecharge,
+      },
+      {
+        path: '/contractwallet/extract',
+        name: 'Contract Wallet Extract',
+        messageId: 'contractWalletExtract',
+        mini: 'ECA',
+        component: ContractWalletExtract,
+      },
+      {
+        path: '/contractwallet/transfer',
+        name: 'Contract Wallet Transfer',
+        messageId: 'contractWalletTransfer',
+        mini: 'TCA',
+        component: ContractWalletTransfer,
       },
     ],
   },

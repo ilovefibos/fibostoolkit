@@ -44,6 +44,7 @@ class Sidebar extends React.Component {
       openAvatar: false,
       openAccount: this.activeRoute('/account'),
       openSmartToken: this.activeRoute('/smarttoken'),
+      openContractWallet: this.activeRoute('/contractwallet'),
       openVote: this.activeRoute('/vote'),
       openCommunity: this.activeRoute('/community'),
       openMultisig: this.activeRoute('/multisig'),

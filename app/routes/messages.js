@@ -66,6 +66,22 @@ export default defineMessages({
     id: 'app.routes.dashboard.manageSmartToken',
     defaultMessage: 'Manage Smart Token',
   },
+  manageContractWallet: {
+    id: 'app.routes.dashboard.manageContractWallet',
+    defaultMessage: 'Manage Contract Wallet',
+  },
+  contractWalletRecharge: {
+    id: 'app.routes.dashboard.contractWalletRecharge',
+    defaultMessage: 'Contract Wallet Recharge',
+  },
+  contractWalletExtract: {
+    id: 'app.routes.dashboard.contractWalletExtract',
+    defaultMessage: 'Contract Wallet Extract',
+  },
+  contractWalletTransfer: {
+    id: 'app.routes.dashboard.contractWalletTransfer',
+    defaultMessage: 'Contract Wallet Transfer',
+  },
   createSmartToken: {
     id: 'app.routes.dashboard.createSmartToken',
     defaultMessage: 'Create Smart Token',
