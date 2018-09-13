@@ -13,27 +13,34 @@ import ToolSection from 'components/Tool/ToolSection';
 import ToolBody from 'components/Tool/ToolBody';
 import dashboardRoutes from 'routes/dashboard';
 import HomeDoc from 'components/Information/Home';
+import dashBoardMessages from '../../../routes/messages';
+import messages from './messages';
+import { injectIntl } from 'react-intl';
+import withStyles from "@material-ui/core/styles/withStyles";
+import { connect } from "react-redux";
+import userProfileStyles from "../../Summary/comingSoon";
+import { compose } from "redux";
 
-const FeaturesPage = () => {
+const FeaturesPage = props => {
   return (
     <Tool>
       <ToolSection lg={12}>
         <ToolBody
           color="info"
           icon={Info}
-          header="Welcome to FOToolkit"
-          subheader=" - Easy access to the FO Network">
+          header={props.intl.formatMessage(messages.welcome)}
+          subheader={props.intl.formatMessage(messages.welcomeSub)}>
           <HomeDoc />
         </ToolBody>
       </ToolSection>
 
       <ToolSection lg={4}>
-        <ToolBody color="warning" icon={Favorite} header='Favourites'>
-          {dashboardRoutes.map(({ icon, name, collapse, hide, redirect, path, views }) => {
+        <ToolBody color="warning" icon={Favorite} header={props.intl.formatMessage(messages.favourites)}>
+          {dashboardRoutes.map(({ icon, name, messageId, collapse, hide, redirect, path, views }) => {
             if(!redirect && !hide && !collapse) {
               return (
                 <NavLink to={path} key={`route-${path}`}>
-                  <h4>{name}</h4>
+                  <h4>{props.intl.formatMessage(dashBoardMessages[messageId])}</h4>
                 </NavLink>
               );
             }
@@ -45,11 +52,11 @@ const FeaturesPage = () => {
         if (route.collapse) {
           return (
             <ToolSection lg={4} key={`header-${route.name}`}>
-              <ToolBody color="rose" icon={route.icon} header={route.name}>
+              <ToolBody color="rose" icon={route.icon} header={props.intl.formatMessage(dashBoardMessages[route.messageId])}>
                 {route.views.map((view) => {
                   return (
                     <NavLink to={view.path} key={`route-view-${view.path}`}>
-                      <h4>{view.name}</h4>
+                      <h4>{props.intl.formatMessage(dashBoardMessages[view.messageId])}</h4>
                     </NavLink>
                   );
                 })}
@@ -62,4 +69,6 @@ const FeaturesPage = () => {
   );
 };
 
-export default FeaturesPage;
+export default compose(
+  injectIntl
+)(FeaturesPage);
