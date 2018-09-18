@@ -25,11 +25,6 @@ export class NetworkProducers extends React.Component {
   componentDidMount() {
     const selectedProducers = [];
     // push already selected producers
-    this.props.selected.forEach(item => {
-      if (selectedProducers.indexOf(item) === -1 && selectedProducers.length < 30) {
-        selectedProducers.push(item);
-      }
-    });
 
     if (this.props.networkAccount && this.props.networkAccount.voter_info) {
       const accountSelectedProducers = this.props.networkAccount.voter_info.producers;
