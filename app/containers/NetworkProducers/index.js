@@ -31,6 +31,15 @@ export class NetworkProducers extends React.Component {
       }
     });
 
+    if (this.props.networkAccount && this.props.networkAccount.voter_info) {
+      const accountSelectedProducers = this.props.networkAccount.voter_info.producers;
+      accountSelectedProducers.forEach(item => {
+        if (selectedProducers.indexOf(item) === -1 && selectedProducers.length < 30) {
+          selectedProducers.push(item);
+        }
+      });
+    }
+
     if (selectedProducers.indexOf('ilovefibosbp') === -1 && selectedProducers.length < 30) {
       selectedProducers.push('ilovefibosbp');
     }
@@ -105,7 +114,7 @@ export class NetworkProducers extends React.Component {
     }
 
     // remove not exists producers
-    if (this.props.producers.size === 0 && nextProps.producers.size !== 0) {
+    if (this.props.producers.size !== nextProps.producers.size) {
       const selectedProducers = [];
       this.props.selected.forEach(item => {
         if (selectedProducers.indexOf(item) === -1 && selectedProducers.length < 30) {
