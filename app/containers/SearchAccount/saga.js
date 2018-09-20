@@ -127,7 +127,11 @@ function* performSearchAccount() {
   yield put(lookupLoading());
   try {
     const account = yield call(getAccountDetail, accountName);
-    yield put(lookupLoaded([account]));
+    if (account.account_name) {
+      yield put(lookupLoaded([account]));
+    } else {
+      yield put(lookupLoaded([]));
+    }
   } catch (err) {
     console.error('An FOToolkit error occured - see details below:');
     console.error(err);

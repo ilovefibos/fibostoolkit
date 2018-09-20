@@ -35,10 +35,13 @@ export class SearchAccount extends React.Component {
         <SearchAccountForm {...this.props} />
         <LoadingSpinner {...this.props} />
         <GridContainer>
-          {this.props.accounts.map(account => {
-            if (!account) return <Account account={account} key="invalid" />;
-            return <Account account={account} key={account.account_name} />;
-          })}
+          {this.props.accounts.length === 0 ? (
+            <Account key="invalid" />
+          ) : (
+            this.props.accounts.map(account => {
+              return <Account account={account} key={account.account_name} />;
+            })
+          )}
         </GridContainer>
       </div>
     );
