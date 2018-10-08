@@ -49,7 +49,7 @@ const validationSchema = props => {
   });
 };
 
-const SmartTokenUnLockForm = props => {
+const SmartTokenUnlockForm = props => {
   return (
     <Tool>
       <ToolSection lg={8}>
@@ -93,4 +93,4 @@ const enhance = compose(
   })
 );
 
-export default enhance(SmartTokenUnLockForm);
+export default enhance(SmartTokenUnlockForm);

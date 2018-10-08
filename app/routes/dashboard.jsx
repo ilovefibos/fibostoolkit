@@ -21,7 +21,7 @@ import SmartTokenTransfer from 'components/Features/SmartTokenTransferForm';
 import SmartTokenExchange from 'components/Features/SmartTokenExchangeForm';
 import SmartTokenDestroy from 'components/Features/SmartTokenDestroyForm';
 import SmartTokenLock from 'components/Features/SmartTokenLockForm';
-import SmartTokenUnLock from 'components/Features/SmartTokenUnLockForm';
+import SmartTokenUnLock from 'components/Features/SmartTokenUnlockForm';
 import TokenCreate from 'components/Features/TokenCreateForm';
 import ContractWalletTransfer from 'components/Features/ContractWalletTransferForm';
 import ContractWalletRecharge from 'components/Features/ContractWalletRechargeForm';
