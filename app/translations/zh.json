@@ -70,6 +70,7 @@
   "app.routes.dashboard.findAccounts": "搜索账号",
   "app.routes.dashboard.issueSmartToken": "增发智能通证",
   "app.routes.dashboard.linkAuth": "关联权限",
+  "app.routes.dashboard.lockSmartToken": "锁仓智能通证",
   "app.routes.dashboard.manageAccount": "管理账号",
   "app.routes.dashboard.manageContractWallet": "管理合约子钱包",
   "app.routes.dashboard.managePermissions": "管理权限",
@@ -88,6 +89,7 @@
   "app.routes.dashboard.signTransaction": "签名交易",
   "app.routes.dashboard.transferFoOrEos": "转账FO或EOS",
   "app.routes.dashboard.transferSmartToken": "转账智能通证",
+  "app.routes.dashboard.unlockSmartToken": "解锁智能通证",
   "app.routes.dashboard.voteProducers": "给超级节点投票",
   "app.routes.dashboard.withdrawlEos": "提现EOS到主网"
 }

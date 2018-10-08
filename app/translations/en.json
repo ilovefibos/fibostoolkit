@@ -70,6 +70,7 @@
   "app.routes.dashboard.findAccounts": "Find Accounts",
   "app.routes.dashboard.issueSmartToken": "Issue Smart Toke",
   "app.routes.dashboard.linkAuth": "Link Auth",
+  "app.routes.dashboard.lockSmartToken": "Lock Smart Token",
   "app.routes.dashboard.manageAccount": "Manage Account",
   "app.routes.dashboard.manageContractWallet": "Manage Contract Wallet",
   "app.routes.dashboard.managePermissions": "Manage Permissions",
@@ -88,6 +89,7 @@
   "app.routes.dashboard.signTransaction": "Sign Transaction",
   "app.routes.dashboard.transferFoOrEos": "Transfer FO or EOS",
   "app.routes.dashboard.transferSmartToken": "Transfer Smart Token",
+  "app.routes.dashboard.unlockSmartToken": "Unlock Smart Token",
   "app.routes.dashboard.voteProducers": "Vote Producers",
   "app.routes.dashboard.withdrawlEos": "Withdrawl EOS"
 }

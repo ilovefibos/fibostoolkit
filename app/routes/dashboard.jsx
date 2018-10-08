@@ -20,6 +20,8 @@ import SmartTokenClose from 'components/Features/SmartTokenCloseForm';
 import SmartTokenTransfer from 'components/Features/SmartTokenTransferForm';
 import SmartTokenExchange from 'components/Features/SmartTokenExchangeForm';
 import SmartTokenDestroy from 'components/Features/SmartTokenDestroyForm';
+import SmartTokenLock from 'components/Features/SmartTokenLockForm';
+import SmartTokenUnLock from 'components/Features/SmartTokenUnLockForm';
 import TokenCreate from 'components/Features/TokenCreateForm';
 import ContractWalletTransfer from 'components/Features/ContractWalletTransferForm';
 import ContractWalletRecharge from 'components/Features/ContractWalletRechargeForm';
@@ -240,6 +242,20 @@ const dashRoutes = [
         messageId: 'retireSmartToken',
         mini: 'RST',
         component: SmartTokenRetire,
+      },
+      {
+        path: '/smarttoken/lock',
+        name: 'Lock Smart Token',
+        messageId: 'lockSmartToken',
+        mini: 'LST',
+        component: SmartTokenLock,
+      },
+      {
+        path: '/smarttoken/unlock',
+        name: 'Unlock Smart Token',
+        messageId: 'unlockSmartToken',
+        mini: 'UST',
+        component: SmartTokenUnLock,
       },
       {
         path: '/smarttoken/destroy',

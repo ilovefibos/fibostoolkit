@@ -106,6 +106,14 @@ export default defineMessages({
     id: 'app.routes.dashboard.destroySmartToken',
     defaultMessage: 'Destroy Smart Token',
   },
+  lockSmartToken: {
+    id: 'app.routes.dashboard.lockSmartToken',
+    defaultMessage: 'Lock Smart Token',
+  },
+  unlockSmartToken: {
+    id: 'app.routes.dashboard.unlockSmartToken',
+    defaultMessage: 'Unlock Smart Token',
+  },
   closeSmartToken: {
     id: 'app.routes.dashboard.closeSmartToken',
     defaultMessage: 'Close Smart Token',
