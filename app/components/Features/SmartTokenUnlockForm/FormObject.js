@@ -12,7 +12,7 @@ const FormData = [
   {
     id: 'quantity',
     label: 'Quantity (in Tokens)',
-    placeholder: 'How many Tokens to issue',
+    placeholder: 'How many Tokens to Unlock',
   },
   {
     id: 'symbol',
