@@ -32,7 +32,12 @@ const FormData = [
   {
     id: 'expiration',
     label: 'Expiration',
-    placeholder: 'Lock expiration time in seconds',
+    placeholder: 'Lock expiration time in seconds for transferring out',
+  },
+  {
+    id: 'expiration_to',
+    label: 'Expiration To',
+    placeholder: 'Lock expiration time in seconds for transferring in',
   },
   {
     id: 'memo',

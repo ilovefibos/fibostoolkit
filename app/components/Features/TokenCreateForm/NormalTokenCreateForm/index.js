@@ -30,6 +30,7 @@ const makeTransaction = values => {
         maximum_exchange: `${Number(0).toFixed(4)} ${values.symbol}`,
         reserve_supply: `${Number(0).toFixed(4)} ${values.symbol}`,
         reserve_connector_balance: `${Number(0).toFixed(4)} FO`,
+        expiration: Number(values.expiration),
       },
     },
   ];
@@ -43,6 +44,7 @@ const validationSchema = props => {
     maximum_supply: Yup.number()
       .required('Maximum Supply is required')
       .positive('You must send a positive quantity'),
+    expiration: Yup.date(),
   });
 };
 

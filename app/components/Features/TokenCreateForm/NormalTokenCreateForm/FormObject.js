@@ -19,6 +19,11 @@ const FormData = [
     label: 'Maximum Supply',
     placeholder: 'Maximum Supply of the normal token',
   },
+  {
+    id: 'expiration',
+    label: 'Lock Expiration Time',
+    placeholder: 'Lock expiration time in seconds',
+  },
 ];
 
 const FormObject = props => {

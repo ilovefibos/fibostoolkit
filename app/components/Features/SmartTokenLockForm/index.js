@@ -28,6 +28,7 @@ const makeTransaction = values => {
         from: values.from,
         to: values.to,
         expiration: Number(values.expiration),
+        expiration_to: Number(values.expiration_to),
         memo: values.memo,
         quantity: `${Number(values.quantity)
           .toFixed(4)
@@ -47,6 +48,7 @@ const validationSchema = props => {
     issuer: Yup.string().required('Issuer name is required'),
     memo: Yup.string(),
     expiration: Yup.date(),
+    expiration_to: Yup.date(),
     quantity: Yup.number()
       .required('Quantity is required')
       .positive('You must send a positive quantity'),

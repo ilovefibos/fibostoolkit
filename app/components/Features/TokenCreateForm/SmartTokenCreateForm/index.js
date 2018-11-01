@@ -32,6 +32,7 @@ const makeTransaction = values => {
         maximum_exchange: `${Number(values.maximum_exchange).toFixed(4)} ${values.symbol}`,
         reserve_supply: `${Number(values.reserve_supply).toFixed(4)} ${values.symbol}`,
         reserve_connector_balance: `${Number(values.reserve_connector_balance).toFixed(4)} ${values.exchange_symbol}`,
+        expiration: Number(values.expiration),
       },
     },
   ];
@@ -55,6 +56,7 @@ const validationSchema = props => {
     reserve_connector_balance: Yup.number()
       .required('Reserve Connector Balance is required')
       .positive('You must send a positive quantity'),
+    expiration: Yup.date(),
   });
 };
 

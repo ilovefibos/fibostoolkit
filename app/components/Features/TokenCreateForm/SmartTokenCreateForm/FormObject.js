@@ -44,6 +44,11 @@ const FormData = [
     label: 'Reserve Connector Balance',
     placeholder: 'Reserve Connector Balance of the Smart Token',
   },
+  {
+    id: 'expiration',
+    label: 'Lock Expiration Time',
+    placeholder: 'Lock expiration time in seconds',
+  },
 ];
 
 const FormObject = props => {
