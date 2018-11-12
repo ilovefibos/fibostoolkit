@@ -28,7 +28,7 @@ const initialState = fromJS({
   tokens: [],
   transaction: null,
   offlineMode: false,
-  override: false,
+  override: true,
   networkTime: 0,
 });
 
