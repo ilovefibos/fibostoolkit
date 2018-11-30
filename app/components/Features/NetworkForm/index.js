@@ -32,7 +32,7 @@ const NetworkForm = props => {
   const { classes, networks, active, selectNetwork } = props;
   const tableProps = { networks, active, selectNetwork };
   const github = (
-    <a href="https://github.com/lowwor/fibos-networks" target="new">
+    <a href="https://github.com/ilovefibos/fibos-networks" target="new">
       GitHub
     </a>
   );

@@ -1,7 +1,7 @@
 MIT License
 
 Copyright (c) 2018 Nathan Rempel
-Copyright (c) 2018 lowwor
+Copyright (c) 2018 ilovefibos
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
