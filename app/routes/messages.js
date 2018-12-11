@@ -86,6 +86,14 @@ export default defineMessages({
     id: 'app.routes.dashboard.createSmartToken',
     defaultMessage: 'Create Smart Token',
   },
+  setPositionSmartToken: {
+    id: 'app.routes.dashboard.setPositionSmartToken',
+    defaultMessage: 'Set Position Smart Token',
+  },
+  shareSmartToken: {
+    id: 'app.routes.dashboard.shareSmartToken',
+    defaultMessage: 'Share Smart Token',
+  },
   transferSmartToken: {
     id: 'app.routes.dashboard.transferSmartToken',
     defaultMessage: 'Transfer Smart Token',

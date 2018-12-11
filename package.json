@@ -76,7 +76,7 @@
     "compression": "1.6.2",
     "cross-env": "5.0.0",
     "eosjs": "^16.0.0",
-    "fibos.js": "0.3.2",
+    "fibos.js": "0.3.3",
     "express": "4.15.3",
     "fontfaceobserver": "2.0.9",
     "formik": "^0.11.11",

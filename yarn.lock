@@ -3907,9 +3907,9 @@ fd-slicer@~1.0.1:
   dependencies:
     pend "~1.2.0"
 
-fibos.js@0.3.2:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/fibos.js/-/fibos.js-0.3.2.tgz#e85d6cb546275ec5a677bda2b6d509369e4a6d4e"
+fibos.js@0.3.3:
+  version "0.3.3"
+  resolved "https://registry.yarnpkg.com/fibos.js/-/fibos.js-0.3.3.tgz#ae05ae692126745777b9093f4d9023d2476b4ffb"
   dependencies:
     eosjs "16.0.2"
 
