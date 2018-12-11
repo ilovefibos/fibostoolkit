@@ -49,6 +49,16 @@ const FormData = [
     label: 'Lock Expiration Time',
     placeholder: 'Lock expiration time in seconds',
   },
+  {
+    id: 'buy_fee',
+    label: 'Buy Fee',
+    placeholder: 'Smart token buy fee',
+  },
+  {
+    id: 'sell_fee',
+    label: 'Sell Fee',
+    placeholder: 'Smart token sell fee',
+  },
 ];
 
 const FormObject = props => {
