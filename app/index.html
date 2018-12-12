@@ -26,11 +26,14 @@
     </script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <title>FOToolkit.com | All in one FO web wallet</title>
+    <style>
+      body,html{height:100%;margin:0;}.spinner-container{position:absolute;z-index:10000;background: #2c3e50;width:100vw;height:100vh;text-align:center;display:flex;align-items:center;justify-content:center;flex-direction:column}  .sk-cube-grid{width:80px;height:80px}  .spinner-text{color:#FFF;margin-top:2rem;margin-bottom:1rem}  .sk-cube-grid .sk-cube{width:33%;height:33%;background-color:#FFF;float:left;-webkit-animation:sk-cubeGridScaleDelay 1.3s infinite ease-in-out;animation:sk-cubeGridScaleDelay 1.3s infinite ease-in-out}  .sk-cube-grid .sk-cube1{-webkit-animation-delay:.2s;animation-delay:.2s}  .sk-cube-grid .sk-cube2{-webkit-animation-delay:.3s;animation-delay:.3s}  .sk-cube-grid .sk-cube3{-webkit-animation-delay:.4s;animation-delay:.4s}  .sk-cube-grid .sk-cube4{-webkit-animation-delay:.1s;animation-delay:.1s}  .sk-cube-grid .sk-cube5{-webkit-animation-delay:.2s;animation-delay:.2s}  .sk-cube-grid .sk-cube6{-webkit-animation-delay:.3s;animation-delay:.3s}  .sk-cube-grid .sk-cube7{-webkit-animation-delay:0s;animation-delay:0s}  .sk-cube-grid .sk-cube8{-webkit-animation-delay:.1s;animation-delay:.1s}  .sk-cube-grid .sk-cube9{-webkit-animation-delay:.2s;animation-delay:.2s}  @-webkit-keyframes sk-cubeGridScaleDelay{0%,100%,70%{-webkit-transform:scale3D(1,1,1);transform:scale3D(1,1,1)}35%{-webkit-transform:scale3D(0,0,1);transform:scale3D(0,0,1)}}  @keyframes sk-cubeGridScaleDelay{0%,100%,70%{-webkit-transform:scale3D(1,1,1);transform:scale3D(1,1,1)}35%{-webkit-transform:scale3D(0,0,1);transform:scale3D(0,0,1)}}
+    </style>
   </head>
   <body>
     <!-- Display a message if JS has been disabled on the browser. -->
     <noscript>If you're seeing this message, that means <strong>JavaScript has been disabled on your browser</strong>, please <strong>enable JS</strong> to make this app work.</noscript>
-
+    <div id="load" class="spinner-container"> <div class="sk-cube-grid"> <div class="sk-cube sk-cube1"></div><div class="sk-cube sk-cube2"></div><div class="sk-cube sk-cube3"></div><div class="sk-cube sk-cube4"></div><div class="sk-cube sk-cube5"></div><div class="sk-cube sk-cube6"></div><div class="sk-cube sk-cube7"></div><div class="sk-cube sk-cube8"></div><div class="sk-cube sk-cube9"></div></div><div class="spinner-text"> FOToolkit is loading... </div></div>
     <!-- The app hooks into this div -->
     <div id="app"></div>
     <!-- A lot of magic happens in this file. HtmlWebpackPlugin automatically includes all assets (e.g. bundle.js, main.css) with the correct HTML tags, which is why they are missing in this HTML file. Don't add any assets here! (Check out webpackconfig.js if you want to know more) -->

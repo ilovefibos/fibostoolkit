@@ -8,14 +8,20 @@ import './material-dashboard-pro-react.css';
 
 const hist = createBrowserHistory();
 
-export default function App() {
-  return (
-    <Router history={hist}>
-      <Switch>
-        {indexRoutes.map(({ component, name, path }) => {
-          return <Route path={path} component={component} key={name} />;
-        })}
-      </Switch>
-    </Router>
-  );
+export default class App extends React.Component {
+  componentDidMount() {
+    document.querySelector('#load').remove();
+  }
+
+  render() {
+    return (
+      <Router history={hist}>
+        <Switch>
+          {indexRoutes.map(({ component, name, path }) => {
+            return <Route path={path} component={component} key={name} />;
+          })}
+        </Switch>
+      </Router>
+    );
+  }
 }
