@@ -10,7 +10,9 @@ const hist = createBrowserHistory();
 
 export default class App extends React.Component {
   componentDidMount() {
-    document.querySelector('#load').remove();
+    if (document.querySelector('#load')) {
+      document.querySelector('#load').remove();
+    }
   }
 
   render() {
