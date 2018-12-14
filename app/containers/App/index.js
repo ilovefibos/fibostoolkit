@@ -1,12 +1,29 @@
+/**
+ *
+ * App
+ *
+ * This component is the skeleton around the actual pages, and should only
+ * contain code that should be seen on all pages. (e.g. navigation bar)
+ */
+
 import React from 'react';
-import { createBrowserHistory } from 'history';
-import { Router, Route, Switch } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
+import styled from 'styled-components';
+import { Switch, Route } from 'react-router-dom';
 
 import indexRoutes from 'routes/index';
 
 import './material-dashboard-pro-react.css';
+import GlobalStyle from '../../global-styles';
 
-const hist = createBrowserHistory();
+const AppWrapper = styled.div`
+  max-width: calc(768px + 16px * 2);
+  margin: 0 auto;
+  display: flex;
+  min-height: 100%;
+  padding: 0 16px;
+  flex-direction: column;
+`;
 
 export default class App extends React.Component {
   componentDidMount() {
@@ -17,13 +34,23 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <Router history={hist}>
+      <AppWrapper>
+        <Helmet
+          titleTemplate="%s - FOToolkit.com"
+          defaultTitle="FOToolkit.com | All in one FO web wallet"
+        >
+          <meta
+            name="description"
+            content="FOToolkit is the premier free, open source interface for managing FO accounts. Create, transfer, stake, vote and more with Scatter! Checkout cool community..."
+          />
+        </Helmet>
         <Switch>
-          {indexRoutes.map(({ component, name, path }) => {
-            return <Route path={path} component={component} key={name} />;
-          })}
+          {indexRoutes.map(({ component, name, path }) => (
+            <Route path={path} component={component} key={name} />
+          ))}
         </Switch>
-      </Router>
+        <GlobalStyle />
+      </AppWrapper>
     );
   }
 }

@@ -1,7 +1,15 @@
+/**
+ * The global state selectors
+ */
+
 import { createSelector } from 'reselect';
 
-const selectRoute = state => state.get('route');
+const selectGlobal = state => state.get('global');
 
-const makeSelectLocation = () => createSelector(selectRoute, routeState => routeState.get('location').toJS());
+const selectRouter = state => state.get('router');
 
-export { makeSelectLocation };
+const makeSelectLocation = () =>
+  createSelector(selectRouter, routerState =>
+    routerState.get('location').toJS(),
+  );
+export { selectGlobal, makeSelectLocation };

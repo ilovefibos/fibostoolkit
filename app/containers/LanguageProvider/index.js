@@ -7,51 +7,35 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { createSelector } from 'reselect';
 import { IntlProvider } from 'react-intl';
 
-import injectSaga from 'utils/injectSaga';
-import injectReducer from 'utils/injectReducer';
 import { makeSelectLocale } from './selectors';
-import { compose } from 'redux';
-import reducer from './reducer';
-import saga from './saga';
 
 export class LanguageProvider extends React.PureComponent {
-  // eslint-disable-line react/prefer-stateless-function
   render() {
     return (
       <IntlProvider
         locale={this.props.locale}
         key={this.props.locale}
-        messages={this.props.messages[this.props.locale]}>
+        messages={this.props.messages[this.props.locale]}
+      >
         {React.Children.only(this.props.children)}
       </IntlProvider>
     );
   }
 }
 
+LanguageProvider.propTypes = {
+  locale: PropTypes.string,
+  messages: PropTypes.object,
+  children: PropTypes.element.isRequired,
+};
+
 const mapStateToProps = createSelector(makeSelectLocale(), locale => ({
   locale,
 }));
 
-function mapDispatchToProps(dispatch) {
-  return {
-    dispatch,
-  };
-}
-
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps
-);
-
-const withReducer = injectReducer({ key: 'LanguageProvider', reducer });
-const withSaga = injectSaga({ key: 'LanguageProvider', saga });
-
-export default compose(
-  withReducer,
-  withSaga,
-  withConnect
-)(LanguageProvider);
+export default connect(mapStateToProps)(LanguageProvider);

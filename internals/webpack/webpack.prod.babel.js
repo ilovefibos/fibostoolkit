@@ -1,14 +1,20 @@
 // Important modules this config uses
 const path = require('path');
-const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
-// const OfflinePlugin = require('offline-plugin'); Offline service workers caused issues
+const WebpackPwaManifest = require('webpack-pwa-manifest');
+// const OfflinePlugin = require('offline-plugin');
+const { HashedModuleIdsPlugin } = require('webpack');
+const TerserPlugin = require('terser-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 
 module.exports = require('./webpack.base.babel')({
+  mode: 'production',
+
   // In production, we skip all hot-reloading stuff
-  entry: [path.join(process.cwd(), 'app/app.js')],
+  entry: [
+    require.resolve('react-app-polyfill/ie11'),
+    path.join(process.cwd(), 'app/app.js'),
+  ],
 
   // Utilize long-term caching by adding content hashes (not compilation hashes) to compiled assets
   output: {
@@ -16,19 +22,55 @@ module.exports = require('./webpack.base.babel')({
     chunkFilename: '[name].[chunkhash].chunk.js',
   },
 
-  plugins: [
-    new webpack.optimize.ModuleConcatenationPlugin(),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      children: true,
-      minChunks: 2,
-      async: true,
-    }),
-    new UglifyJsPlugin({
-      test: /\.(js|jsx)$/, // Transform all .js and  files required somewhere with Babel
-      exclude: /node_modules/,
-    }),
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          warnings: false,
+          compress: {
+            comparisons: false,
+          },
+          parse: {},
+          mangle: true,
+          output: {
+            comments: false,
+            ascii_only: true,
+          },
+        },
+        parallel: true,
+        cache: true,
+        sourceMap: true,
+      }),
+    ],
+    nodeEnv: 'production',
+    sideEffects: true,
+    concatenateModules: true,
+    splitChunks: {
+      chunks: 'all',
+      minSize: 30000,
+      minChunks: 1,
+      maxAsyncRequests: 5,
+      maxInitialRequests: 3,
+      name: true,
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendor',
+          chunks: 'all',
+        },
+        main: {
+          chunks: 'all',
+          minChunks: 2,
+          reuseExistingChunk: true,
+          enforce: true,
+        },
+      },
+    },
+    runtimeChunk: true,
+  },
 
+  plugins: [
     // Minify and optimize the index.html
     new HtmlWebpackPlugin({
       template: 'app/index.html',
@@ -46,18 +88,13 @@ module.exports = require('./webpack.base.babel')({
       },
       inject: true,
     }),
-    new CompressionPlugin({
-      asset: '[path].gz[query]',
-      algorithm: 'gzip',
-      test: /\.js$/,
-      threshold: 10240,
-      minRatio: 0.8,
-    }),
-    // Put it in the end to capture all the HtmlWebpackPlugin's
-    // assets manipulations and do leak its manipulations to HtmlWebpackPlugin
+
+    // // Put it in the end to capture all the HtmlWebpackPlugin's
+    // // assets manipulations and do leak its manipulations to HtmlWebpackPlugin
     // new OfflinePlugin({
     //   relativePaths: false,
     //   publicPath: '/',
+    //   appShell: '/',
     //
     //   // No need to cache .htaccess. See http://mxs.is/googmp,
     //   // this is applied before any match in `caches` section
@@ -74,12 +111,46 @@ module.exports = require('./webpack.base.babel')({
     //
     //   // Removes warning for about `additional` section usage
     //   safeToUseOptionalCaches: true,
-    //
-    //   AppCache: false,
     // }),
+
+    new CompressionPlugin({
+      algorithm: 'gzip',
+      test: /\.js$|\.css$|\.html$/,
+      threshold: 10240,
+      minRatio: 0.8,
+    }),
+
+    new WebpackPwaManifest({
+      name: 'FOToolkit.com | All in one FO web wallet',
+      short_name: 'FOToolkit',
+      description:
+        'FOToolkit is the premier free, open source interface for managing FO accounts. Create, transfer, stake, vote and more with Scatter! Checkout cool community...',
+      background_color: '#fafafa',
+      theme_color: '#b1624d',
+      inject: true,
+      ios: true,
+      icons: [
+        {
+          src: path.resolve('app/images/icon-512x512.png'),
+          sizes: [72, 96, 128, 144, 192, 384, 512],
+        },
+        {
+          src: path.resolve('app/images/icon-512x512.png'),
+          sizes: [120, 152, 167, 180],
+          ios: true,
+        },
+      ],
+    }),
+
+    new HashedModuleIdsPlugin({
+      hashFunction: 'sha256',
+      hashDigest: 'hex',
+      hashDigestLength: 20,
+    }),
   ],
 
   performance: {
-    assetFilter: assetFilename => !/(\.map$)|(^(main\.|favicon\.))/.test(assetFilename),
+    assetFilter: assetFilename =>
+      !/(\.map$)|(^(main\.|favicon\.))/.test(assetFilename),
   },
 });

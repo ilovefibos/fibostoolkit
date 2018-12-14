@@ -49,10 +49,14 @@ import image from '../assets/img/bg.jpg';
 let ps;
 
 class Dashboard extends React.Component {
-  state = {
-    mobileOpen: false,
-    miniActive: false,
-  };
+  constructor(props) {
+    super(props);
+    // Don't call this.setState() here!
+    this.state = {
+      mobileOpen: false,
+      miniActive: false,
+    };
+  }
 
   componentDidMount() {
     if (navigator.platform.indexOf('Win') > -1) {
@@ -95,35 +99,52 @@ class Dashboard extends React.Component {
     const { classes, ...rest } = this.props;
     const mainPanel = `${classes.mainPanel} ${cx({
       [classes.mainPanelSidebarMini]: this.state.miniActive,
-      [classes.mainPanelWithPerfectScrollbar]: navigator.platform.indexOf('Win') > -1,
+      [classes.mainPanelWithPerfectScrollbar]:
+        navigator.platform.indexOf('Win') > -1,
     })}`;
 
     const switchRoutes = (
       // TODO: Go back to using render once fixed babel bullshit
       <Switch>
-        {dashboardRoutes.map(({ collapse, component, path, pathTo, redirect, views }) => {
-          if (path === '/search') return <Route path="/search/:name?" component={component} key={`route-${path}`} />;
-          if (redirect) return <Redirect from={path} to={pathTo} key={`route-redirect-${path}`} />;
-          if (collapse)
-            return views.map(({ component: viewComponent, path: viewPath }) => {
+        {dashboardRoutes.map(
+          ({ collapse, component, path, pathTo, redirect, views }) => {
+            if (path === '/search')
               return (
                 <Route
-                  path={viewPath}
-                  component={NetworkConnector}
-                  // render={() => <NetworkConnector renderComponent={viewComponent} />}
-                  key={`route-${viewPath}`}
+                  path="/search/:name?"
+                  component={component}
+                  key={`route-${path}`}
                 />
               );
-            });
-          return (
-            <Route
-              path={path}
-              component={NetworkConnector}
-              // render={() => <NetworkConnector renderComponent={component} />}
-              key={`route-${path}`}
-            />
-          );
-        })}
+            if (redirect)
+              return (
+                <Redirect
+                  from={path}
+                  to={pathTo}
+                  key={`route-redirect-${path}`}
+                />
+              );
+            if (collapse)
+              return views.map(
+                ({ component: viewComponent, path: viewPath }) => (
+                  <Route
+                    path={viewPath}
+                    component={NetworkConnector}
+                    // render={() => <NetworkConnector renderComponent={viewComponent} />}
+                    key={`route-${viewPath}`}
+                  />
+                ),
+              );
+            return (
+              <Route
+                path={path}
+                component={NetworkConnector}
+                // render={() => <NetworkConnector renderComponent={component} />}
+                key={`route-${path}`}
+              />
+            );
+          },
+        )}
       </Switch>
     );
 
@@ -133,7 +154,7 @@ class Dashboard extends React.Component {
         <OfflineClient />
         <Sidebar
           routes={dashboardRoutes}
-          logoText={'FOTOOLKIT.COM'}
+          logoText="FOTOOLKIT.COM"
           logo={logo}
           image={image}
           handleDrawerToggle={this.handleDrawerToggle}

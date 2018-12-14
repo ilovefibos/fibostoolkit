@@ -1,3 +1,5 @@
+'use strict';
+
 const readline = require('readline');
 
 /**
@@ -8,12 +10,11 @@ const readline = require('readline');
  */
 function animateProgress(message, amountOfDots) {
   if (typeof amountOfDots !== 'number') {
-    // eslint-disable-next-line no-param-reassign
     amountOfDots = 3;
   }
 
   let i = 0;
-  return setInterval(() => {
+  return setInterval(function() {
     readline.cursorTo(process.stdout, 0);
     i = (i + 1) % (amountOfDots + 1);
     const dots = new Array(i + 1).join('.');

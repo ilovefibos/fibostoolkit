@@ -10,7 +10,7 @@ import * as storage from "../../utils/storage"; // eslint-disable-line
 import { CHANGE_LOCALE } from './constants';
 import { DEFAULT_LOCALE } from '../App/constants';
 
-const initialState = fromJS({
+export const initialState = fromJS({
   locale: storage.get('locale') || DEFAULT_LOCALE,
 });
 

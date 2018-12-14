@@ -23,7 +23,12 @@ const checkForErrors = result => {
 
 const reportErrorsFor = title => err => {
   // TODO Replace with our own helpers/log that is guaranteed to be blocking?
-  xmark(() => console.error(chalk.red(` ERROR generating '${title}': `), prettyStringify(err)));
+  xmark(() =>
+    console.error(
+      chalk.red(` ERROR generating '${title}': `),
+      prettyStringify(err),
+    ),
+  );
   process.exit(1);
 };
 
@@ -31,11 +36,16 @@ const reportErrorsFor = title => err => {
 const removeTestsDirFrom = relativePath => () =>
   rimraf.sync(path.join(__dirname, '/../../app/', relativePath, '/tests'));
 
-const plop = nodePlop('./index');
+const plop = nodePlop('./index.js');
 
 const componentGen = plop.getGenerator('component');
 componentGen
-  .runActions({ name: 'RbGeneratedComponentEsclass', type: 'React.Component', wantMessages: true, wantLoadable: true })
+  .runActions({
+    name: 'RbGeneratedComponentEsclass',
+    type: 'React.Component',
+    wantMessages: true,
+    wantLoadable: true,
+  })
   .then(checkForErrors)
   .then(removeTestsDirFrom('components/RbGeneratedComponentEsclass'))
   .catch(reportErrorsFor('component/React.Component'));

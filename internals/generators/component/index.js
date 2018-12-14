@@ -16,7 +16,11 @@ module.exports = {
       name: 'type',
       message: 'Select the type of component',
       default: 'Stateless Function',
-      choices: () => ['Stateless Function', 'React.PureComponent', 'React.Component'],
+      choices: () => [
+        'Stateless Function',
+        'React.PureComponent',
+        'React.Component',
+      ],
     },
     {
       type: 'input',
@@ -25,7 +29,9 @@ module.exports = {
       default: 'Button',
       validate: value => {
         if (/.+/.test(value)) {
-          return componentExists(value) ? 'A component or container with this name already exists' : true;
+          return componentExists(value)
+            ? 'A component or container with this name already exists'
+            : true;
         }
 
         return 'The name is required';
@@ -92,6 +98,11 @@ module.exports = {
         abortOnFail: true,
       });
     }
+
+    actions.push({
+      type: 'prettify',
+      path: '/components/',
+    });
 
     return actions;
   },
