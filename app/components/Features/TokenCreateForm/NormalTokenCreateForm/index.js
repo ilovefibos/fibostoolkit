@@ -31,6 +31,8 @@ const makeTransaction = values => {
         reserve_supply: `${Number(0).toFixed(4)} ${values.symbol}`,
         reserve_connector_balance: `${Number(0).toFixed(4)} FO`,
         expiration: Number(values.expiration),
+        buy_fee: 0,
+        sell_fee: 0,
       },
     },
   ];
