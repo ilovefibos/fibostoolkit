@@ -59,6 +59,8 @@ function ResourcesTable({ ...props }) {
                   ).balance
                   : intl.formatMessage(messages.none)}
               </TableCell>
+            </TableRow>
+            <TableRow className={`${classes.tableRowHover}`}>
               <TableCell className={classes.tableCell}>
                 <h6>{intl.formatMessage(messages.ram)}</h6>
               </TableCell>
