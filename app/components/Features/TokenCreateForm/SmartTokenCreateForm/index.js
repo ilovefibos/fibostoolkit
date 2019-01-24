@@ -27,25 +27,37 @@ const makeTransaction = values => {
       name: 'excreate',
       data: {
         issuer: values.issuer,
-        maximum_supply: `${Number(values.maximum_supply).toFixed(4)} ${values.symbol}`,
+        maximum_supply: `${Number(values.maximum_supply).toFixed(4)} ${
+          values.symbol
+        }`,
         connector_weight: `${Number(values.connector_weight).toFixed(17)}`,
-        maximum_exchange: `${Number(values.maximum_exchange).toFixed(4)} ${values.symbol}`,
-        reserve_supply: `${Number(values.reserve_supply).toFixed(4)} ${values.symbol}`,
-        reserve_connector_balance: `${Number(values.reserve_connector_balance).toFixed(4)} ${values.exchange_symbol}`,
+        maximum_exchange: `${Number(values.maximum_exchange).toFixed(4)} ${
+          values.symbol
+        }`,
+        reserve_supply: `${Number(values.reserve_supply).toFixed(4)} ${
+          values.symbol
+        }`,
+        reserve_connector_balance: `${Number(
+          values.reserve_connector_balance,
+        ).toFixed(4)} ${values.exchange_symbol}`,
         expiration: Number(values.expiration),
         buy_fee: `${Number(values.buy_fee).toFixed(17)}`,
         sell_fee: `${Number(values.sell_fee).toFixed(17)}`,
+        connector_balance_issuer: values.connector_balance_issuer,
       },
     },
   ];
   return transaction;
 };
 
-const validationSchema = props => {
-  return Yup.object().shape({
+const validationSchema = props =>
+  Yup.object().shape({
     issuer: Yup.string().required('Issuer account name is required'),
     symbol: Yup.string().required('Symbol is required'),
     exchange_symbol: Yup.string().required('Exchange Symbol is required'),
+    connector_balance_issuer: Yup.string().required(
+      'Exchange Symbol Issuer is required',
+    ),
     maximum_supply: Yup.number()
       .required('Maximum Supply is required')
       .positive('You must send a positive quantity'),
@@ -66,15 +78,12 @@ const validationSchema = props => {
       .positive('You must set a positive fee'),
     expiration: Yup.date(),
   });
-};
 
-const SmartTokenCreateForm = props => {
-  return (
-    <ToolBody color="warning" icon={Payment} header="SmartTokenCreate">
-      <FormObject {...props} />
-    </ToolBody>
-  );
-};
+const SmartTokenCreateForm = props => (
+  <ToolBody color="warning" icon={Payment} header="SmartTokenCreate">
+    <FormObject {...props} />
+  </ToolBody>
+);
 
 const mapStateToProps = createStructuredSelector({
   account: makeSelectAccount(),
@@ -83,7 +92,7 @@ const mapStateToProps = createStructuredSelector({
 const enhance = compose(
   connect(
     mapStateToProps,
-    null
+    null,
   ),
   withFormik({
     handleSubmit: (values, { props, setSubmitting }) => {
@@ -96,6 +105,7 @@ const enhance = compose(
       issuer: props.networkIdentity ? props.networkIdentity.name : '',
       symbol: '',
       exchange_symbol: 'FO',
+      connector_balance_issuer: 'eosio',
       maximum_supply: '',
       connector_weight: '',
       maximum_exchange: '',
@@ -105,7 +115,7 @@ const enhance = compose(
       sell_fee: 0,
     }),
     validationSchema,
-  })
+  }),
 );
 
 export default enhance(SmartTokenCreateForm);

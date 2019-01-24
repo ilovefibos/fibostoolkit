@@ -25,7 +25,9 @@ const makeTransaction = values => {
       name: 'excreate',
       data: {
         issuer: values.issuer,
-        maximum_supply: `${Number(values.maximum_supply).toFixed(4)} ${values.symbol}`,
+        maximum_supply: `${Number(values.maximum_supply).toFixed(4)} ${
+          values.symbol
+        }`,
         connector_weight: 0,
         maximum_exchange: `${Number(0).toFixed(4)} ${values.symbol}`,
         reserve_supply: `${Number(0).toFixed(4)} ${values.symbol}`,
@@ -33,14 +35,15 @@ const makeTransaction = values => {
         expiration: Number(values.expiration),
         buy_fee: 0,
         sell_fee: 0,
+        connector_balance_issuer: '',
       },
     },
   ];
   return transaction;
 };
 
-const validationSchema = props => {
-  return Yup.object().shape({
+const validationSchema = props =>
+  Yup.object().shape({
     issuer: Yup.string().required('Issuer account name is required'),
     symbol: Yup.string().required('Symbol is required'),
     maximum_supply: Yup.number()
@@ -48,15 +51,12 @@ const validationSchema = props => {
       .positive('You must send a positive quantity'),
     expiration: Yup.date(),
   });
-};
 
-const NormalTokenCreateForm = props => {
-  return (
-    <ToolBody color="warning" icon={Payment} header="NormalTokenCreate">
-      <FormObject {...props} />
-    </ToolBody>
-  );
-};
+const NormalTokenCreateForm = props => (
+  <ToolBody color="warning" icon={Payment} header="NormalTokenCreate">
+    <FormObject {...props} />
+  </ToolBody>
+);
 
 const mapStateToProps = createStructuredSelector({
   account: makeSelectAccount(),
@@ -65,7 +65,7 @@ const mapStateToProps = createStructuredSelector({
 const enhance = compose(
   connect(
     mapStateToProps,
-    null
+    null,
   ),
   withFormik({
     handleSubmit: (values, { props, setSubmitting }) => {
@@ -80,7 +80,7 @@ const enhance = compose(
       maximum_supply: '',
     }),
     validationSchema,
-  })
+  }),
 );
 
 export default enhance(NormalTokenCreateForm);

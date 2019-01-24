@@ -67,7 +67,7 @@
     "connected-react-router": "4.5.0",
     "cross-env": "5.2.0",
     "eosjs": "^16.0.0",
-    "fibos.js": "0.3.3",
+    "fibos.js": "0.3.4",
     "express": "4.16.4",
     "fontfaceobserver": "2.0.13",
     "formik": "^0.11.11",

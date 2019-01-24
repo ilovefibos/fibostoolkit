@@ -40,6 +40,12 @@ const FormData = [
     placeholder: 'Symbol of the token to exchange your Smart Token',
   },
   {
+    id: 'connector_balance_issuer',
+    label: 'Exchange Symbol Issuer',
+    placeholder:
+      'Issuer of the symbol of the token to exchange your Smart Token',
+  },
+  {
     id: 'reserve_connector_balance',
     label: 'Reserve Connector Balance',
     placeholder: 'Reserve Connector Balance of the Smart Token',
@@ -70,9 +76,9 @@ const FormObject = props => {
   };
   return (
     <ToolForm {...formProps}>
-      {FormData.map(form => {
-        return <ToolInput key={form.id} {...form} {...props} />;
-      })}
+      {FormData.map(form => (
+        <ToolInput key={form.id} {...form} {...props} />
+      ))}
     </ToolForm>
   );
 };
