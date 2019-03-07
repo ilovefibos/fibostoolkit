@@ -52,6 +52,7 @@
   "app.containers.SearchAccount.header": "This is SearchAccount container !",
   "app.routes.dashboard.advancedPermissions": "Advanced Permissions",
   "app.routes.dashboard.blockProducer": "Block Producer",
+  "app.routes.dashboard.claimBonus": "Claim Bonus",
   "app.routes.dashboard.claimRewards": "Claim Rewards",
   "app.routes.dashboard.closeSmartToken": "Close Smart Token",
   "app.routes.dashboard.communityFeatures": "Community Features",

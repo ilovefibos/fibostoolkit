@@ -62,6 +62,10 @@ export default defineMessages({
     id: 'app.routes.dashboard.refundStake',
     defaultMessage: 'Refund Stake',
   },
+  claimBonus: {
+    id: 'app.routes.dashboard.claimBonus',
+    defaultMessage: 'Claim Bonus',
+  },
   manageSmartToken: {
     id: 'app.routes.dashboard.manageSmartToken',
     defaultMessage: 'Manage Smart Token',

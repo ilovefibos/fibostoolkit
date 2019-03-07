@@ -52,6 +52,7 @@
   "app.containers.SearchAccount.header": "",
   "app.routes.dashboard.advancedPermissions": "高级权限",
   "app.routes.dashboard.blockProducer": "超级节点",
+  "app.routes.dashboard.claimBonus": "领取投票分红",
   "app.routes.dashboard.claimRewards": "获取节点收益",
   "app.routes.dashboard.closeSmartToken": "关闭智能通证",
   "app.routes.dashboard.communityFeatures": "社区功能",

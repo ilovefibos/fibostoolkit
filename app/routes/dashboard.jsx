@@ -6,6 +6,7 @@ import SetProxy from 'components/Features/SetProxyForm';
 import Ram from 'containers/Ram';
 import StakeForm from 'components/Features/StakeForm';
 import Refund from 'components/Features/RefundForm';
+import ClaimBonus from 'components/Features/ClaimBonusForm';
 import Transfer from 'components/Features/TransferForm';
 import Withdrawl from 'components/Features/WithdrawlForm';
 import Exchange from 'containers/Exchange';
@@ -199,6 +200,13 @@ const dashRoutes = [
         messageId: 'refundStake',
         mini: 'RS',
         component: Refund,
+      },
+      {
+        path: '/account/claimbonus',
+        name: 'Claim Bonus',
+        messageId: 'claimBonus',
+        mini: 'RS',
+        component: ClaimBonus,
       },
     ],
   },
