@@ -4,6 +4,7 @@ export const SET_SIGNER = 'app/NetworkClient/SET_SIGNER';
 
 // load available networks from remote source
 export const LOAD_NETWORKS = 'app/NetworkClient/LOAD_NETWORKS';
+export const UPDATE_LATENCIES = 'app/NetworkClient/UPDATE_LATENCIES';
 export const LOADED_NETWORKS = 'app/NetworkClient/LOADED_NETWORKS';
 export const REFRESH_NETWORKS = 'app/NetworkClient/REFRESH_NETWORKS';
 export const UPDATE_NETWORKS = 'app/NetworkClient/UPDATE_NETWORKS';

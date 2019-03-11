@@ -4,6 +4,7 @@ import {
   SET_SIGNER,
   LOADED_NETWORKS,
   LOAD_NETWORKS,
+  UPDATE_LATENCIES,
   READER_ENABLED,
   WRITER_ENABLED,
   WRITER_DISABLED,
@@ -14,7 +15,7 @@ import {
 } from '../constants';
 
 import { buildDispatcher, accountDispatcher } from './dispatcher';
-import { fetchNetworks, fetchAccount } from './fetchers';
+import { fetchNetworks, fetchAccount, fetchLatency } from './fetchers';
 import { destroyIdentity } from './destroyers';
 import { pushTransaction } from './transaction';
 
@@ -31,6 +32,10 @@ function* watchForAccountLoad() {
 // load networks should be triggered immediately on container load / app start
 function* watchLoadNetworks() {
   yield takeLatest(LOAD_NETWORKS, fetchNetworks);
+}
+
+function* updateLatencies() {
+  yield takeLatest(UPDATE_LATENCIES, fetchLatency);
 }
 
 // load accounts is triggered by the account dispatcher
@@ -53,6 +58,7 @@ export default function* rootSaga() {
     watchForClientBuild(),
     watchForAccountLoad(),
     watchLoadNetworks(),
+    updateLatencies(),
     watchLoadAccount(),
     watchLogout(),
     watchTransaction(),

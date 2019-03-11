@@ -93,17 +93,17 @@ export function* fetchLatency() {
     networks[activeIndex].endpoints = endpoints;
     yield put(updateNetworks(networks));
     // disable endpoint auto switch
-    const sorted = orderBy(endpoints, ['failures', 'ping'], 'asc');
-    const best = sorted[0];
-
-    if (active.endpoint.name !== best.name) {
-      const activeNetwork = {
-        network: networks[activeIndex],
-        endpoint: best,
-      };
-
-      yield put(setNetwork(activeNetwork, false));
-    }
+    // const sorted = orderBy(endpoints, ['failures', 'ping'], 'asc');
+    // const best = sorted[0];
+    //
+    // if (active.endpoint.name !== best.name) {
+    //   const activeNetwork = {
+    //     network: networks[activeIndex],
+    //     endpoint: best,
+    //   };
+    //
+    //   yield put(setNetwork(activeNetwork, false));
+    // }
   } catch (err) {
     console.error('An FOToolkit error occured - see details below:');
     console.error(err);

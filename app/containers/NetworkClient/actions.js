@@ -12,7 +12,8 @@ import {
   SET_IDENTITY,
   PUSH_TRANSACTION,
   TOGGLE_OFFLINE,
-} from './constants';
+  UPDATE_LATENCIES,
+} from "./constants";
 
 export function setSigner(networkSigner) {
   return {
@@ -24,6 +25,12 @@ export function setSigner(networkSigner) {
 export function loadNetworks() {
   return {
     type: LOAD_NETWORKS,
+  };
+}
+
+export function updateLatencies() {
+  return {
+    type: UPDATE_LATENCIES,
   };
 }
 
