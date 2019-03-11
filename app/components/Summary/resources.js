@@ -9,6 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 
 import tableStyle from 'assets/jss/tableStyle';
 import messages from './messages';
+import { NavLink } from "react-router-dom";
 
 function ResourcesTable({ ...props }) {
   const { classes, account, intl } = props;
@@ -97,7 +98,7 @@ function ResourcesTable({ ...props }) {
               <TableCell className={classes.tableCell}>
                 {account && account.voteBonus ? (
                   <span>
-                    {`${account.voteBonus.claimableAmount.toFixed(4)} FO`}
+                    <NavLink to="/account/claimbonus"> {`${account.voteBonus.claimableAmount.toFixed(4)} FO`} </NavLink>
                   </span>
                 ) : (
                   <span>{intl.formatMessage(messages.none)}</span>
