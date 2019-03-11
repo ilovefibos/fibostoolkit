@@ -205,7 +205,7 @@ const dashRoutes = [
         path: '/account/claimbonus',
         name: 'Claim Bonus',
         messageId: 'claimBonus',
-        mini: 'RS',
+        mini: 'CB',
         component: ClaimBonus,
       },
     ],

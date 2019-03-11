@@ -327,6 +327,45 @@ function* getContractWalletBalance(reader, name) {
   }
 }
 
+function* getAccountVoteBonus (reader, name, account) {
+  try {
+    const bonusResult = yield reader.getTableRows({
+      json: true,
+      code: `eosio`,
+      scope: `eosio`,
+      table: `record`,
+      lower_bound: ` ${name}`,
+      limit: 1,
+    });
+    let bonus = 0;
+    if (account.voter_info && bonusResult.rows.length === 1 && bonusResult.rows[0].owner === name) {
+      const claimable = bonusResult.rows[0].claimable.split(` `)[0];
+      const staked = account.voter_info.staked / 10000;
+      bonus = 0.2 * staked * ((new Date()).getTime() - new Date(`${bonusResult.rows[0].update_time}Z`).getTime()) / 31536000000 + 10000 * claimable;
+    }
+
+    return {
+      claimableAmount: bonus,
+    };
+  } catch (c) {
+    const networks = yield select(makeSelectNetworks());
+    const active = yield select(makeSelectActiveNetwork());
+
+    const activeIndex = networks.findIndex(network => {
+      return network.chainId === active.network.chainId;
+    });
+
+    const endpointIndex = networks[activeIndex].endpoints.findIndex(endpoint => {
+      return endpoint.name === active.endpoint.name;
+    });
+
+    networks[activeIndex].endpoints[endpointIndex].failures += 1;
+
+    yield put(updateNetworks(networks));
+    return [];
+  }
+}
+
 function* getAccountDetail(reader, name) {
   try {
     const account = yield reader.getAccount(name);
@@ -341,12 +380,14 @@ function* getAccountDetail(reader, name) {
     // const balances = currencies.reduce((a, b) => a.concat(b), []);
     const balances = yield getAccountTokenBalanceFromTable(reader, name);
     const contractWalletBalances = yield getContractWalletBalance(reader, name);
+    const voteBonus = yield getAccountVoteBonus(reader, name, account);
     // disable again
     // yield spawn(fetchLatency);
     return {
       ...account,
       balances,
       contractWalletBalances,
+      voteBonus,
     };
   } catch (c) {
     console.log('getAccount error');

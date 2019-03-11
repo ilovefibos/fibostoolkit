@@ -31,6 +31,10 @@ export default defineMessages({
     id: 'app.components.Summary.refunding',
     defaultMessage: 'REFUNDING',
   },
+  bonus: {
+    id: 'app.components.Summary.bonus',
+    defaultMessage: 'Expected Bonus',
+  },
   none: {
     id: 'app.components.Summary.none',
     defaultMessage: 'None',

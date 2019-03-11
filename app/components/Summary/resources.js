@@ -92,6 +92,18 @@ function ResourcesTable({ ...props }) {
                 % {intl.formatMessage(messages.used)})
               </TableCell>
               <TableCell className={classes.tableCell}>
+                <h6>{intl.formatMessage(messages.bonus)}</h6>
+              </TableCell>
+              <TableCell className={classes.tableCell}>
+                {account && account.voteBonus ? (
+                  <span>
+                    {`${account.voteBonus.claimableAmount.toFixed(4)} FO`}
+                  </span>
+                ) : (
+                  <span>{intl.formatMessage(messages.none)}</span>
+                )}
+              </TableCell>
+              <TableCell className={classes.tableCell}>
                 <h6>{intl.formatMessage(messages.refunding)}</h6>
               </TableCell>
               <TableCell className={classes.tableCell}>
