@@ -342,7 +342,7 @@ function* getAccountDetail(reader, name) {
     const balances = yield getAccountTokenBalanceFromTable(reader, name);
     const contractWalletBalances = yield getContractWalletBalance(reader, name);
     // disable again
-    yield spawn(fetchLatency);
+    // yield spawn(fetchLatency);
     return {
       ...account,
       balances,
