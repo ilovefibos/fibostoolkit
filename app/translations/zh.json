@@ -64,6 +64,8 @@
   "app.routes.dashboard.createProxy": "创建投票代理",
   "app.routes.dashboard.createSmartToken": "创建智能通证",
   "app.routes.dashboard.createTransaction": "创建交易",
+  "app.routes.dashboard.crossChain": "跨链",
+  "app.routes.dashboard.crossChainEth": "ETH跨链",
   "app.routes.dashboard.destroySmartToken": "销毁智能通证",
   "app.routes.dashboard.donate": "捐助",
   "app.routes.dashboard.exchangeFoOrEos": "FO和EOS兑换",

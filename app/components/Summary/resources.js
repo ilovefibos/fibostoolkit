@@ -8,8 +8,8 @@ import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
 
 import tableStyle from 'assets/jss/tableStyle';
+import { NavLink } from 'react-router-dom';
 import messages from './messages';
-import { NavLink } from "react-router-dom";
 
 function ResourcesTable({ ...props }) {
   const { classes, account, intl } = props;
@@ -47,16 +47,17 @@ function ResourcesTable({ ...props }) {
                   : intl.formatMessage(messages.none)}
               </TableCell>
               <TableCell className={classes.tableCell}>
-                <h6>FOD</h6>
+                <h6>FOUSDT</h6>
               </TableCell>
               <TableCell className={classes.tableCell}>
                 {account.balances.find(
-                  b => b.account === 'eosio' && b.balance.indexOf('FOD') !== -1,
+                  b =>
+                    b.account === 'eosio' && b.balance.indexOf('FOUSDT') !== -1,
                 )
                   ? account.balances.find(
                     b =>
                       b.account === 'eosio' &&
-                        b.balance.indexOf('FOD') !== -1,
+                        b.balance.indexOf('FOUSDT') !== -1,
                   ).balance
                   : intl.formatMessage(messages.none)}
               </TableCell>
@@ -98,7 +99,12 @@ function ResourcesTable({ ...props }) {
               <TableCell className={classes.tableCell}>
                 {account && account.voteBonus ? (
                   <span>
-                    <NavLink to="/account/claimbonus"> {`${account.voteBonus.claimableAmount.toFixed(4)} FO`} </NavLink>
+                    <NavLink to="/account/claimbonus">
+                      {' '}
+                      {`${account.voteBonus.claimableAmount.toFixed(
+                        4,
+                      )} FO`}{' '}
+                    </NavLink>
                   </span>
                 ) : (
                   <span>{intl.formatMessage(messages.none)}</span>

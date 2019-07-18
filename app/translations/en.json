@@ -64,6 +64,8 @@
   "app.routes.dashboard.createProxy": "Create Proxy",
   "app.routes.dashboard.createSmartToken": "Create Smart Token",
   "app.routes.dashboard.createTransaction": "Create Transaction",
+  "app.routes.dashboard.crossChain": "Cross Chain",
+  "app.routes.dashboard.crossChainEth": "Cross Chain ETH",
   "app.routes.dashboard.destroySmartToken": "Destroy Smart Token",
   "app.routes.dashboard.donate": "Donate",
   "app.routes.dashboard.exchangeFoOrEos": "Exchange FO or EOS",

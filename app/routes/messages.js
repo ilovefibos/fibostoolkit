@@ -66,6 +66,14 @@ export default defineMessages({
     id: 'app.routes.dashboard.claimBonus',
     defaultMessage: 'Claim Bonus',
   },
+  crossChain: {
+    id: 'app.routes.dashboard.crossChain',
+    defaultMessage: 'Cross Chain',
+  },
+  crossChainEth: {
+    id: 'app.routes.dashboard.crossChainEth',
+    defaultMessage: 'Cross Chain ETH',
+  },
   manageSmartToken: {
     id: 'app.routes.dashboard.manageSmartToken',
     defaultMessage: 'Manage Smart Token',

@@ -15,6 +15,7 @@ import ComplexPermissions from 'components/Features/ComplexPermissionsForm';
 import LinkAuth from 'components/Features/LinkAuthForm';
 import ClaimRewards from 'components/Features/ClaimRewardsForm';
 import ProducerJson from 'components/Features/ProducerJsonForm';
+import CrossEthForm from 'components/Features/CrossEthForm';
 import SmartTokenIssue from 'components/Features/SmartTokenIssueForm';
 import SmartTokenRetire from 'components/Features/SmartTokenRetireForm';
 import SmartTokenClose from 'components/Features/SmartTokenCloseForm';
@@ -77,6 +78,7 @@ import {
   AccountBalanceWallet,
   BusinessCenter,
   VpnKey,
+  Cached
 } from '@material-ui/icons';
 import HorusIcon from 'components/Icons/Horus';
 import ExchangeForm from "../components/Features/ExchangeForm";
@@ -207,6 +209,23 @@ const dashRoutes = [
         messageId: 'claimBonus',
         mini: 'CB',
         component: ClaimBonus,
+      },
+    ],
+  },
+  {
+    collapse: true,
+    path: '/cross',
+    name: 'Cross Chain',
+    messageId: 'crossChain',
+    state: 'openCrossChain',
+    icon: Cached,
+    views: [
+      {
+        path: '/cross/eth',
+        name: 'Cross Chain ETH',
+        messageId: 'crossChainEth',
+        mini: 'CCE',
+        component: CrossEthForm,
       },
     ],
   },
