@@ -139,13 +139,13 @@ const dashRoutes = [
     icon: Payment,
     component: Transfer,
   },
-  {
-    path: '/exchange',
-    name: 'Exchange FO or EOS',
-    messageId: 'exchangeFoOrEos',
-    icon: SwapHoriz,
-    component: Exchange,
-  },
+  // {
+  //   path: '/exchange',
+  //   name: 'Exchange FO or EOS',
+  //   messageId: 'exchangeFoOrEos',
+  //   icon: SwapHoriz,
+  //   component: Exchange,
+  // },
   {
     path: '/withdrawl',
     name: 'Withdrawl EOS',
