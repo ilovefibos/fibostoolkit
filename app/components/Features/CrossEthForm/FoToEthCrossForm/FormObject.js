@@ -18,7 +18,7 @@ const FormData = [
   },
   {
     id: 'quantity',
-    label: 'Quantity',
+    label: 'Quantity (including 3 FOUSDT fee)',
     placeholder: 'How many FOUSDT to cross transfer to ETH',
   },
   {
@@ -28,14 +28,6 @@ const FormData = [
     md: 12,
   },
 ];
-
-const switchData = {
-  id: 'central',
-  label: 'Central Cross Chain',
-  placeholder:
-    'Central Cross Chain Off: Fee is 3 FOUSDT. ' +
-    'Central Cross Chain On: Rely on central gateway. Fee is 0.51 FOUSDT.',
-};
 
 const FormObject = props => {
   const { handleSubmit } = props;
@@ -50,12 +42,6 @@ const FormObject = props => {
       {FormData.map(form => (
         <ToolInput key={form.id} {...form} {...props} />
       ))}
-      <ToolSwitch {...switchData} {...props} />
-      <GridItem xs={12} sm={12} md={12} lg={12}>
-        <InputLabel>
-          {props.values.central ? 'FEE: 0.51 FOUSDT' : 'FEE: 3 FOUSDT'}
-        </InputLabel>
-      </GridItem>
     </ToolForm>
   );
 };

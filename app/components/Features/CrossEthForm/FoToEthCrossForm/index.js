@@ -27,10 +27,8 @@ const makeTransaction = values => {
       name: 'extransfer',
       data: {
         from: values.owner,
-        to: values.central ? 'eth2fibosgtw' : 'eosio.cross',
-        memo: values.central
-          ? `{"address":"${values.ethAddress.toLowerCase()}"}`
-          : `${values.ethAddress.toLowerCase()}`,
+        to: 'eosio.cross',
+        memo: `${values.ethAddress.toLowerCase()}`,
         quantity: `${Number(values.quantity)
           .toFixed(6)
           .toString()} FOUSDT@eosio`,
