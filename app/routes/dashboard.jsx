@@ -60,26 +60,22 @@ import ProxyTable from 'containers/ProxyInfo';
 import HorusPay from 'containers/HorusPay';
 
 // @material-ui/icons
-import {
-  Dashboard,
-  AccountBalance,
-  Search,
-  PersonAdd,
-  AssignmentInd,
-  AssignmentTurnedIn,
-  Payment,
-  SwapHoriz,
-  DeveloperBoard,
-  Forum,
-  Favorite,
-  Send,
-  CloudDownload,
-  Settings,
-  AccountBalanceWallet,
-  BusinessCenter,
-  VpnKey,
-  Cached
-} from '@material-ui/icons';
+
+import Dashboard from '@material-ui/icons/Dashboard';
+import Search from '@material-ui/icons/Search';
+import PersonAdd from '@material-ui/icons/PersonAdd';
+import AssignmentInd from '@material-ui/icons/AssignmentInd';
+import AssignmentTurnedIn from '@material-ui/icons/AssignmentTurnedIn';
+import Payment from '@material-ui/icons/Payment';
+import DeveloperBoard from '@material-ui/icons/DeveloperBoard';
+import Favorite from '@material-ui/icons/Favorite';
+import BusinessCenter from '@material-ui/icons/BusinessCenter';
+import AccountBalanceWallet from '@material-ui/icons/AccountBalanceWallet';
+import Send from '@material-ui/icons/Send';
+import Cached from '@material-ui/icons/Cached';
+import Forum from '@material-ui/icons/Forum';
+import VpnKey from '@material-ui/icons/VpnKey';
+
 import HorusIcon from 'components/Icons/Horus';
 import ExchangeForm from "../components/Features/ExchangeForm";
 

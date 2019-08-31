@@ -16,7 +16,7 @@ import Tool from 'components/Tool/Tool';
 import ToolSection from 'components/Tool/ToolSection';
 import ToolBody from 'components/Tool/ToolBody';
 
-import { Payment } from '@material-ui/icons';
+import Payment from '@material-ui/icons/Payment';
 import FormObject from './FormObject';
 
 const makeTransaction = values => {
