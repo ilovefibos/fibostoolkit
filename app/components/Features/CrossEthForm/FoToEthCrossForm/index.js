@@ -18,7 +18,6 @@ import ToolSection from 'components/Tool/ToolSection';
 import ToolBody from 'components/Tool/ToolBody';
 
 import Payment from '@material-ui/icons/Payment';
-import web3 from 'web3';
 import FormObject from './FormObject';
 const makeTransaction = values => {
   const transaction = [
