@@ -10,9 +10,9 @@ export default defineMessages({
     id: 'app.components.NetworkStatus.attachIdentity',
     defaultMessage: 'Please attach Identity',
   },
-  installIronman: {
-    id: 'app.components.NetworkStatus.installIronman',
-    defaultMessage: 'Please install Ironman',
+  installPluginWallet: {
+    id: 'app.components.NetworkStatus.installPluginWallet',
+    defaultMessage: 'Please install FO Plugin Wallet',
   },
   read: {
     id: 'app.components.NetworkStatus.read',
@@ -34,11 +34,11 @@ export default defineMessages({
   writerMessage: {
     id: 'app.components.NetworkStatus.writerMessage',
     defaultMessage:
-      'If WRITE access is not ticked, make sure ironman is configured with a valid network and that network is also linked to your scatter identity.',
+      'If WRITE access is not ticked, make sure FO Plugin Wallet is configured with a valid network and that network is also linked to your scatter identity.',
   },
   accountMessage: {
     id: 'app.components.NetworkStatus.accountMessage',
     defaultMessage:
-      "If ACCOUNT is not ticked make sure to use the 'Select account' menu above and select a ironman identity and account to perform actions under.",
+      "If ACCOUNT is not ticked make sure to use the 'Select account' menu above and select a FO Plugin Wallet identity and account to perform actions under.",
   },
 });

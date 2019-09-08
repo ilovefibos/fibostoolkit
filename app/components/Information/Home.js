@@ -4,9 +4,9 @@ import { compose } from 'redux';
 import messages from './messages';
 
 const Home = props => {
-  const ironman = (
-    <a href="http://foironman.com/" target="new">
-      Ironman
+  const pluginWallet = (
+    <a href="https://wallet.fo/en-us/fowallet" target="new">
+      FO Plugin Wallet
     </a>
   );
   const telegram = (
@@ -19,9 +19,9 @@ const Home = props => {
       <h3>{props.intl.formatMessage(messages.gettingStarted)}</h3>
       <h4>
         <FormattedMessage
-          id={messages.mustInstallIronman.id}
-          values={{ ironman }}
-          defaultMessage={messages.mustInstallIronman.defaultMessage}
+          id={messages.mustInstallPluginWallet.id}
+          values={{ pluginWallet }}
+          defaultMessage={messages.mustInstallPluginWallet.defaultMessage}
         />
       </h4>
 

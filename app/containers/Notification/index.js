@@ -20,8 +20,8 @@ import {
   makeSelectNotificationInfo,
   makeSelectNotificationLoading,
   makeSelectNotificationMessage,
-  makeSelectNotificationSuccess
-} from "./selectors";
+  makeSelectNotificationSuccess,
+} from './selectors';
 import { closeNotification } from './actions';
 import reducer from './reducer';
 import saga from './saga';
@@ -45,7 +45,15 @@ export class Notification extends React.Component {
       return value;
     }
 
-    const { loading, failure, info, success, message, closeAll, writeEnabled } = this.props;
+    const {
+      loading,
+      failure,
+      info,
+      success,
+      message,
+      closeAll,
+      writeEnabled,
+    } = this.props;
     if (loading) {
       return (
         <SweetAlert
@@ -56,8 +64,13 @@ export class Notification extends React.Component {
           onCancel={() => closeAll()}
           confirmBtnText="Hide"
           // onCancel={() => closeAll()}
-          confirmBtnCssClass={`${this.props.classes.button} ${this.props.classes.info}`}>
-          <h5>Ironman should appear shortly to confirm this action.</h5>
+          confirmBtnCssClass={`${this.props.classes.button} ${
+            this.props.classes.info
+          }`}
+        >
+          <h5>
+            FO Plugin Wallet should appear shortly to confirm this action.
+          </h5>
           <h6>Your transaction will be sent to the network afterwards</h6>
         </SweetAlert>
       );
@@ -73,9 +86,15 @@ export class Notification extends React.Component {
           onConfirm={() => closeAll()}
           onCancel={() => closeAll()}
           confirmBtnText="Thanks"
-          confirmBtnCssClass={`${this.props.classes.button} ${this.props.classes.success}`}>
+          confirmBtnCssClass={`${this.props.classes.button} ${
+            this.props.classes.success
+          }`}
+        >
           {txid ? (
-            <a href={`http://explorer.fibos.rocks/transactions/${txid}`} target="new">
+            <a
+              href={`http://explorer.fibos.rocks/transactions/${txid}`}
+              target="new"
+            >
               <h6>{txid}</h6>
             </a>
           ) : (
@@ -100,7 +119,10 @@ export class Notification extends React.Component {
           onConfirm={() => closeAll()}
           onCancel={() => closeAll()}
           confirmBtnText="Hide"
-          confirmBtnCssClass={`${this.props.classes.button} ${this.props.classes.info}`}>
+          confirmBtnCssClass={`${this.props.classes.button} ${
+            this.props.classes.info
+          }`}
+        >
           <pre className={this.props.classes.preXYScrollable}>
             {message ? `${JSON.stringify(message, null, 2)}` : ''}
           </pre>
@@ -122,7 +144,10 @@ export class Notification extends React.Component {
             onCancel={() => closeAll()}
             confirmBtnText="Hide"
             // onCancel={() => closeAll()}
-            confirmBtnCssClass={`${this.props.classes.button} ${this.props.classes.info}`}>
+            confirmBtnCssClass={`${this.props.classes.button} ${
+              this.props.classes.info
+            }`}
+          >
             <h5>You have already claimed this Airgrab!</h5>
             <h6>You are all set to receive new drops!</h6>
           </SweetAlert>
@@ -137,10 +162,15 @@ export class Notification extends React.Component {
           onConfirm={() => closeAll()}
           onCancel={() => closeAll()}
           confirmBtnText="Close"
-          confirmBtnCssClass={`${this.props.classes.button} ${this.props.classes.danger}`}>
+          confirmBtnCssClass={`${this.props.classes.button} ${
+            this.props.classes.danger
+          }`}
+        >
           <h6>Transaction has failed</h6>
           <pre className={this.props.classes.preXYScrollable}>
-            {message ? `Details:\n${JSON.stringify(error, replaceErrors, 2)}` : ''}
+            {message
+              ? `Details:\n${JSON.stringify(error, replaceErrors, 2)}`
+              : ''}
           </pre>
         </SweetAlert>
       );
@@ -155,11 +185,14 @@ export class Notification extends React.Component {
           onCancel={() => closeAll()}
           confirmBtnText="Close"
           // onCancel={() => closeAll()}
-          confirmBtnCssClass={`${this.props.classes.button} ${this.props.classes.danger}`}>
-          <h5>You must install and connect Ironman</h5>
+          confirmBtnCssClass={`${this.props.classes.button} ${
+            this.props.classes.danger
+          }`}
+        >
+          <h5>You must install and connect FO Plugin Wallet</h5>
           <h5>
-            <a href={`http://foironman.com/`} target="new">
-              Get Ironman
+            <a href="https://wallet.fo/en-us/fowallet" target="new">
+              Get FO Plugin Wallet
             </a>
           </h5>
         </SweetAlert>
@@ -190,7 +223,7 @@ function mapDispatchToProps(dispatch) {
 
 const withConnect = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
 );
 const styles = withStyles(sweetAlertStyle);
 const withReducer = injectReducer({ key: 'notification', reducer });
@@ -200,5 +233,5 @@ export default compose(
   withReducer,
   withSaga,
   withConnect,
-  styles
+  styles,
 )(Notification);

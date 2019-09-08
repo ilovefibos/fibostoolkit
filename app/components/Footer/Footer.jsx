@@ -71,8 +71,8 @@ function Footer({ ...props }) {
               </a>
             </ListItem>
             <ListItem className={classes.inlineBlock}>
-              <a href="http://foironman.com" target="new" className={block}>
-                {'Ironman'}
+              <a href="https://wallet.fo/en-us/fowallet" target="new" className={block}>
+                {'FO Plugin Wallet'}
               </a>
             </ListItem>
           </List>

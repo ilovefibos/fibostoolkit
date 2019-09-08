@@ -8,7 +8,10 @@ import React from 'react';
 
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import { makeSelectIdentity, makeSelectAccount } from 'containers/NetworkClient/selectors';
+import {
+  makeSelectIdentity,
+  makeSelectAccount,
+} from 'containers/NetworkClient/selectors';
 import { pushTransaction as sendTransaction } from 'containers/NetworkClient/actions';
 import { compose } from 'redux';
 import { injectIntl } from 'react-intl';
@@ -16,9 +19,11 @@ import messages from './messages';
 
 const makeTransaction = (networkIdentity, accountData, intl) => {
   if (!accountData) {
-    return { error: intl.formatMessage(messages.noIronman) };
+    return { error: intl.formatMessage(messages.noPluginWallet) };
   }
-  const producers = accountData.voter_info ? accountData.voter_info.producers : [];
+  const producers = accountData.voter_info
+    ? accountData.voter_info.producers
+    : [];
   if (producers.includes('ilovefibosbp')) {
     return { success: intl.formatMessage(messages.alreadVoteUs) };
   }
@@ -42,7 +47,13 @@ const makeTransaction = (networkIdentity, accountData, intl) => {
 };
 
 const VoteUs = props => {
-  const { pushTransaction, networkIdentity, networkAccount, className, intl } = props;
+  const {
+    pushTransaction,
+    networkIdentity,
+    networkAccount,
+    className,
+    intl,
+  } = props;
   const handleSubmit = () => {
     const transaction = makeTransaction(networkIdentity, networkAccount, intl);
     pushTransaction(transaction, props.history);
@@ -61,14 +72,15 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    pushTransaction: (transaction, history) => dispatch(sendTransaction(transaction, history)),
+    pushTransaction: (transaction, history) =>
+      dispatch(sendTransaction(transaction, history)),
   };
 }
 
 export default compose(
   connect(
     mapStateToProps,
-    mapDispatchToProps
+    mapDispatchToProps,
   ),
-  injectIntl
+  injectIntl,
 )(VoteUs);

@@ -32,7 +32,7 @@ const FormData = [
     multiline: true,
     rows: 30,
     md: 12,
-  }
+  },
 ];
 
 const FormObject = props => {
@@ -44,27 +44,27 @@ const FormObject = props => {
   };
 
   const handleFiles = files => {
-    var reader = new FileReader();
+    const reader = new FileReader();
     reader.onload = function(e) {
       console.log(reader.result);
       props.setValues({
         transaction: reader.result,
       });
-    }
+    };
     reader.readAsText(files[0]);
     console.log(files);
-  }
+  };
 
   return (
     <ToolForm {...formProps}>
       <ToolSection md={12}>
-        <ReactFileReader handleFiles={handleFiles} fileTypes='.json,.txt'>
+        <ReactFileReader handleFiles={handleFiles} fileTypes=".json,.txt">
           <Button>Load Transaction JSON</Button>
         </ReactFileReader>
       </ToolSection>
-      {FormData.map(form => {
-        return <ToolInput key={form.id} {...form} {...props} />;
-      })}
+      {FormData.map(form => (
+        <ToolInput key={form.id} {...form} {...props} />
+      ))}
     </ToolForm>
   );
 };
@@ -82,19 +82,35 @@ const MultisigSign = props => {
           color="warning"
           icon={Create}
           header="Sign Transaction"
-          subheader=" - Supply the resulting JSON to the transaction sender">
+          subheader=" - Supply the resulting JSON to the transaction sender"
+        >
           <FormObject {...props} />
         </ToolBody>
       </ToolSection>
       <ToolSection lg={4}>
         <ToolBody color="info" header="Tutorial">
-          <h5>Ironman Desktop is required. Not the Chrome Extension.</h5>
+          <h5>
+            FO Plugin Wallet Desktop is required. Not the Chrome Extension.
+          </h5>
           <p>Load the Transaction JSON you were provided.</p>
-          <p>Ensure Ironman is connected with the correct account to sign this transaction.</p>
+          <p>
+            Ensure FO Plugin Wallet is connected with the correct account to
+            sign this transaction.
+          </p>
           <p>Click Sign Transaction</p>
-          <p>Ironman will appear asking you to sign an arbitrary Buffer. This will appear like random numbers. This is acceptable, and matches the JSON you loaded.</p>
-          <p>A dialogue will appear with your Signature, and you will also automatically download a JSON file with this signature.</p>
-          <p>Provide this signature or signature file to the person sending the transaction.</p>
+          <p>
+            FO Plugin Wallet will appear asking you to sign an arbitrary Buffer.
+            This will appear like random numbers. This is acceptable, and
+            matches the JSON you loaded.
+          </p>
+          <p>
+            A dialogue will appear with your Signature, and you will also
+            automatically download a JSON file with this signature.
+          </p>
+          <p>
+            Provide this signature or signature file to the person sending the
+            transaction.
+          </p>
         </ToolBody>
       </ToolSection>
     </Tool>
@@ -107,14 +123,14 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    handleTransaction: (data) => dispatch(signTransaction(data)),
+    handleTransaction: data => dispatch(signTransaction(data)),
   };
 }
 
 const enhance = compose(
   connect(
     mapStateToProps,
-    mapDispatchToProps
+    mapDispatchToProps,
   ),
   withFormik({
     handleSubmit: (values, { props, setSubmitting }) => {
@@ -126,7 +142,7 @@ const enhance = compose(
       transaction: '',
     }),
     validationSchema,
-  })
+  }),
 );
 
 export default enhance(MultisigSign);

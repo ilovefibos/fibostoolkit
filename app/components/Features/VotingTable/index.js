@@ -14,8 +14,20 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Chip from '@material-ui/core/Chip';
 
 const VotingTable = props => {
-  const { producers, loading, setProducers, infoNotification, selected, ...clientProps } = props;
-  const { networkAccount, networkIdentity, writerEnabled, pushTransaction } = clientProps;
+  const {
+    producers,
+    loading,
+    setProducers,
+    infoNotification,
+    selected,
+    ...clientProps
+  } = props;
+  const {
+    networkAccount,
+    networkIdentity,
+    writerEnabled,
+    pushTransaction,
+  } = clientProps;
 
   const selectedProducers = [];
   selected.forEach(item => {
@@ -26,7 +38,7 @@ const VotingTable = props => {
 
   const makeTransaction = () => {
     if (!writerEnabled) {
-      return { error: 'No ironman identity attached' };
+      return { error: 'No FO Plugin Wallet identity attached' };
     }
 
     const transaction = [
@@ -88,13 +100,18 @@ const VotingTable = props => {
       ...producer,
       actions: (
         <div className="actions-right">
-          {accountVote.includes(producer.owner) ? <CheckCircle color="disabled" /> : ''}
+          {accountVote.includes(producer.owner) ? (
+            <CheckCircle color="disabled" />
+          ) : (
+            ''
+          )}
           {''}
           <a
             href="#"
             onClick={() => {
               toggleProducer(producer.owner);
-            }}>
+            }}
+          >
             {selected && selected.includes(producer.owner) ? (
               <CheckBoxOn color="action" />
             ) : (
@@ -106,34 +123,41 @@ const VotingTable = props => {
     };
   });
 
-  const selectedData = producers.filter(producer => selected && selected.includes(producer.owner)).map(producer => {
-    let accountVote = [];
-    try {
-      accountVote = networkAccount.voter_info.producers;
-    } catch (c) {
-      accountVote = [];
-    }
-    return {
-      ...producer,
-      actions: (
-        <div className="actions-right">
-          {accountVote.includes(producer.owner) ? <CheckCircle color="disabled" /> : ''}
-          {''}
-          <a
-            href="#"
-            onClick={() => {
-              toggleProducer(producer.owner);
-            }}>
-            {selected && selected.includes(producer.owner) ? (
-              <CheckBoxOn color="action" />
+  const selectedData = producers
+    .filter(producer => selected && selected.includes(producer.owner))
+    .map(producer => {
+      let accountVote = [];
+      try {
+        accountVote = networkAccount.voter_info.producers;
+      } catch (c) {
+        accountVote = [];
+      }
+      return {
+        ...producer,
+        actions: (
+          <div className="actions-right">
+            {accountVote.includes(producer.owner) ? (
+              <CheckCircle color="disabled" />
             ) : (
-              <CheckBoxOff color={maxSelected() ? 'disabled' : 'action'} />
+              ''
             )}
-          </a>
-        </div>
-      ),
-    };
-  });
+            {''}
+            <a
+              href="#"
+              onClick={() => {
+                toggleProducer(producer.owner);
+              }}
+            >
+              {selected && selected.includes(producer.owner) ? (
+                <CheckBoxOn color="action" />
+              ) : (
+                <CheckBoxOff color={maxSelected() ? 'disabled' : 'action'} />
+              )}
+            </a>
+          </div>
+        ),
+      };
+    });
 
   return (
     <Tool>
@@ -142,11 +166,15 @@ const VotingTable = props => {
           color="warning"
           icon={AssignmentTurnedIn}
           header="Voted Block Producers"
-          subheader=" - Vote and support the community">
+          subheader=" - Vote and support the community"
+        >
           <GridContainer>
             <GridItem xs={12} sm={6}>
               <div>
-                <strong>Selected producers ({selected.length || '0'}/30): </strong>{' '}
+                <strong>
+                  Selected producers ({selected.length || '0'}
+                  /30):{' '}
+                </strong>{' '}
                 {selected.length > 0 ? selected.join(', ') : 'None'}
               </div>
             </GridItem>
@@ -155,31 +183,40 @@ const VotingTable = props => {
                 onClick={() => {
                   handleSubmit();
                 }}
-                color={'rose'}
-                style={{ float: 'right' }}>
+                color="rose"
+                style={{ float: 'right' }}
+              >
                 Vote
               </Button>
               <Button
                 onClick={() => {
                   handleReset();
                 }}
-                color={'warning'}
-                style={{ float: 'right' }}>
+                color="warning"
+                style={{ float: 'right' }}
+              >
                 Reset
               </Button>
               <Button
                 onClick={() => {
                   handleInviteLink();
                 }}
-                color={'info'}
-                style={{ float: 'right' }}>
+                color="info"
+                style={{ float: 'right' }}
+              >
                 Invite Link
               </Button>
             </GridItem>
             <GridItem xs={12} sm={12}>
               <ReactTable
                 data={selectedData}
-                noDataText={loading ? <CircularProgress color="secondary" /> : 'No voted producer.'}
+                noDataText={
+                  loading ? (
+                    <CircularProgress color="secondary" />
+                  ) : (
+                    'No voted producer.'
+                  )
+                }
                 columns={[
                   {
                     Header: 'Name',
@@ -199,8 +236,8 @@ const VotingTable = props => {
                   {
                     Header: 'Info',
                     accessor: 'producerJson',
-                    Cell: row => {
-                      return row.value ? (
+                    Cell: row =>
+                      row.value ? (
                         <Chip
                           label="Detail"
                           onClick={() => {
@@ -209,8 +246,7 @@ const VotingTable = props => {
                         />
                       ) : (
                         ''
-                      );
-                    },
+                      ),
                     filterable: false,
                     minWidth: 300,
                     maxWidth: 600,
@@ -249,7 +285,8 @@ const VotingTable = props => {
           color="warning"
           icon={AssignmentTurnedIn}
           header="Block Producers"
-          subheader=" - Vote and support the community">
+          subheader=" - Vote and support the community"
+        >
           <ReactTable
             data={data}
             filterable
@@ -273,8 +310,8 @@ const VotingTable = props => {
               {
                 Header: 'Info',
                 accessor: 'producerJson',
-                Cell: row => {
-                  return row.value ? (
+                Cell: row =>
+                  row.value ? (
                     <Chip
                       label="Detail"
                       onClick={() => {
@@ -283,8 +320,7 @@ const VotingTable = props => {
                     />
                   ) : (
                     ''
-                  );
-                },
+                  ),
                 filterable: false,
                 minWidth: 300,
                 maxWidth: 600,

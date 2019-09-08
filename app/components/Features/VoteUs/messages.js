@@ -6,9 +6,9 @@
 import { defineMessages } from 'react-intl';
 
 export default defineMessages({
-  noIronman: {
-    id: 'app.components.Features.VoteUs.noIronman',
-    defaultMessage: 'No ironman identity attached',
+  noPluginWallet: {
+    id: 'app.components.Features.VoteUs.noPluginWallet',
+    defaultMessage: 'No FO Plugin Wallet identity attached',
   },
   alreadVoteUs: {
     id: 'app.components.Features.VoteUs.alreadVoteUs',

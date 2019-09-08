@@ -10,9 +10,10 @@ export default defineMessages({
     id: 'app.components.Information.Home.gettingsStarted',
     defaultMessage: 'Getting started',
   },
-  mustInstallIronman: {
-    id: 'app.components.Information.Home.mustInstallIronman',
-    defaultMessage: 'You must have {ironman} installed to safely and securely send transactions to the FO Network.',
+  mustInstallPluginWallet: {
+    id: 'app.components.Information.Home.mustInstallPluginWallet',
+    defaultMessage:
+      'You must have {pluginWallet} installed to safely and securely send transactions to the FO Network.',
   },
   participateCommunity: {
     id: 'app.components.Information.Home.participateCommunity',
