@@ -1,4 +1,5 @@
 {
+  "app.components.Features.ContributeTo.contributeTo": "为FOTOOLKIT贡献代码",
   "app.components.Features.NetworkForm.currentNetwork": "当前接入点",
   "app.components.Features.NetworkForm.githubNetworks": "如果你想将你的网络接入点加入这个列表，请在{github}提交 Pull Request",
   "app.components.Features.NetworkForm.loading": "加载中",

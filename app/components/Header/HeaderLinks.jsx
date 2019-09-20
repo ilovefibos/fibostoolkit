@@ -9,7 +9,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 // core components
 import logo from 'assets/img/ilovefibosWhite.png';
 
-import VoteUs from 'components/Features/VoteUs';
+import ContributeTo from 'components/Features/ContributeTo';
 
 import headerLinksStyle from './headerLinksStyle';
 
@@ -44,7 +44,7 @@ class HeaderLinks extends React.Component {
       <div className={wrapper}>
         <div className={classes.poweredBy}>
           <span className={classes.logoNormal}>
-            <VoteUs />
+            <ContributeTo />
           </span>
           <img src={logo} alt="logo" className={classes.logo} />
         </div>

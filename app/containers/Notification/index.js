@@ -12,7 +12,7 @@ import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
 import SweetAlert from 'react-bootstrap-sweetalert';
 import withStyles from '@material-ui/core/styles/withStyles';
-import VoteUs from 'components/Features/VoteUs';
+import ContributeTo from 'components/Features/ContributeTo';
 import { makeSelectWriterEnabled } from 'containers/NetworkClient/selectors';
 
 import {
@@ -103,9 +103,9 @@ export class Notification extends React.Component {
             </pre>
           )}
           <p>Thank you for using FOToolkit.com</p>
-          <h6>Your votes support continued development of these tools</h6>
+          <h6>FOTOOLKIT is open source. Your contribution will be appreciated</h6>
           <h5>
-            <VoteUs />
+            <ContributeTo />
           </h5>
         </SweetAlert>
       );

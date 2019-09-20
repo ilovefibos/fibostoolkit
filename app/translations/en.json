@@ -1,4 +1,5 @@
 {
+  "app.components.Features.ContributeTo.contributeTo": "Contribute to FOTOOLKIT",
   "app.components.Features.NetworkForm.currentNetwork": "Current Network",
   "app.components.Features.NetworkForm.githubNetworks": "Get your testnet or endpoint added to this list by submitting a pull request to {github}",
   "app.components.Features.NetworkForm.loading": "Loading...",

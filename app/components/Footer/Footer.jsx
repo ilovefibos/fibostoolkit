@@ -79,8 +79,8 @@ function Footer({ ...props }) {
         </div>
         <p className={classes.right}>
           &copy; {1900 + new Date().getYear()}{' '}
-          <a href="http://www.ilovefibos.com" target="new" className={anchor}>
-            {'ilovefibosbp'}
+          <a href="https://github.com/ilovefibos" target="new" className={anchor}>
+            {'ilovefibos'}
           </a>
           {', made with love for the FO Community'}
         </p>

@@ -31,7 +31,7 @@ import { setIdentity, disableWriter, toggleOffline } from 'containers/NetworkCli
 import { changeLocale } from 'containers/LanguageProvider/actions';
 import NetworkIdentity from 'components/NetworkStatus/Identity';
 import NetworkStatus from 'components/NetworkStatus/Status';
-import VoteUs from 'components/Features/VoteUs';
+import ContributeTo from 'components/Features/ContributeTo';
 import GenereosIcon from 'components/Icons/Genereos';
 // core components
 import HeaderLinks from 'components/Header/HeaderLinks';
@@ -186,7 +186,7 @@ class Sidebar extends React.Component {
               <GenereosIcon />
             </ListItemIcon>
             <ListItemText
-              primary={<VoteUs className={classes.itemText} />}
+              primary={<ContributeTo className={classes.itemText} />}
               disableTypography
               className={classes.itemText}
             />
@@ -312,10 +312,10 @@ class Sidebar extends React.Component {
     })}`;
     const brand = (
       <div className={logoClasses}>
-        <a href="http://www.ilovefibos.com" className={logoMini}>
+        <a href="https://github.com/ilovefibos" className={logoMini}>
           <img src={logo} alt="logo" className={classes.img} />
         </a>
-        <a href="http://www.ilovefibos.com" className={logoNormal}>
+        <a href="https://github.com/ilovefibos" className={logoNormal}>
           {logoText}
         </a>
       </div>
