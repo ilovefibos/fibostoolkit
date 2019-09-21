@@ -30,6 +30,8 @@
   "app.components.NetworkStatus.write": "写入",
   "app.components.NetworkStatus.writerMessage": "如果 '写入' 不是勾中状态，请确保FO Plugin Wallet配置了正确的网络并且该网络正确连接了你的FO Plugin Wallet身份",
   "app.components.Pages.FeaturesPage.favourites": "我的最爱",
+  "app.components.Pages.FeaturesPage.toolkitNewsHeader": "最近更新",
+  "app.components.Pages.FeaturesPage.toolkitNewsSubHeader": " - by ilovefibos",
   "app.components.Pages.FeaturesPage.welcome": "欢迎使用 FOToolkit",
   "app.components.Pages.FeaturesPage.welcomeSub": " - 轻松连接 FO 网络",
   "app.components.Sidebar.attachAccount": "添加账号",

@@ -10,6 +10,15 @@ export default defineMessages({
     id: 'app.components.Pages.FeaturesPage.welcome',
     defaultMessage: 'Welcome to FOToolkit',
   },
+
+  toolkitNewsHeader: {
+    id: 'app.components.Pages.FeaturesPage.toolkitNewsHeader',
+    defaultMessage: 'Latest features & News ',
+  },
+  toolkitNewsSubHeader: {
+    id: 'app.components.Pages.FeaturesPage.toolkitNewsSubHeader',
+    defaultMessage: 'by ilovefibos',
+  },
   welcomeSub: {
     id: 'app.components.Pages.FeaturesPage.welcomeSub',
     defaultMessage: ' - Easy access to the FO Network',

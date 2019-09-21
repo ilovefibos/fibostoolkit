@@ -41,11 +41,11 @@ const EthToFoCrossForm = props => (
   <ToolBody
     color="warning"
     icon={Payment}
-    header="ETH Cross Transfer To FO"
+    header="Cross Transfer From ETH network To FO network"
     subheader=""
   >
     <a href="http://cross.fo/transfer" target="new">
-      Click Here to Cross Transfer From ETH to FO.
+      Click Here to Cross Transfer From ETH network to FO network.
     </a>
   </ToolBody>
 );

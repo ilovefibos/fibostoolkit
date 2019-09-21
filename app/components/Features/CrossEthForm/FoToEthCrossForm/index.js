@@ -13,13 +13,15 @@ import { withFormik } from 'formik';
 import * as Yup from 'yup';
 import Hash from 'eth-lib/lib/hash';
 
-import Tool from 'components/Tool/Tool';
-import ToolSection from 'components/Tool/ToolSection';
 import ToolBody from 'components/Tool/ToolBody';
 
 import Payment from '@material-ui/icons/Payment';
-import FormObject from './FormObject';
+import FormObject, { tokenData } from './FormObject';
+
 const makeTransaction = values => {
+  const { precision } = tokenData.selections[
+    tokenData.selections.findIndex(item => item.value === values.symbol)
+  ];
   const transaction = [
     {
       account: 'eosio.token',
@@ -29,9 +31,9 @@ const makeTransaction = values => {
         to: 'eosio.cross',
         memo: `${values.ethAddress.toLowerCase()}`,
         quantity: `${Number(values.quantity)
-          .toFixed(6)
-          .toString()} FOUSDT@eosio`,
-        tosym: '6,FOUSDT@eosio',
+          .toFixed(precision)
+          .toString()} ${values.symbol}@eosio`,
+        tosym: `${precision},${values.symbol}@eosio`,
       },
     },
   ];
@@ -88,7 +90,7 @@ const FoToEthCrossForm = props => (
   <ToolBody
     color="warning"
     icon={Payment}
-    header="FO Cross Transfer to ETH"
+    header="Cross Transfer From FO network To ETH network"
     subheader=""
   >
     <FormObject {...props} />
@@ -115,6 +117,7 @@ const enhance = compose(
       owner: props.networkIdentity ? props.networkIdentity.name : '',
       quantity: '0',
       ethAddress: '',
+      symbol: 'FOUSDT',
     }),
     validationSchema,
   }),

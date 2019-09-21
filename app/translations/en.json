@@ -30,6 +30,8 @@
   "app.components.NetworkStatus.write": "Write",
   "app.components.NetworkStatus.writerMessage": "If WRITE access is not ticked, make sure FO Plugin Wallet is configured with a valid network and that network is also linked to your FO Plugin Wallet identity.",
   "app.components.Pages.FeaturesPage.favourites": "Favourites",
+  "app.components.Pages.FeaturesPage.toolkitNewsHeader": "Latest features & News",
+  "app.components.Pages.FeaturesPage.toolkitNewsSubHeader": " - by ilovefibos",
   "app.components.Pages.FeaturesPage.welcome": "Welcome to FOToolkit",
   "app.components.Pages.FeaturesPage.welcomeSub": "- Easy access to the FO Network",
   "app.components.Sidebar.attachAccount": "Attach Account",
