@@ -8,7 +8,7 @@ const News = () => (
 
     <h3>Feel free to contribute !!!!</h3>
     <h4>
-      The eostoolkit is open source at{' '}
+      The fibostoolkit is open source at{' '}
       <a href="https://github.com/ilovefibos/fibostoolkit" target="new">
         [ilovefibos/fibostoolkit]
       </a>
