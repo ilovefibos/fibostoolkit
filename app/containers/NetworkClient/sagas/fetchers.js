@@ -341,7 +341,7 @@ function* getAccountVoteBonus (reader, name, account) {
     if (account.voter_info && bonusResult.rows.length === 1 && bonusResult.rows[0].owner === name) {
       const claimable = bonusResult.rows[0].claimable.split(` `)[0];
       const staked = account.voter_info.staked / 10000;
-      bonus = 0.2 * staked * ((new Date()).getTime() - new Date(`${bonusResult.rows[0].update_time}Z`).getTime()) / 31536000000 + 10000 * claimable;
+      bonus = 0.06 * staked * ((new Date()).getTime() - new Date(`${bonusResult.rows[0].update_time}Z`).getTime()) / 31536  + 10000 * claimable;
     }
 
     return {
