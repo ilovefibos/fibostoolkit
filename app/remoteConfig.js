@@ -7,14 +7,16 @@ const airgrabs = [
     symbol: 'ATD',
     account: 'eosatidiumio',
     method: 'signup',
-    description: 'Payments & Budget Management Decentralized App Leveraging the Blockchain, Cryptocurrency and AI Technologies. Drops happen every 24 hours, Airgrab Today!',
+    description:
+      'Payments & Budget Management Decentralized App Leveraging the Blockchain, Cryptocurrency and AI Technologies. Drops happen every 24 hours, Airgrab Today!',
     url: 'https://www.atidium.io/',
   },
   {
     symbol: 'POOR',
     account: 'poormantoken',
     method: 'signup',
-    description: 'A public test of the airgrab and alternative airdrop methods.',
+    description:
+      'A public test of the airgrab and alternative airdrop methods.',
     url: 'https://eostoolkit.io/airgrab',
   },
   {
@@ -28,20 +30,24 @@ const airgrabs = [
     symbol: 'TRYBE',
     account: 'trybenetwork',
     method: 'claim',
-    description: 'A tokenized knowledge and content sharing platform. Airgrab now for 50 TRYBE tokens (dropped 11th September). Sign up to the platform for a bonus 100 tokens.',
+    description:
+      'A tokenized knowledge and content sharing platform. Airgrab now for 50 TRYBE tokens (dropped 11th September). Sign up to the platform for a bonus 100 tokens.',
     url: 'https://trybe.one',
   },
   {
     symbol: 'WIZZ',
     account: 'wizznetwork1',
     method: 'signup',
-    description: 'Modern Decentralized Ecosystem, Built on EOSIO. Tools, Rewards, Chat, and more. AIGRAB NOW!',
+    description:
+      'Modern Decentralized Ecosystem, Built on EOSIO. Tools, Rewards, Chat, and more. AIGRAB NOW!',
     url: 'https://wizz.network',
   },
 ];
 
-const tokensUrl = 'https://raw.githubusercontent.com/eoscafe/eos-airdrops/master/tokens.json';
-const fibosSmartTokensUrl = 'https://raw.githubusercontent.com/ilovefibos/fibos-smart-tokens/master/tokens.json?nocache';
-const networksUrl = 'https://raw.githubusercontent.com/ilovefibos/fibos-networks/master/networks.json?nocache';
-
+const tokensUrl =
+  'https://raw.githubusercontent.com/eoscafe/eos-airdrops/master/tokens.json';
+const fibosSmartTokensUrl =
+  'https://cdn.jsdelivr.net/gh/ilovefibos/fibos-smart-tokens/tokens.json';
+const networksUrl =
+  'https://cdn.jsdelivr.net/gh/ilovefibos/fibos-networks/networks.json';
 export { tokensUrl, fibosSmartTokensUrl, networksUrl, airgrabs };
