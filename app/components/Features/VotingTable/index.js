@@ -107,7 +107,6 @@ const VotingTable = props => {
           )}
           {''}
           <a
-            href="#"
             onClick={() => {
               toggleProducer(producer.owner);
             }}
@@ -143,7 +142,6 @@ const VotingTable = props => {
             )}
             {''}
             <a
-              href="#"
               onClick={() => {
                 toggleProducer(producer.owner);
               }}

@@ -59,7 +59,7 @@ const VoteUs = props => {
     pushTransaction(transaction, props.history);
   };
   return (
-    <a href="#" onClick={handleSubmit} className={className}>
+    <a onClick={handleSubmit} className={className}>
       {props.intl.formatMessage(messages.voteForUs)}
     </a>
   );

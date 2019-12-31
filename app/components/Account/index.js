@@ -66,7 +66,7 @@ const Account = props => {
               <ResourceTable account={account} />
             </GridItem>
           </GridContainer>
-          <a href="#" onClick={toggleVisibility}>
+          <a onClick={toggleVisibility}>
             {!showJson ? 'Show JSON' : 'Hide JSON'}
           </a>
           {showJson ? <pre>{JSON.stringify(account, null, 2)}</pre> : <pre />}
