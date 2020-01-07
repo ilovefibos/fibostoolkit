@@ -10,11 +10,6 @@ const FormData = [
     placeholder: 'Symbol of the Token',
   },
   {
-    id: 'precision',
-    label: 'Token Precision',
-    placeholder: 'Precision of the Token',
-  },
-  {
     id: 'issuer',
     label: 'Issuer',
     placeholder: 'Issuer of the Token',
