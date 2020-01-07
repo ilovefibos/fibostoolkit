@@ -26,7 +26,7 @@ const makeTransaction = values => {
       name: 'exdestroy',
       data: {
         symbol: `${Number(0)
-          .toFixed(4)
+          .toFixed(values.precision)
           .toString()} ${values.symbol}@${values.issuer}`,
       },
     },
@@ -36,6 +36,10 @@ const makeTransaction = values => {
 const validationSchema = props => {
   return Yup.object().shape({
     symbol: Yup.string().required('Symbol is required'),
+    precision: Yup.number()
+      .required('Token precision is required')
+      .positive('Precision must be a positive quantity')
+      .integer('Precision cannot be fractional'),
     issuer: Yup.string().required('Issuer name is required'),
   });
 };
@@ -74,6 +78,7 @@ const enhance = compose(
     },
     mapPropsToValues: props => ({
       issuer: props.networkIdentity ? props.networkIdentity.name : '',
+      precision: '',
       symbol: '',
     }),
     validationSchema,
