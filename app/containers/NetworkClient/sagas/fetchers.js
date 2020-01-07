@@ -261,6 +261,7 @@ const balanceTable = name => {
     scope: ` ${name}`,
     code: 'eosio.token',
     table: 'accounts',
+    limit: 100,
   };
 };
 
