@@ -20,15 +20,8 @@ import { makeSelectAccount } from 'containers/NetworkClient/selectors';
 
 import FormObject from './FormObject';
 
-const accountTokens = account =>
-  account.balances.map(balance => ({
-    account: balance.account,
-    symbol: balance.balance.split(' ')[1],
-    precision: balance.balance.split(' ')[0].split('.')[1].length,
-  }));
-
 const makeTransaction = (values, account) => {
-  const token = accountTokens(account).find(
+  const token = account.userTokens.find(
     accountToken =>
       accountToken.symbol === values.symbol &&
       accountToken.account === values.issuer,

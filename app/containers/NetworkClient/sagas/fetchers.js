@@ -6,6 +6,7 @@ import { networksUrl, fibosSmartTokensUrl } from 'remoteConfig';
 
 import { loadedNetworks, updateNetworks, loadedAccount, setNetwork } from '../actions';
 import { makeSelectIdentity, makeSelectReader, makeSelectNetworks, makeSelectActiveNetwork } from '../selectors';
+import { getPrecisionFromMaxSupply } from '../../../utils/currencyUtil';
 
 /*
 *
@@ -142,12 +143,13 @@ function* getTokenInfoByIssuerFromTable(reader, tokenAccount) {
     scope: ` ${tokenAccount}`,
     code: 'eosio.token',
     table: 'stats',
+    limit: 100
   });
   const currencies = currencyResult.rows.map(c => {
     return {
       account: tokenAccount,
       symbol: c.max_supply.split(' ')[1],
-      precision: c.max_supply.split(' ')[0].split('.')[1].length,
+      precision: getPrecisionFromMaxSupply(c.max_supply),
     };
   });
   return currencies;
@@ -382,6 +384,7 @@ function* getAccountDetail(reader, name) {
     const balances = yield getAccountTokenBalanceFromTable(reader, name);
     const contractWalletBalances = yield getContractWalletBalance(reader, name);
     const voteBonus = yield getAccountVoteBonus(reader, name, account);
+    const userTokens = yield getTokenInfoByIssuerFromTable(reader, name);
     // disable again
     // yield spawn(fetchLatency);
     return {
@@ -389,6 +392,7 @@ function* getAccountDetail(reader, name) {
       balances,
       contractWalletBalances,
       voteBonus,
+      userTokens
     };
   } catch (c) {
     console.log('getAccount error');
