@@ -54,7 +54,12 @@ const SmartTokenDestroyForm = props => (
     </ToolSection>
     <ToolSection lg={4}>
       <ToolBody color="info" header="Tutorial">
-        <p>Tutorial coming soon</p>
+        <a
+          href="https://dev.fo/zh-cn/guide/token-card.html#%E9%94%80%E6%AF%81%E9%80%9A%E8%AF%81"
+          target="new"
+        >
+          Dev.fo Documentation
+        </a>
       </ToolBody>
     </ToolSection>
   </Tool>

@@ -61,7 +61,12 @@ const SmartTokenRetireForm = props => (
     </ToolSection>
     <ToolSection lg={4}>
       <ToolBody color="info" header="Tutorial">
-        <p>Tutorial coming soon</p>
+        <a
+          href="https://dev.fo/zh-cn/guide/token-card.html#%E5%8F%91%E8%A1%8C%E9%80%9A%E8%AF%81"
+          target="new"
+        >
+          Dev.fo Documentation
+        </a>
       </ToolBody>
     </ToolSection>
   </Tool>

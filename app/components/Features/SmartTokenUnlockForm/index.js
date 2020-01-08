@@ -65,7 +65,12 @@ const SmartTokenUnlockForm = props => {
       </ToolSection>
       <ToolSection lg={4}>
         <ToolBody color="info" header="Tutorial">
-          <p>Tutorial coming soon</p>
+          <a
+            href="https://dev.fo/zh-cn/guide/token-card.html#%E8%A7%A3%E9%94%81"
+            target="new"
+          >
+            Dev.fo Documentation
+          </a>
         </ToolBody>
       </ToolSection>
     </Tool>

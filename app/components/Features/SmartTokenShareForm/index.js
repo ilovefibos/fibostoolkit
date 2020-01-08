@@ -58,7 +58,12 @@ const SmartTokenShareForm = props => {
       </ToolSection>
       <ToolSection lg={4}>
         <ToolBody color="info" header="Tutorial">
-          <p>Tutorial coming soon</p>
+          <a
+            href="https://dev.fo/zh-cn/guide/token-card.html#%E5%88%86%E7%BA%A2"
+            target="new"
+          >
+            Dev.fo Documentation
+          </a>
         </ToolBody>
       </ToolSection>
     </Tool>

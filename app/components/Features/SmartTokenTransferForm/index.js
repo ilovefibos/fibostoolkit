@@ -81,7 +81,12 @@ const SmartTokenTransferForm = props => {
       </ToolSection>
       <ToolSection lg={4}>
         <ToolBody color="info" header="Information">
-          <p>Tutorial coming soon</p>
+          <a
+            href="https://dev.fo/zh-cn/guide/token-transfer.html#%E9%93%BE%E5%86%85%E8%BD%AC%E8%B4%A6"
+            target="new"
+          >
+            Dev.fo Documentation
+          </a>
         </ToolBody>
       </ToolSection>
     </Tool>
