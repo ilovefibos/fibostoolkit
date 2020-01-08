@@ -31,6 +31,7 @@ import ResourceTable from './resources';
 import userProfileStyles from './comingSoon';
 import { injectIntl } from 'react-intl';
 import messages from './messages';
+import { infoNotification } from '../../containers/Notification/actions';
 
 function Summary(props) {
   const { classes, account, network } = props;
@@ -50,7 +51,7 @@ function Summary(props) {
               </h5>
             </CardHeader>
             <CardBody>
-              <ResourceTable account={account} intl={props.intl} />
+              <ResourceTable account={account} intl={props.intl} infoNotification = {props.infoNotification}/>
             </CardBody>
           </Card>
         </GridItem>
@@ -64,8 +65,10 @@ const mapStateToProps = createStructuredSelector({
   network: makeSelectActiveNetwork(),
 });
 
-function mapDispatchToProps() {
-  return {};
+function mapDispatchToProps(dispatch) {
+  return {
+    infoNotification: info => dispatch(infoNotification(info)),
+  };
 }
 
 export default compose(

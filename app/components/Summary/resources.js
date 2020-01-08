@@ -9,10 +9,11 @@ import TableRow from '@material-ui/core/TableRow';
 
 import tableStyle from 'assets/jss/tableStyle';
 import { NavLink } from 'react-router-dom';
+import Chip from '@material-ui/core/es/Chip/Chip';
 import messages from './messages';
 
 function ResourcesTable({ ...props }) {
-  const { classes, account, intl } = props;
+  const { classes, account, intl, infoNotification } = props;
   return (
     <div className={classes.tableResponsive}>
       <Table className={classes.table}>
@@ -148,9 +149,14 @@ function ResourcesTable({ ...props }) {
               </TableCell>
               <TableCell className={classes.tableCell} colSpan={12}>
                 <h6>
-                  {account.userTokens
-                    .map(sym => `${sym.precision},${sym.symbol}@${sym.account}`)
-                    .join(', ')}
+                  {account.userTokens.map(sym => (
+                    <Chip
+                      label={`${sym.symbol}`}
+                      onClick={() => {
+                        infoNotification(sym);
+                      }}
+                    />
+                  ))}
                 </h6>
               </TableCell>
             </TableRow>
