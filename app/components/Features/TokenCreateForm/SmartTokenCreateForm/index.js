@@ -17,6 +17,7 @@ import Payment from '@material-ui/icons/Payment';
 import Tool from 'components/Tool/Tool';
 import ToolSection from 'components/Tool/ToolSection';
 import ToolBody from 'components/Tool/ToolBody';
+import BigNumber from 'bignumber.js';
 
 import FormObject from './FormObject';
 
@@ -27,19 +28,22 @@ const makeTransaction = values => {
       name: 'excreate',
       data: {
         issuer: values.issuer,
-        maximum_supply: `${Number(values.maximum_supply).toFixed(4)} ${
-          values.symbol
-        }`,
-        connector_weight: `${Number(values.connector_weight).toFixed(17)}`,
-        maximum_exchange: `${Number(values.maximum_exchange).toFixed(4)} ${
-          values.symbol
-        }`,
-        reserve_supply: `${Number(values.reserve_supply).toFixed(4)} ${
-          values.symbol
-        }`,
-        reserve_connector_balance: `${Number(
+        maximum_supply: `${new BigNumber(values.maximum_supply).toFixed(
+          Number(values.precision),
+          1,
+        )} ${values.symbol}`,
+        connector_weight: `${new BigNumber(values.connector_weight).toFixed(17, 1)}`,
+        maximum_exchange: `${new BigNumber(values.maximum_exchange).toFixed(
+          Number(values.precision),
+          1,
+        )} ${values.symbol}`,
+        reserve_supply: `${new BigNumber(values.reserve_supply).toFixed(
+          Number(values.precision),
+          1,
+        )} ${values.symbol}`,
+        reserve_connector_balance: `${new BigNumber(
           values.reserve_connector_balance,
-        ).toFixed(4)} ${values.exchange_symbol}`,
+        ).toFixed(4, 1)} ${values.exchange_symbol}`,
         expiration: Number(values.expiration),
         buy_fee: `${Number(values.buy_fee).toFixed(17)}`,
         sell_fee: `${Number(values.sell_fee).toFixed(17)}`,
@@ -54,6 +58,11 @@ const validationSchema = props =>
   Yup.object().shape({
     issuer: Yup.string().required('Issuer account name is required'),
     symbol: Yup.string().required('Symbol is required'),
+    precision: Yup.number()
+      .required('Precision is required')
+      .integer('Precision cannot be fractional')
+      .max(18)
+      .positive('You must send a positive Precision'),
     exchange_symbol: Yup.string().required('Exchange Symbol is required'),
     connector_balance_issuer: Yup.string().required(
       'Exchange Symbol Issuer is required',
@@ -106,6 +115,7 @@ const enhance = compose(
       symbol: '',
       exchange_symbol: 'FO',
       connector_balance_issuer: 'eosio',
+      precision: '',
       maximum_supply: '',
       connector_weight: '',
       maximum_exchange: '',

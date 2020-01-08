@@ -15,6 +15,11 @@ const FormData = [
     placeholder: 'Symbol of the Smart Token ',
   },
   {
+    id: 'precision',
+    label: 'Smart Token Precision',
+    placeholder: 'Precision of the Smart Token ',
+  },
+  {
     id: 'maximum_supply',
     label: 'Maximum Supply',
     placeholder: 'Maximum Supply of the Smart Token',

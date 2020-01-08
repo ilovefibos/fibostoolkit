@@ -5,22 +5,27 @@ import ToolInput from 'components/Tool/ToolInput';
 
 const FormData = [
   {
-    id: 'issuer',
+    id: 'nissuer',
     label: 'Issuer',
     placeholder: 'Issuer account name of theNormal Token ',
   },
   {
-    id: 'symbol',
+    id: 'nsymbol',
     label: 'Normal Token Symbol',
     placeholder: 'Symbol of the normal token ',
   },
   {
-    id: 'maximum_supply',
+    id: 'nprecision',
+    label: 'Smart Token Precision',
+    placeholder: 'Precision of the Smart Token ',
+  },
+  {
+    id: 'nmaximum_supply',
     label: 'Maximum Supply',
     placeholder: 'Maximum Supply of the normal token',
   },
   {
-    id: 'expiration',
+    id: 'nexpiration',
     label: 'Lock Expiration Time',
     placeholder: 'Lock expiration time in seconds',
   },
