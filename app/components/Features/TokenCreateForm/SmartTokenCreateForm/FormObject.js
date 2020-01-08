@@ -2,6 +2,7 @@ import React from 'react';
 
 import ToolForm from 'components/Tool/ToolForm';
 import ToolInput from 'components/Tool/ToolInput';
+import ToolDateTimePicker from '../../../Tool/ToolDateTimePicker';
 
 const FormData = [
   {
@@ -56,11 +57,6 @@ const FormData = [
     placeholder: 'Reserve Connector Balance of the Smart Token',
   },
   {
-    id: 'expiration',
-    label: 'Lock Expiration Time',
-    placeholder: 'Lock expiration time in seconds',
-  },
-  {
     id: 'buy_fee',
     label: 'Buy Fee',
     placeholder: 'Smart token buy fee',
@@ -71,6 +67,12 @@ const FormData = [
     placeholder: 'Smart token sell fee',
   },
 ];
+
+const pickerData = {
+  id: 'expiration',
+  label: 'Lock Expiration Time',
+  placeholder: 'Lock expiration time in seconds',
+};
 
 const FormObject = props => {
   const { handleSubmit } = props;
@@ -84,6 +86,7 @@ const FormObject = props => {
       {FormData.map(form => (
         <ToolInput key={form.id} {...form} {...props} />
       ))}
+      <ToolDateTimePicker key={pickerData.id} {...pickerData} {...props} />
     </ToolForm>
   );
 };

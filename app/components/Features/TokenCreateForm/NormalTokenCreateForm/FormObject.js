@@ -2,6 +2,7 @@ import React from 'react';
 
 import ToolForm from 'components/Tool/ToolForm';
 import ToolInput from 'components/Tool/ToolInput';
+import ToolDateTimePicker from '../../../Tool/ToolDateTimePicker';
 
 const FormData = [
   {
@@ -24,12 +25,13 @@ const FormData = [
     label: 'Maximum Supply',
     placeholder: 'Maximum Supply of the normal token',
   },
-  {
-    id: 'nexpiration',
-    label: 'Lock Expiration Time',
-    placeholder: 'Lock expiration time in seconds',
-  },
 ];
+
+const pickerData = {
+  id: 'nexpiration',
+  label: 'Lock Expiration Time',
+  placeholder: 'Lock expiration time in seconds',
+};
 
 const FormObject = props => {
   const { handleSubmit } = props;
@@ -40,9 +42,10 @@ const FormObject = props => {
   };
   return (
     <ToolForm {...formProps}>
-      {FormData.map(form => {
-        return <ToolInput key={form.id} {...form} {...props} />;
-      })}
+      {FormData.map(form => (
+        <ToolInput key={form.id} {...form} {...props} />
+      ))}
+      <ToolDateTimePicker key={pickerData.id} {...pickerData} {...props} />
     </ToolForm>
   );
 };
