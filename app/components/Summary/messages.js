@@ -19,9 +19,13 @@ export default defineMessages({
     defaultMessage:
       'If your account details keep disappearing it is because many networks are close to you. Select one manually by clicking "Change Network" to prevent this.',
   },
-  smartTokens: {
-    id: 'app.components.Summary.smartTokens',
-    defaultMessage: 'Smart Tokens',
+  smartTokenBalance: {
+    id: 'app.components.Summary.smartTokenBalance',
+    defaultMessage: 'Smart Token Balance',
+  },
+  createdTokens: {
+    id: 'app.components.Summary.createdTokens',
+    defaultMessage: 'Created Tokens',
   },
   contractWallet: {
     id: 'app.components.Summary.contractWallet',

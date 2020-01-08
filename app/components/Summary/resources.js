@@ -129,7 +129,7 @@ function ResourcesTable({ ...props }) {
               className={`${classes.tableStripedRow} ${classes.tableRowHover}`}
             >
               <TableCell className={classes.tableCell}>
-                <h6>{intl.formatMessage(messages.smartTokens)}</h6>
+                <h6>{intl.formatMessage(messages.smartTokenBalance)}</h6>
               </TableCell>
               <TableCell className={classes.tableCell} colSpan={12}>
                 <h6>
@@ -144,16 +144,34 @@ function ResourcesTable({ ...props }) {
               className={`${classes.tableStripedRow} ${classes.tableRowHover}`}
             >
               <TableCell className={classes.tableCell}>
-                <h6>{intl.formatMessage(messages.contractWallet)}</h6>
+                <h6>{intl.formatMessage(messages.createdTokens)}</h6>
               </TableCell>
               <TableCell className={classes.tableCell} colSpan={12}>
                 <h6>
-                  {account.contractWalletBalances
-                    .map(bal => `${bal.balance}@${bal.account}`)
+                  {account.userTokens
+                    .map(sym => `${sym.precision},${sym.symbol}@${sym.account}`)
                     .join(', ')}
                 </h6>
               </TableCell>
             </TableRow>
+            {account && account.contractWalletBalances.length ? (
+              <TableRow
+                className={`${classes.tableStripedRow} ${
+                  classes.tableRowHover
+                }`}
+              >
+                <TableCell className={classes.tableCell}>
+                  <h6>{intl.formatMessage(messages.contractWallet)}</h6>
+                </TableCell>
+                <TableCell className={classes.tableCell} colSpan={12}>
+                  <h6>
+                    {account.contractWalletBalances
+                      .map(bal => `${bal.balance}@${bal.account}`)
+                      .join(', ')}
+                  </h6>
+                </TableCell>
+              </TableRow>
+            ) : null}
           </TableBody>
         ) : (
           <TableBody>
