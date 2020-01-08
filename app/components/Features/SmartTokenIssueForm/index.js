@@ -18,8 +18,14 @@ import ToolSection from 'components/Tool/ToolSection';
 import ToolBody from 'components/Tool/ToolBody';
 
 import FormObject from './FormObject';
+import { makeSelectAccount } from '../../../containers/NetworkClient/selectors';
 
-const makeTransaction = values => {
+const makeTransaction = (values, account) => {
+  const token = account.userTokens.find(
+    userToken =>
+      userToken.symbol === values.symbol &&
+      userToken.account === values.issuer,
+  );
   const transaction = [
     {
       account: 'eosio.token',
@@ -28,7 +34,7 @@ const makeTransaction = values => {
         to: values.name,
         memo: values.memo,
         quantity: `${Number(values.quantity)
-          .toFixed(4)
+          .toFixed(token.precision)
           .toString()} ${values.symbol}@${values.issuer}`,
       },
     },
@@ -66,7 +72,9 @@ const SmartTokenIssueForm = props => {
   );
 };
 
+
 const mapStateToProps = createStructuredSelector({
+  account: makeSelectAccount(),
 });
 
 const enhance = compose(
@@ -76,8 +84,8 @@ const enhance = compose(
   ),
   withFormik({
     handleSubmit: (values, { props, setSubmitting }) => {
-      const { pushTransaction, accountTokens } = props;
-      const transaction = makeTransaction(values, accountTokens);
+      const { pushTransaction, account } = props;
+      const transaction = makeTransaction(values, account);
       setSubmitting(false);
       pushTransaction(transaction, props.history);
     },
