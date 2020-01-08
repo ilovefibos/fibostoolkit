@@ -26,11 +26,12 @@ import regularFormsStyle from 'assets/jss/regularFormsStyle';
 import ResourceTable from 'components/AccountTables/resources';
 import BalancesTable from 'components/AccountTables/balances';
 import ContractWalletBalancesTable from 'components/AccountTables/contractWalletBalances';
+import CreatedTokensTable from 'components/AccountTables/createdTokens';
 const Account = props => {
   const { classes, account, showJson, toggleVisibility } = props;
   if (!account) {
     return (
-      <GridItem xs={12} sm={12} lg={6}>
+      <GridItem xs={12} sm={12} lg={12}>
         <Card>
           <CardHeader color="rose" icon>
             <CardIcon color="rose">
@@ -46,7 +47,7 @@ const Account = props => {
     );
   }
   return (
-    <GridItem xs={12} sm={12} lg={6}>
+    <GridItem xs={12} sm={12} lg={12}>
       <Card>
         <CardHeader color="rose" icon>
           <CardIcon color="rose">
@@ -60,10 +61,13 @@ const Account = props => {
               <BalancesTable account={account} />
             </GridItem>
             <GridItem xs={12} md={12} lg={6}>
-              <ContractWalletBalancesTable account={account} />
+              <ResourceTable account={account} />
             </GridItem>
             <GridItem xs={12} md={12} lg={6}>
-              <ResourceTable account={account} />
+              <CreatedTokensTable account={account} />
+            </GridItem>
+            <GridItem xs={12} md={12} lg={6}>
+              <ContractWalletBalancesTable account={account} />
             </GridItem>
           </GridContainer>
           <a onClick={toggleVisibility}>

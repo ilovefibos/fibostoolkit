@@ -5,6 +5,7 @@ import { LOOKUP_ACCOUNT, LOOKUP_PUBKEY } from './constants';
 import { lookupLoading, lookupLoaded } from './actions';
 import { makeSelectActiveNetwork, makeSelectNetworks } from '../NetworkClient/selectors'
 import { updateNetworks } from '../NetworkClient/actions'
+import { getPrecisionFromMaxSupply } from '../../utils/currencyUtil';
 
 function* getCurrency(token, name) {
   const networkReader = yield select(makeSelectReader());
@@ -66,6 +67,25 @@ function* getAcountTokenBalanceFromTable(reader, name) {
   return currencies;
 }
 
+function* getTokenInfoByIssuerFromTable(reader, tokenAccount) {
+  const currencyResult = yield reader.getTableRows({
+    json: true,
+    scope: ` ${tokenAccount}`,
+    code: 'eosio.token',
+    table: 'stats',
+    limit: 100
+  });
+  const currencies = currencyResult.rows.map(c => {
+    return {
+      account: tokenAccount,
+      symbol: c.max_supply.split(' ')[1],
+      precision: getPrecisionFromMaxSupply(c.max_supply),
+      ...c
+    };
+  });
+  return currencies;
+}
+
 function* getAccountDetail(name) {
   try {
     const networkReader = yield select(makeSelectReader());
@@ -80,11 +100,13 @@ function* getAccountDetail(name) {
     // const balances = currencies.reduce((a, b) => a.concat(b), []);
     const balances = yield getAcountTokenBalanceFromTable(networkReader, name);
     const contractWalletBalances = yield getContractWalletBalance(networkReader, name);
+    const userTokens = yield getTokenInfoByIssuerFromTable(networkReader, name);
 
     return {
       ...account,
       balances,
       contractWalletBalances,
+      userTokens
     };
   } catch (err) {
     console.error('An FOToolkit error occured - see details below:');

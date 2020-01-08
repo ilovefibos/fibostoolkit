@@ -150,6 +150,7 @@ function* getTokenInfoByIssuerFromTable(reader, tokenAccount) {
       account: tokenAccount,
       symbol: c.max_supply.split(' ')[1],
       precision: getPrecisionFromMaxSupply(c.max_supply),
+      ...c,
     };
   });
   return currencies;
