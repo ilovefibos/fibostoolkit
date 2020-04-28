@@ -6,7 +6,6 @@ const WebpackPwaManifest = require('webpack-pwa-manifest');
 const { HashedModuleIdsPlugin } = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
-const HtmlWebpackChunkPrefixPlugin = require('../plugins/HtmlWebpackChunkPrefix');
 module.exports = require('./webpack.base.babel')({
   mode: 'production',
 
@@ -20,6 +19,7 @@ module.exports = require('./webpack.base.babel')({
   output: {
     filename: '[name].[chunkhash].js',
     chunkFilename: '[name].[chunkhash].chunk.js',
+    publicPath: 'https://cdn.jsdelivr.net/gh/ilovefibos/fibostoolkit@gh-pages/',
   },
 
   optimization: {
@@ -147,9 +147,6 @@ module.exports = require('./webpack.base.babel')({
       hashFunction: 'sha256',
       hashDigest: 'hex',
       hashDigestLength: 20,
-    }),
-    new HtmlWebpackChunkPrefixPlugin({
-      prefix: 'https://cdn.jsdelivr.net/gh/ilovefibos/fibostoolkit@gh-pages',
     }),
   ],
 
