@@ -164,6 +164,7 @@ const HorusPay = props => {
                           target="new"
                           style={{ color: 'rgba(0, 0, 0, 0.87)' }}
                         >
+                          {/* fontawesome was removed */}
                           <i className="fas fa-globe" />
                         </a>
                       ) : (
@@ -175,6 +176,7 @@ const HorusPay = props => {
                           target="new"
                           style={{ color: 'black' }}
                         >
+                          {/* fontawesome was removed */}
                           <i className="fab fa-telegram-plane" />
                         </a>
                       ) : (
@@ -186,6 +188,7 @@ const HorusPay = props => {
                           target="new"
                           style={{ color: 'black' }}
                         >
+                          {/* fontawesome was removed */}
                           <i className="fab fa-twitter" />
                         </a>
                       ) : (
