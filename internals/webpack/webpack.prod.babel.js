@@ -51,14 +51,15 @@ module.exports = require('./webpack.base.babel')({
       chunks: 'all',
       minSize: 30000,
       minChunks: 1,
-      maxAsyncRequests: 5,
-      maxInitialRequests: 3,
+      maxAsyncRequests: 10,
+      maxInitialRequests: 10,
       name: true,
       cacheGroups: {
         commons: {
           test: /[\\/]node_modules[\\/]/,
           name: 'vendor',
           chunks: 'all',
+          maxSize: 1500000,
         },
         main: {
           chunks: 'all',
