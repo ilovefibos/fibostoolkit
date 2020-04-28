@@ -2510,6 +2510,5 @@ img {
     width: 100%; }
 
   @font-face {
-    font-family: "Bebas";
-    src: url("../../assets/bebas.ttf");
+    font-family: "Helvetica";
   }

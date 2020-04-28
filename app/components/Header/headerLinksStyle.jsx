@@ -222,7 +222,7 @@ const headerLinksStyle = theme => ({
     color: 'inherit',
   },
   logoNormal: {
-    fontFamily: "'Bebas', 'Helvetica', 'Arial', sans-serif",
+    fontFamily: "'Helvetica', 'Arial', sans-serif",
     transition: 'all 300ms linear',
     display: 'block',
     float: 'left',

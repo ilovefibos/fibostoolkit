@@ -139,7 +139,7 @@ const sidebarStyle = theme => ({
     marginLeft: '26px',
   },
   logoNormal: {
-    fontFamily: "'Bebas', 'Helvetica', 'Arial', sans-serif",
+    fontFamily: "'Helvetica', 'Arial', sans-serif",
     transition: 'all 300ms linear',
     display: 'block',
     opacity: '1',
