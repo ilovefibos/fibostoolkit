@@ -85,4 +85,4 @@ if (!window.Intl) {
 // If you want your app to work offline and load faster,
 // you can change unregister() to register() below. Note this comes with some pitfalls.
 // Learn more: https://github.com/react-boilerplate/react-boilerplate/blob/master/docs/general/offline.md
-serviceWorker.register();
+serviceWorker.unregister();
