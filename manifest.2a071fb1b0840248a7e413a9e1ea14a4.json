@@ -1,0 +1,67 @@
+{
+  "icons": [
+    {
+      "src": "https://cdn.jsdelivr.net/gh/ilovefibos/fibostoolkit@gh-pages/icon_180x180.a29dd581aa1781242cd1da9553875656.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn.jsdelivr.net/gh/ilovefibos/fibostoolkit@gh-pages/icon_167x167.6fa44e40e0f629001d59a6d4c71eb201.png",
+      "sizes": "167x167",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn.jsdelivr.net/gh/ilovefibos/fibostoolkit@gh-pages/icon_152x152.d871165d3843e267b8283b46de00f06b.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn.jsdelivr.net/gh/ilovefibos/fibostoolkit@gh-pages/icon_120x120.c3808d3bd045863f23f4a17169be3760.png",
+      "sizes": "120x120",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn.jsdelivr.net/gh/ilovefibos/fibostoolkit@gh-pages/icon_512x512.6f21c1c5120b44caf8da82fe991da02d.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn.jsdelivr.net/gh/ilovefibos/fibostoolkit@gh-pages/icon_384x384.c79958710d1c62d9a5b2e2e754c9e0f0.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn.jsdelivr.net/gh/ilovefibos/fibostoolkit@gh-pages/icon_192x192.21577df222319f84b062ce8167e95df7.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn.jsdelivr.net/gh/ilovefibos/fibostoolkit@gh-pages/icon_144x144.a6eb673fe1baae9a778361cd73b32f04.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn.jsdelivr.net/gh/ilovefibos/fibostoolkit@gh-pages/icon_128x128.a1aa319682baa63154cbdfb05cdf138e.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn.jsdelivr.net/gh/ilovefibos/fibostoolkit@gh-pages/icon_96x96.c3b0698b12d327288197cb01e38f1fdc.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "https://cdn.jsdelivr.net/gh/ilovefibos/fibostoolkit@gh-pages/icon_72x72.f5af015e88579ad3e291c46d585af75d.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    }
+  ],
+  "name": "FOToolkit.com | All in one FO web wallet",
+  "short_name": "FOToolkit",
+  "orientation": "portrait",
+  "display": "standalone",
+  "start_url": ".",
+  "description": "FOToolkit is the premier free, open source interface for managing FO accounts. Create, transfer, stake, vote and more with Scatter! Checkout cool community...",
+  "background_color": "#fafafa",
+  "theme_color": "#b1624d"
+}
