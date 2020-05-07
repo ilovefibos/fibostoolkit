@@ -15,13 +15,13 @@ const isLocalhost = Boolean(
 
 export function register(config) {
   if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
-    const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
-    // NOTE: We don't use custom public folder so maybe not needed ?
-    if (publicUrl.origin !== window.location.origin) {
-      // Service worker won't work if publicUrl is on a different origin
-      // from what our page is served on. This might happen if a CDN is used to serve assets;
-      return;
-    }
+    // const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
+    // https://github.com/facebook/create-react-app/issues/2374 enable manually here since cdn and cache active same time
+    // if (publicUrl.origin !== window.location.origin) {
+    //   // Service worker won't work if publicUrl is on a different origin
+    //   // from what our page is served on. This might happen if a CDN is used to serve assets;
+    //   return;
+    // }
 
     window.addEventListener('load', () => {
       const swUrl = `${process.env.PUBLIC_URL}service-worker.js`;
