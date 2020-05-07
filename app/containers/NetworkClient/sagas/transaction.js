@@ -1,4 +1,3 @@
-import Eos from 'eosjs';
 import { put, select, call } from 'redux-saga/effects';
 import {
   failureNotification,
