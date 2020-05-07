@@ -21,7 +21,9 @@ module.exports = require('./webpack.base.babel')({
     chunkFilename: '[name].[chunkhash].chunk.js',
     publicPath: 'https://cdn.jsdelivr.net/gh/ilovefibos/fibostoolkit@gh-pages/',
   },
-
+  // for workbox. The origin of the provided scriptURL must match the current origin
+  // we should use main domains's service-worker.js file instead of jsdelivr's.
+  publicUrl: 'https://fotoolkit.com/',
   optimization: {
     minimize: true,
     minimizer: [
