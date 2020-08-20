@@ -78,6 +78,9 @@ import VpnKey from '@material-ui/icons/VpnKey';
 
 import HorusIcon from 'components/Icons/Horus';
 import ExchangeForm from "../components/Features/ExchangeForm";
+import CrossForm from '../components/Features/CrossForm';
+import DexForm from '../components/Features/DexForm';
+import { AccountBalance, Looks, Sync } from '@material-ui/icons';
 
 
 const dashRoutes = [
@@ -142,12 +145,26 @@ const dashRoutes = [
   //   icon: SwapHoriz,
   //   component: Exchange,
   // },
+  // {
+  //   path: '/withdrawl',
+  //   name: 'Withdrawl EOS',
+  //   messageId: 'withdrawlEos',
+  //   icon: Send,
+  //   component: Withdrawl,
+  // },
   {
-    path: '/withdrawl',
-    name: 'Withdrawl EOS',
-    messageId: 'withdrawlEos',
-    icon: Send,
-    component: Withdrawl,
+    path: '/dex',
+    name: 'Offical Dex',
+    messageId: 'officalDex',
+    icon: AccountBalance,
+    component: DexForm,
+  },
+  {
+    path: '/cross',
+    name: 'Offical Cross Chain',
+    messageId: 'officalCrossChain',
+    icon: Looks,
+    component: CrossForm,
   },
   {
     collapse: true,
@@ -205,23 +222,6 @@ const dashRoutes = [
         messageId: 'claimBonus',
         mini: 'CB',
         component: ClaimBonus,
-      },
-    ],
-  },
-  {
-    collapse: true,
-    path: '/cross',
-    name: 'Cross Chain',
-    messageId: 'crossChain',
-    state: 'openCrossChain',
-    icon: Cached,
-    views: [
-      {
-        path: '/cross/eth',
-        name: 'Cross Chain ETH',
-        messageId: 'crossChainEth',
-        mini: 'CCE',
-        component: CrossEthForm,
       },
     ],
   },

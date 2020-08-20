@@ -3,9 +3,6 @@ import withStyles from '@material-ui/core/styles/withStyles';
 
 const News = () => (
   <div>
-    <h3>Cross Chain Transfer</h3>
-    <h4>Added support for Cross Chain FOETH and FODAI transfer</h4>
-
     <h3>Feel free to contribute !!!!</h3>
     <h4>
       The fibostoolkit is open source at{' '}
