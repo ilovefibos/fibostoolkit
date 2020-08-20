@@ -15,7 +15,7 @@ importScripts("https://cdn.jsdelivr.net/gh/ilovefibos/fibostoolkit@gh-pages/work
 workbox.setConfig({modulePathPrefix: "https://cdn.jsdelivr.net/gh/ilovefibos/fibostoolkit@gh-pages/workbox-v4.3.1"});
 
 importScripts(
-  "https://cdn.jsdelivr.net/gh/ilovefibos/fibostoolkit@gh-pages/precache-manifest.40c054504e77bc2146d6825597878332.js"
+  "https://cdn.jsdelivr.net/gh/ilovefibos/fibostoolkit@gh-pages/precache-manifest.3347f0c9377ec3a6d190189157ff5da3.js"
 );
 
 self.addEventListener('message', (event) => {
@@ -36,5 +36,5 @@ workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
 
 workbox.routing.registerNavigationRoute(workbox.precaching.getCacheKeyForURL("/index.html"), {
   
-  blacklist: [/^\/_/,/\/[^\/?]+\.[^\/]+$/],
+  blacklist: [/^\/_/,/\/[^/?]+\.[^/]+$/],
 });
